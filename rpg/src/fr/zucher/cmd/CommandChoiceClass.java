@@ -27,7 +27,7 @@ public class CommandChoiceClass implements CommandExecutor {
 			//Si il a déjà choisi sa classe
 			if(player.getCustomName() != null)
 			{
-				player.sendMessage("Hop hddop hop, je te rappelle que tu as déjà une classe, fais /menu pour voir ce qu'il est possible de faire avec ta classe"+player.getCustomName());
+				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe, fais /menu pour voir ce qu'il est possible de faire avec ta classe"+player.getCustomName());
 			}
 			//==========================================================================
 			//	Si aucun paramètre n'est renseigné, je lui affiche la bonne commande   /

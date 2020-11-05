@@ -25,11 +25,29 @@ public class Guerrier extends JavaPlugin {
 	{
 		player.sendMessage("Bienvenue dans le menu de votre classe, vous pouvez y retrouver toutes les infos utiles : \n"
 							+ ChatColor.AQUA +"VOS SPECIALITES : \n"
-							+ ChatColor.YELLOW + "/addHearts "+ ChatColor.WHITE +" ajoute des coeurs à votre barre de vie \n"
-							+ ChatColor.YELLOW +"/resistance "+ ChatColor.WHITE +"augmente votre défense \n \n"
+							+ ChatColor.YELLOW + "/addHearts "+ ChatColor.WHITE +" 30 XP ajoute des coeurs à votre barre de vie \n"
+							+ ChatColor.YELLOW +"/resistance "+ ChatColor.WHITE +" 30 XP augmente votre défense \n \n"
 							+ ChatColor.AQUA +"MAGASIN D'EXPERIENCES : \n"
 							+ ChatColor.YELLOW + "/getStuffIron "+ ChatColor.WHITE +" 10 XP : donne un équipement en fer \n"
 							+ ChatColor.YELLOW +"/getStuffDiamond "+ ChatColor.WHITE +" 25 XP : donne un équipement en diamant");
+	}
+	
+	public static void getStuffIron(Player player)
+	{
+		player.getInventory().addItem(new ItemStack(Material.IRON_SWORD));
+		player.getInventory().addItem(new ItemStack(Material.IRON_CHESTPLATE));
+		player.getInventory().addItem(new ItemStack(Material.IRON_BOOTS));
+		player.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS));
+		player.getInventory().addItem(new ItemStack(Material.IRON_HELMET));
+	}
+	
+	public static void getStuffDiamond(Player player)
+	{
+		player.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD));
+		player.getInventory().addItem(new ItemStack(Material.DIAMOND_CHESTPLATE));
+		player.getInventory().addItem(new ItemStack(Material.DIAMOND_BOOTS));
+		player.getInventory().addItem(new ItemStack(Material.DIAMOND_LEGGINGS));
+		player.getInventory().addItem(new ItemStack(Material.DIAMOND_HELMET));
 	}
 	
 }

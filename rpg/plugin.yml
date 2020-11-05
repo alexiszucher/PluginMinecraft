@@ -8,4 +8,16 @@ commands:
     permission: class.use
   menuclass:
     description: Menu classe
-    permission: class.use
+    permission: menuclass.use
+  addHearts:
+    description: Ajouter coeurs
+    permission: addHearts.use
+  resistance:
+    description: bonus resistance
+    permission: resistance.use
+  getStuffIron:
+    description: stuff fer
+    permission: getStuffIron.use
+  getStuffDiamond:
+    description: stuff diamant
+    permission: getStuffDiamond.use
