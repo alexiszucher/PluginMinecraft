@@ -1,0 +1,11 @@
+name: PluginRPG
+version: 1.0
+author: AlexisZucher
+main: fr.zucher.rpg.Main
+commands:
+  class:
+    description: Choix classe
+    permission: class.use
+  menuclass:
+    description: Menu classe
+    permission: class.use
