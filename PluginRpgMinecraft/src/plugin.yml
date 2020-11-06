@@ -1,0 +1,17 @@
+name: PluginRpgMinecraft
+version: 1.0
+author: Sasuno
+main: fr.zucher.monplugin.MonPlugin
+commands:
+  class:
+    description: Choix classe
+  menuclass:
+    description: Menu de classe
+  addHearts:
+    description: Ajouter des coeurs
+  resistance:
+    description: Ajouter resistance
+  getStuffIron:
+    description: Donne un stuff fer
+  getStuffDiamond:
+    description: Donne un stuff diamant
