@@ -1,0 +1,11 @@
+name: PluginAmeliorationMinecraft
+version: 1.0
+author: Givrix
+main: fr.givrix.pluginameliorationminecraft.PluginAmeliorationMinecraft
+commands:
+  pos:
+    description: Affiche les coordonees d'un joueur
+  follow:
+    description: Donne une boussole qui pointe un joueur
+  uhc:
+    description: Passe le jeu en ultra hardcore
