@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import fr.sasuno.pluginrpgminecraft.classe.Guerrier;
 import fr.sasuno.pluginrpgminecraft.classe.Archer;
+import fr.sasuno.pluginrpgminecraft.classe.Classe;
 
 public class CommandClassMenu implements CommandExecutor {
 
@@ -18,17 +19,9 @@ public class CommandClassMenu implements CommandExecutor {
 		//==========================================================================
 		if(sender instanceof Player)
 		{
-			//Je récupère les infos du joueur
+			//Je récupère les infos du joueur et j'affiche le menu de la classe en question
 			Player player = (Player)sender;
-			
-			if(player.getCustomName().equals("GUERRIER"))
-			{
-				Guerrier.menuGuerrier(player);
-			}
-			if(player.getCustomName().equals("ARCHER"))
-			{
-				Archer.menuArcher(player);
-			}
+			Classe.getClasse(player).menuClass(player);
 		}
 		
 		return false;

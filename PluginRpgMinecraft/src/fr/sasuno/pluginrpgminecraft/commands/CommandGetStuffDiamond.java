@@ -23,7 +23,7 @@ public class CommandGetStuffDiamond implements CommandExecutor {
 			
 			if(player.getLevel() > 24)
 			{
-				 Guerrier.getStuffDiamond(player);
+				 //Guerrier.getStuffDiamond(player);
 				 player.setLevel(player.getLevel() - 25);
 			}
 		}

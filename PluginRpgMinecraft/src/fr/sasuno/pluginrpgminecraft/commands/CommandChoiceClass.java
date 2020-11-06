@@ -9,7 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import fr.sasuno.pluginrpgminecraft.classe.Guerrier;
+import fr.sasuno.pluginrpgminecraft.classe.Paladin;
 import fr.sasuno.pluginrpgminecraft.classe.Archer;
+import fr.sasuno.pluginrpgminecraft.classe.Berserker;
+import fr.sasuno.pluginrpgminecraft.classe.Classe;
 
 public class CommandChoiceClass implements CommandExecutor {
 	
@@ -34,7 +37,7 @@ public class CommandChoiceClass implements CommandExecutor {
 			//==========================================================================
 			else if(args.length == 0)
 			{
-				player.sendMessage("La commande est : "+ ChatColor.GREEN +"/class Guerrier|Archer");
+				player.sendMessage("La commande est : "+ ChatColor.GREEN +"/class <Paladin>, <Berserker> ou <Archer>");
 			}
 			// Si il y a un paramètre...
 			else if(args.length == 1)
@@ -45,19 +48,26 @@ public class CommandChoiceClass implements CommandExecutor {
 				{
 					parametre.append(part);
 				}
-				// Si il choisi la classe Guerrier ...
-				if(parametre.toString().equals("Guerrier"))
+				// Si il choisi de bons arguments
+				if(parametre.toString().equals("Paladin"))
 				{
-					Guerrier.createGuerrier(player);
+					player.setCustomName("PALADIN");
+					Classe.getClasse(player).createClass(player);
 				}
-				// Si il choisi la classe Archer ...
 				else if(parametre.toString().equals("Archer"))
 				{
-					Archer.createArcher(player);
+					player.setCustomName("ARCHER");
+					Classe.getClasse(player).createClass(player);
+					
+				}
+				else if(parametre.toString().equals("Berserker"))
+				{
+					player.setCustomName("BERSRKER");
+					Classe.getClasse(player).createClass(player);
 				}
 				else
 				{
-					player.sendMessage("Mmmhh, tu n'as pas entré de bons paramètres : "+ ChatColor.GREEN +"/class Guerrier|Archer");
+					player.sendMessage("Mmmhh, tu n'as pas entré de bons paramètres : "+ ChatColor.GREEN +"/class <Paladin>, <Berserker>, <Archer>");
 				}
 				
 			}

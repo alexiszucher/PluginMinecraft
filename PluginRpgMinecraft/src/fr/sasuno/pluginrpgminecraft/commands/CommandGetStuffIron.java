@@ -25,7 +25,7 @@ public class CommandGetStuffIron implements CommandExecutor {
 			
 			if(player.getLevel() > 9)
 			{
-				 Guerrier.getStuffIron(player);
+				 //Guerrier.getStuffIron(player);
 				 player.setLevel(player.getLevel() - 10);
 			}
 		}
