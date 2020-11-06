@@ -2,8 +2,14 @@ package fr.sasuno.pluginrpgminecraft;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.sasuno.pluginrpgminecraft.commands.*;
-import fr.sasuno.pluginrpgminecraft.events.*;
+import fr.sasuno.pluginrpgminecraft.commands.CommandAddHearts;
+import fr.sasuno.pluginrpgminecraft.commands.CommandChoiceClass;
+import fr.sasuno.pluginrpgminecraft.commands.CommandClassMenu;
+import fr.sasuno.pluginrpgminecraft.commands.CommandGetStuffDiamond;
+import fr.sasuno.pluginrpgminecraft.commands.CommandGetStuffIron;
+import fr.sasuno.pluginrpgminecraft.commands.CommandResistance;
+import fr.sasuno.pluginrpgminecraft.commands.CommandWeaponUp;
+import fr.sasuno.pluginrpgminecraft.events.EnterInTheWorld;
 
 public class PluginRpgMinecraft extends JavaPlugin {
 
@@ -17,6 +23,7 @@ public class PluginRpgMinecraft extends JavaPlugin {
 		getCommand("resistance").setExecutor(new CommandResistance());
 		getCommand("getStuffIron").setExecutor(new CommandGetStuffIron());
 		getCommand("getStuffDiamond").setExecutor(new CommandGetStuffDiamond());
+		getCommand("weaponup").setExecutor(new CommandWeaponUp());
 	}
 	
 	@Override

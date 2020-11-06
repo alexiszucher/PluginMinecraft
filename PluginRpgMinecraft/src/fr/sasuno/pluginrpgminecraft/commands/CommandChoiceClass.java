@@ -1,17 +1,11 @@
 package fr.sasuno.pluginrpgminecraft.commands;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
-import fr.sasuno.pluginrpgminecraft.classe.Guerrier;
-import fr.sasuno.pluginrpgminecraft.classe.Paladin;
-import fr.sasuno.pluginrpgminecraft.classe.Archer;
-import fr.sasuno.pluginrpgminecraft.classe.Berserker;
 import fr.sasuno.pluginrpgminecraft.classe.Classe;
 
 public class CommandChoiceClass implements CommandExecutor {

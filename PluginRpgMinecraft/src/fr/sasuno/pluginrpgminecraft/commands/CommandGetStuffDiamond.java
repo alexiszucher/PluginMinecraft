@@ -5,9 +5,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.sasuno.pluginrpgminecraft.classe.Guerrier;
-import fr.sasuno.pluginrpgminecraft.classe.Archer;
-
 public class CommandGetStuffDiamond implements CommandExecutor {
 
 	@Override

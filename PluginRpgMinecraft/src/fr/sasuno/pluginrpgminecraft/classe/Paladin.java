@@ -4,15 +4,20 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class Paladin extends Classe {
 
+	public Paladin()
+	{
+		ItemStack [] ListWeapons = {new ItemStack(Material.WOODEN_SWORD), new ItemStack(Material.STONE_SWORD), new ItemStack(Material.IRON_SWORD), new ItemStack(Material.DIAMOND_SWORD)};
+		this.ListWeaponsUp = ListWeapons;
+	}
+	
 	@Override
 	public void createClass(Player player)
 	{
-		player.sendMessage("Félicitation ! Vous êtes à présent  !");
-		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD), 
+		player.sendMessage("Félicitation ! Vous êtes à présent Paladin !");
+		ItemStack [] items = {
 							new ItemStack(Material.LEATHER_CHESTPLATE), 
 							new ItemStack(Material.LEATHER_BOOTS), 
 							new ItemStack(Material.LEATHER_LEGGINGS), 
@@ -32,6 +37,5 @@ public class Paladin extends Classe {
 				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" 5 XP : augmente d'un niveau votre arme principale");
 		
 	}
-
 	
 }

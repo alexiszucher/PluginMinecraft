@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 import fr.sasuno.pluginrpgminecraft.classe.Classe;
 
-public class CommandClassMenu implements CommandExecutor {
+public class CommandWeaponUp implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -17,9 +17,10 @@ public class CommandClassMenu implements CommandExecutor {
 		//==========================================================================
 		if(sender instanceof Player)
 		{
-			//Je récupère les infos du joueur et j'affiche le menu de la classe en question
+			//Je récupère les infos du joueur
 			Player player = (Player)sender;
-			Classe.getClasse(player).menuClass(player);
+			
+			Classe.weaponUp(player, Classe.getClasse(player));
 		}
 		
 		return false;

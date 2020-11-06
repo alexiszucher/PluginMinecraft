@@ -15,3 +15,5 @@ commands:
     description: Donne un stuff fer
   getStuffDiamond:
     description: Donne un stuff diamant
+  weaponup:
+    description: augmenter l'arme de la classe

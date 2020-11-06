@@ -3,9 +3,6 @@ package fr.sasuno.pluginrpgminecraft.classe;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class Guerrier extends Classe {
 	

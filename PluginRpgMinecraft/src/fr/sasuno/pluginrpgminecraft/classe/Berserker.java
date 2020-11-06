@@ -3,11 +3,16 @@ package fr.sasuno.pluginrpgminecraft.classe;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class Berserker extends Classe {
 
+	public Berserker()
+	{
+		ItemStack [] ListWeapons = {new ItemStack(Material.WOODEN_AXE), new ItemStack(Material.STONE_AXE), new ItemStack(Material.IRON_AXE), new ItemStack(Material.DIAMOND_AXE)};
+		this.ListWeaponsUp = ListWeapons;
+	}
+	
 	@Override
 	public void createClass(Player player)
 	{
