@@ -23,7 +23,7 @@ public class CommandWeaponUp implements CommandExecutor {
 			//=================================================================================
 			//				J'exécute la fonction static weaponUp commune à toutes les classes dans la classe Classe  /
 			//=================================================================================
-			Classe.weaponUp(player, Classe.getClasse(player));
+			Classe.weaponUp(player, Classe.classe);
 		}
 		
 		return false;

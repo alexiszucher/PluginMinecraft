@@ -17,3 +17,5 @@ commands:
     description: Donne un stuff diamant
   weaponup:
     description: augmenter l'arme de la classe
+  armorup:
+    description: augmenter l'armure de la classe

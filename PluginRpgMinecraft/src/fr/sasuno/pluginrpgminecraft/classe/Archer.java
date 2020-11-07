@@ -14,6 +14,12 @@ public class Archer extends Classe{
 	{
 		ItemStack [] ListWeapons = {new ItemStack(Material.BOW)};
 		this.ListWeaponsUp = ListWeapons;
+		ItemStack [][] ListArmors = {
+							{new ItemStack(Material.LEATHER_HELMET), new ItemStack(Material.LEATHER_LEGGINGS)},
+							{new ItemStack(Material.IRON_HELMET), new ItemStack(Material.IRON_LEGGINGS)},
+							{new ItemStack(Material.DIAMOND_HELMET), new ItemStack(Material.DIAMOND_LEGGINGS)},
+							};
+		this.ListArmorsUp = ListArmors;
 	}
 	
 	//=======================================================================================================
@@ -25,6 +31,7 @@ public class Archer extends Classe{
 		ItemStack [] items = {new ItemStack(Material.BOW),
 							new ItemStack(Material.ARROW,30)};
 		Classe.giveItems(player, items);
+		Classe.giveItemsDoubleTable(player, ListArmorsUp);
 	}
 
 	//=======================================================================================================
@@ -40,7 +47,7 @@ public class Archer extends Classe{
 				+ ChatColor.AQUA +"MAGASIN D'EXPERIENCES : \n"
 				+ ChatColor.YELLOW + "/bowinfinity "+ ChatColor.WHITE +" 10 XP : donne un arc infinity \n"
 				+ ChatColor.YELLOW +"/arrow "+ ChatColor.WHITE +" 25 XP : donne des flêches \n"
-				+ ChatColor.YELLOW +"/weaponup "+ ChatColor.WHITE +" 5 XP : augmente votre arme");
+				+ ChatColor.YELLOW +"/weaponup "+ ChatColor.WHITE +" augmente votre arme");
 		
 	}
 	

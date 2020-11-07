@@ -6,7 +6,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.sasuno.pluginrpgminecraft.classe.Archer;
+import fr.sasuno.pluginrpgminecraft.classe.Berserker;
 import fr.sasuno.pluginrpgminecraft.classe.Classe;
+import fr.sasuno.pluginrpgminecraft.classe.Paladin;
 
 public class CommandChoiceClass implements CommandExecutor {
 	
@@ -46,18 +49,20 @@ public class CommandChoiceClass implements CommandExecutor {
 				if(parametre.toString().equals("Paladin"))
 				{
 					player.setCustomName("PALADIN");
-					Classe.getClasse(player).createClass(player);
+					Classe.classe = new Paladin();
+					Classe.classe.createClass(player);
 				}
 				else if(parametre.toString().equals("Archer"))
 				{
 					player.setCustomName("ARCHER");
-					Classe.getClasse(player).createClass(player);
-					
+					Classe.classe = new Archer();
+					Classe.classe.createClass(player);
 				}
 				else if(parametre.toString().equals("Berserker"))
 				{
 					player.setCustomName("BERSRKER");
-					Classe.getClasse(player).createClass(player);
+					Classe.classe = new Berserker();
+					Classe.classe.createClass(player);
 				}
 				else
 				{

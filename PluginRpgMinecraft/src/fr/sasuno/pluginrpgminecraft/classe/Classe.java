@@ -7,15 +7,19 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class Classe {
 	
-	//=============================================================================================
-	//	Variable pour la liste des armes de la classe en question afin de faire des weaponup      /
-	//=============================================================================================
-	protected ItemStack [] ListWeaponsUp;
+	public static Classe classe;
 	
-	//================================================================================================================================
-	//	Variable pour savoir à quel niveau de l'arme de la classe du joueur on se trouve, on commence au lvl 1 avec une arme en bois /
-	//================================================================================================================================
+	//==============================================================================================
+	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
+	//==============================================================================================
+	protected ItemStack [] ListWeaponsUp;
+	protected ItemStack [][] ListArmorsUp;
+	
+	//==========================================================================================================================================
+	//	Variables pour savoir à quel niveau de l'arme / armure de la classe du joueur on se trouve, on commence au lvl 1 avec une arme en bois /
+	//==========================================================================================================================================
 	protected static int WeaponLvl = 1;
+	protected static int ArmorLvl = 1;
 	
 	//===================================================================================================================
 	//	Fonction de création de classe, fonction abstraite car création de classe se fait en fonction de la classe choisie  /
@@ -48,6 +52,26 @@ public abstract class Classe {
 		}
 	}
 	
+	//====================================================================================
+	//	Fonction de passage d'une matière supérieur de l'armure principle de la classe   /
+	//====================================================================================
+	public static void armorUp(Player player, Classe classe)
+	{
+		//if(player.getLevel() > Classe.ArmorLvl *5)
+		//{
+			ItemStack [][] items = {classe.ListArmorsUp[Classe.WeaponLvl]};
+			Classe.giveItemsDoubleTable(player, items);
+			if(classe.ListArmorsUp.length > Classe.ArmorLvl + 1)
+			{
+				Classe.ArmorLvl = Classe.ArmorLvl+1;
+			}
+//		}
+//		else
+//		{
+//			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre armure, vous devez être lvl "+ ChatColor.AQUA +Classe.ArmorLvl*5);
+//		}
+	}
+	
 	//=======================================================================================================
 	//	Fonction giveItem pour allez plus vite dans le développement, mettez vos items à give sous forme	/
 	//	de tableau ItemStack pour give tout au joueur concerné												/
@@ -61,27 +85,14 @@ public abstract class Classe {
 	}
 	
 	//=======================================================================================================
-	//	Fonction pour récupérer la classe du joueur pour toutes les commandes que le joueur va faire		/
+	//	Fonction giveItem pour allez plus vite dans le développement, mettez vos items à give sous forme	/
+	//	de tableau ItemStack pour give tout au joueur concerné												/
 	//========================================================================================================
-	public static Classe getClasse(Player player)
+	public static void giveItemsDoubleTable(Player player, ItemStack [][] items)
 	{
-		if(player.getCustomName().equals("PALADIN"))
+		for(ItemStack item : items[Classe.ArmorLvl-1])
 		{
-			Paladin paladin = new Paladin();
-			return paladin;
+			player.getInventory().addItem(item);
 		}
-		if(player.getCustomName().equals("BERSERKER"))
-		{
-			Berserker berserker = new Berserker();
-			return berserker;
-		}
-		if(player.getCustomName().equals("ARCHER"))
-		{
-			Archer archer = new Archer();
-			return archer;
-		}
-		
-		Paladin rip = new Paladin();
-		return rip;
 	}
 }
