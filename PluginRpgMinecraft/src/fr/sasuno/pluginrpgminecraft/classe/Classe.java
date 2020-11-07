@@ -36,19 +36,18 @@ public abstract class Classe {
 	//=================================================================================
 	public static void weaponUp(Player player, Classe classe)
 	{
-		if(player.getLevel() > Classe.WeaponLvl *5)
+		if(player.getLevel() > Classe.WeaponLvl *2)
 		{
 			ItemStack [] items = {classe.ListWeaponsUp[Classe.WeaponLvl]};
 			Classe.giveItems(player, items);
 			if(classe.ListWeaponsUp.length > Classe.WeaponLvl + 1)
 			{
-				player.sendMessage(" Longueur Tableau : "+classe.ListWeaponsUp.length+" Lvl rec : "+Classe.WeaponLvl);
 				Classe.WeaponLvl = Classe.WeaponLvl+1;
 			}
 		}
 		else
 		{
-			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre arme, vous devez être lvl "+ ChatColor.AQUA +Classe.WeaponLvl*5);
+			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre arme, vous devez être lvl "+ ChatColor.AQUA +Classe.WeaponLvl*2);
 		}
 	}
 	
@@ -57,19 +56,19 @@ public abstract class Classe {
 	//====================================================================================
 	public static void armorUp(Player player, Classe classe)
 	{
-		//if(player.getLevel() > Classe.ArmorLvl *5)
-		//{
-			ItemStack [][] items = {classe.ListArmorsUp[Classe.WeaponLvl]};
-			Classe.giveItemsDoubleTable(player, items);
+		if(player.getLevel() > Classe.ArmorLvl *5)
+		{
+			ItemStack [] items = classe.ListArmorsUp[Classe.ArmorLvl];
+			Classe.giveItems(player, items);
 			if(classe.ListArmorsUp.length > Classe.ArmorLvl + 1)
 			{
 				Classe.ArmorLvl = Classe.ArmorLvl+1;
 			}
-//		}
-//		else
-//		{
-//			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre armure, vous devez être lvl "+ ChatColor.AQUA +Classe.ArmorLvl*5);
-//		}
+		}
+		else
+		{
+			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre armure, vous devez être lvl "+ ChatColor.AQUA +Classe.ArmorLvl*5);
+		}
 	}
 	
 	//=======================================================================================================
@@ -79,18 +78,6 @@ public abstract class Classe {
 	public static void giveItems(Player player, ItemStack [] items)
 	{
 		for(ItemStack item : items)
-		{
-			player.getInventory().addItem(item);
-		}
-	}
-	
-	//=======================================================================================================
-	//	Fonction giveItem pour allez plus vite dans le développement, mettez vos items à give sous forme	/
-	//	de tableau ItemStack pour give tout au joueur concerné												/
-	//========================================================================================================
-	public static void giveItemsDoubleTable(Player player, ItemStack [][] items)
-	{
-		for(ItemStack item : items[Classe.ArmorLvl-1])
 		{
 			player.getInventory().addItem(item);
 		}

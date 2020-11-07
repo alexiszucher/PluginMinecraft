@@ -31,7 +31,7 @@ public class Archer extends Classe{
 		ItemStack [] items = {new ItemStack(Material.BOW),
 							new ItemStack(Material.ARROW,30)};
 		Classe.giveItems(player, items);
-		Classe.giveItemsDoubleTable(player, ListArmorsUp);
+		Classe.giveItems(player, ListArmorsUp[0]);
 	}
 
 	//=======================================================================================================

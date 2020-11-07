@@ -33,7 +33,7 @@ public class Berserker extends Classe {
 		player.sendMessage("Félicitation ! Vous êtes à présent  !");
 		ItemStack [] items = {new ItemStack(Material.WOODEN_AXE)};
 		Classe.giveItems(player, items);
-		Classe.giveItemsDoubleTable(player, ListArmorsUp);
+		Classe.giveItems(player, ListArmorsUp[0]);
 	}
 
 	//=======================================================================================================

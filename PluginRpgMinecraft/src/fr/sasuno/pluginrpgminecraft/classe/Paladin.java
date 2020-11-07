@@ -36,7 +36,7 @@ public class Paladin extends Classe {
 							+ ChatColor.AQUA+"/menuclass \n");
 		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD)};
 		Classe.giveItems(player, items);
-		Classe.giveItemsDoubleTable(player, ListArmorsUp);
+		Classe.giveItems(player, ListArmorsUp[0]);
 	}
 
 	//=======================================================================================================
