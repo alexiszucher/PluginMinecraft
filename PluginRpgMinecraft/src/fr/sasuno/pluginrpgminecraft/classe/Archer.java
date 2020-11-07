@@ -7,24 +7,29 @@ import org.bukkit.inventory.ItemStack;
 
 public class Archer extends Classe{
 	
+	//=======================================================================================================
+	//					Constructeur																		/
+	//========================================================================================================
 	public Archer()
 	{
 		ItemStack [] ListWeapons = {new ItemStack(Material.BOW)};
 		this.ListWeaponsUp = ListWeapons;
 	}
 	
+	//=======================================================================================================
+	//	Création de la classe																				/
+	//========================================================================================================
 	public void createClass(Player player)
 	{
 		player.sendMessage("Félicitation ! Vous êtes à présent Archer !");
 		ItemStack [] items = {new ItemStack(Material.BOW),
-							new ItemStack(Material.ARROW),
-							new ItemStack(Material.LEATHER_CHESTPLATE), 
-							new ItemStack(Material.LEATHER_BOOTS), 
-							new ItemStack(Material.LEATHER_LEGGINGS), 
-							new ItemStack(Material.LEATHER_HELMET)};
+							new ItemStack(Material.ARROW,30)};
 		Classe.giveItems(player, items);
 	}
 
+	//=======================================================================================================
+	//			Menu de la classe																			/
+	//========================================================================================================
 	@Override
 	public void menuClass(Player player) {
 

@@ -17,6 +17,9 @@ public class PluginRpgMinecraft extends JavaPlugin {
 	public void onEnable() {
 		System.out.println("Le Plugin Zucher s'est allumé");
 		getServer().getPluginManager().registerEvents(new EnterInTheWorld(), this);
+		//=======================================================================================================
+		//	Liste des commandes à faire fonctionner entre le jeu et les fonctions appelées						/
+		//========================================================================================================
 		getCommand("class").setExecutor(new CommandChoiceClass());
 		getCommand("menuclass").setExecutor(new CommandClassMenu());
 		getCommand("addHearts").setExecutor(new CommandAddHearts());

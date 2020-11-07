@@ -7,24 +7,33 @@ import org.bukkit.inventory.ItemStack;
 
 public class Paladin extends Classe {
 
+	//=======================================================================================================
+	//				Constructeur de la classe																/
+	//========================================================================================================
 	public Paladin()
 	{
 		ItemStack [] ListWeapons = {new ItemStack(Material.WOODEN_SWORD), new ItemStack(Material.STONE_SWORD), new ItemStack(Material.IRON_SWORD), new ItemStack(Material.DIAMOND_SWORD)};
 		this.ListWeaponsUp = ListWeapons;
 	}
 	
+	//=======================================================================================================
+	//				Création de la classe																	/
+	//========================================================================================================
 	@Override
 	public void createClass(Player player)
 	{
-		player.sendMessage("Félicitation ! Vous êtes à présent Paladin !");
-		ItemStack [] items = {
-							new ItemStack(Material.LEATHER_CHESTPLATE), 
-							new ItemStack(Material.LEATHER_BOOTS), 
-							new ItemStack(Material.LEATHER_LEGGINGS), 
-							new ItemStack(Material.LEATHER_HELMET)};
+		player.sendMessage("Félicitation ! Vous êtes à présent Paladin !"
+							+ "Vous pouvez améliorer votre arme au fur et à mesure de votre aventure avec "
+							+ ChatColor.AQUA+"/weaponup \n"
+							+ ChatColor.WHITE +" et ouvrir le menu de votre classe avec "
+							+ ChatColor.AQUA+"/menuclass \n");
+		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD)};
 		Classe.giveItems(player, items);
 	}
 
+	//=======================================================================================================
+	//					Menu de la classe																	/
+	//========================================================================================================
 	@Override
 	public void menuClass(Player player) {
 

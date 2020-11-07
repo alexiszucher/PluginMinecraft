@@ -11,13 +11,16 @@ public class CommandGetStuffDiamond implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		
 		//==========================================================================
-		//	Si c'est un joueur qui lance la commande je rentre dans la boucle      /
+		//	Si c'est un joueur qui lance la commande je rentre dans la condition   /
 		//==========================================================================
 		if(sender instanceof Player)
 		{
 			//Je récupère les infos du joueur
 			Player player = (Player)sender;
 			
+			//=================================================================================
+			//	Je vérifie si le joueur a le bon level pour avoir les effets de la commande   /
+			//=================================================================================
 			if(player.getLevel() > 24)
 			{
 				 //Guerrier.getStuffDiamond(player);
