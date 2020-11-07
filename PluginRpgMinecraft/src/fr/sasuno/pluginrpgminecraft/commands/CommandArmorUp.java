@@ -23,7 +23,7 @@ public class CommandArmorUp implements CommandExecutor {
 			//============================================================================================
 			//	J'exécute la fonction static armorUp commune à toutes les classes dans la classe Classe  /
 			//============================================================================================
-			Classe.armorUp(player, Classe.classe);
+			Classe.armorUp(player, Classe.classe.get(player.getName()));
 		}
 		
 		return false;

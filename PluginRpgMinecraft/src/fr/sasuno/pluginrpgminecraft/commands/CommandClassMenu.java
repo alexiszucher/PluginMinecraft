@@ -19,7 +19,7 @@ public class CommandClassMenu implements CommandExecutor {
 		{
 			//Je récupère les infos du joueur et j'affiche le menu de la classe en question
 			Player player = (Player)sender;
-			Classe.classe.menuClass(player);
+			Classe.classe.get(player.getName()).menuClass(player);
 		}
 		
 		return false;

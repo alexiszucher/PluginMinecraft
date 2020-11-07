@@ -1,5 +1,7 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import java.util.TreeMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 public abstract class Classe {
 	
-	public static Classe classe;
+	public static TreeMap < String, Classe > classe = new TreeMap<String, Classe>();
 	
 	//==============================================================================================
 	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
@@ -40,6 +42,7 @@ public abstract class Classe {
 		{
 			ItemStack [] items = {classe.ListWeaponsUp[Classe.WeaponLvl]};
 			Classe.giveItems(player, items);
+			player.setLevel(player.getLevel() - Classe.WeaponLvl *2);
 			if(classe.ListWeaponsUp.length > Classe.WeaponLvl + 1)
 			{
 				Classe.WeaponLvl = Classe.WeaponLvl+1;
@@ -60,6 +63,7 @@ public abstract class Classe {
 		{
 			ItemStack [] items = classe.ListArmorsUp[Classe.ArmorLvl];
 			Classe.giveItems(player, items);
+			player.setLevel(player.getLevel() - Classe.ArmorLvl *5);
 			if(classe.ListArmorsUp.length > Classe.ArmorLvl + 1)
 			{
 				Classe.ArmorLvl = Classe.ArmorLvl+1;
