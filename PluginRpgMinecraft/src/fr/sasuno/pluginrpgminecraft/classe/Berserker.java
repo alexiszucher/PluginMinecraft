@@ -57,9 +57,9 @@ public class Berserker extends Classe {
 		player.sendMessage("Bienvenue dans le menu de votre classe, vous pouvez y retrouver toutes les infos utiles : \n"
 				+ ChatColor.AQUA +"VOS SPECIALITES : \n"
 				+ ChatColor.YELLOW + "/addhearts "+ ChatColor.WHITE +" 5 XP ajouter des coeurs à votre barre de vie ! \n"
-				+ ChatColor.YELLOW +"/addattack "+ ChatColor.WHITE +" 30 XP attaquez à fond ! \n \n"
+				+ ChatColor.YELLOW +"/addattacks "+ ChatColor.WHITE +" 30 XP attaquez à fond ! \n \n"
 				+ ChatColor.AQUA +"AMELIORATION : \n"
-				+ ChatColor.YELLOW +"/arrow "+ ChatColor.WHITE +" 25 XP : donne des flêches \n"
+				+ ChatColor.YELLOW +"/armorup "+ ChatColor.WHITE +" 25 XP : donne des flêches \n"
 				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" augmente d'un niveau votre arme principale");
 		
 	}

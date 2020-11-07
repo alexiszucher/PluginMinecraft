@@ -124,6 +124,29 @@ public abstract class Classe {
 		
 	}
 	
+	//====================================================================================
+	//	Fonction appelé par la commande /addhearts									     /
+	//====================================================================================
+	public static void addAttacks(Player player, Classe classe)
+	{
+		//=======================
+		//	Berserker			/
+		//=======================
+//		if(classe.NomClasse.equals("Berserker"))
+//		{
+//			if(player.getLevel() > 4)
+//			{
+//				classe.NombreCoeurs = classe.NombreCoeurs + 4;
+//		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+//		        attribute.setBaseValue(classe.NombreCoeurs);
+//		        player.setHealth(classe.NombreCoeurs);
+//		        player.setLevel(player.getLevel() - 5);
+//			}
+//		}	
+		AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+		attribute.setBaseValue(300);
+	}
+	
 	//=======================================================================================================
 	//	Fonction giveItems pour allez plus vite dans le développement, mettez vos items à give sous forme	/
 	//	de tableau ItemStack pour give tout au joueur concerné												/

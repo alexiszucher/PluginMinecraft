@@ -3,6 +3,8 @@ package fr.sasuno.pluginrpgminecraft;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.sasuno.pluginrpgminecraft.classe.Classe;
+import fr.sasuno.pluginrpgminecraft.commands.CommandAddAttack;
+import fr.sasuno.pluginrpgminecraft.commands.CommandAddAttacks;
 import fr.sasuno.pluginrpgminecraft.commands.CommandAddHearts;
 import fr.sasuno.pluginrpgminecraft.commands.CommandArmorUp;
 import fr.sasuno.pluginrpgminecraft.commands.CommandChoiceClass;
@@ -19,6 +21,7 @@ public class PluginRpgMinecraft extends JavaPlugin {
 	public void onEnable() {
 		System.out.println("Le Plugin Zucher s'est allumé");
 		getServer().getPluginManager().registerEvents(new EnterInTheWorld(), this);
+		getServer().getPluginManager().registerEvents(new EnterInTheWorld(), this);
 		
 		//=======================================================================================================
 		//	Liste des commandes à faire fonctionner entre le jeu et les fonctions appelées						/
@@ -31,6 +34,7 @@ public class PluginRpgMinecraft extends JavaPlugin {
 		getCommand("getStuffDiamond").setExecutor(new CommandGetStuffDiamond());
 		getCommand("weaponup").setExecutor(new CommandWeaponUp());
 		getCommand("armorup").setExecutor(new CommandArmorUp());
+		getCommand("addattacks").setExecutor(new CommandAddAttacks());
 	}
 	
 	@Override

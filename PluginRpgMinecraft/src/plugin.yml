@@ -25,3 +25,5 @@ commands:
     description: augmenter l'arme de la classe
   armorup:
     description: augmenter l'armure de la classe
+  addattacks:
+    description: augmenter attaques
