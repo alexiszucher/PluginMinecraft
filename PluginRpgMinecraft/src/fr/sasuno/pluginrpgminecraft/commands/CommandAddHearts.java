@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.sasuno.pluginrpgminecraft.classe.Classe;
+
 public class CommandAddHearts implements CommandExecutor {
 
 	@Override
@@ -20,14 +22,7 @@ public class CommandAddHearts implements CommandExecutor {
 			//Je récupère les infos du joueur
 			Player player = (Player)sender;
 			
-			//=================================================================================
-			//	Je vérifie si le joueur a le bon level pour avoir les effets de la commande   /
-			//=================================================================================
-			if(player.getLevel() > 29)
-			{
-				 player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 300000000, 1));
-				 player.setLevel(player.getLevel() - 30);
-			}
+			Classe.addHearts(player, Classe.classe.get(player.getName()));
 		}
 		
 		return false;

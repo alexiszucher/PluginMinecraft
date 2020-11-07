@@ -4,12 +4,18 @@ import java.util.TreeMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public abstract class Classe {
 	
 	public static TreeMap < String, Classe > classe = new TreeMap<String, Classe>();
+	
+	protected String NomClasse;
+	
+	protected int NombreCoeurs = 20;
 	
 	//==============================================================================================
 	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
@@ -20,8 +26,8 @@ public abstract class Classe {
 	//==========================================================================================================================================
 	//	Variables pour savoir à quel niveau de l'arme / armure de la classe du joueur on se trouve, on commence au lvl 1 avec une arme en bois /
 	//==========================================================================================================================================
-	protected static int WeaponLvl = 1;
-	protected static int ArmorLvl = 1;
+	protected int WeaponLvl = 1;
+	protected int ArmorLvl = 1;
 	
 	//===================================================================================================================
 	//	Fonction de création de classe, fonction abstraite car création de classe se fait en fonction de la classe choisie  /
@@ -33,24 +39,29 @@ public abstract class Classe {
 	//==================================================================================================================
 	public abstract void menuClass(Player player);
 	
+	//============================================================================================================================
+	//	Fonction pour donner l'armure à un joueur, fonction abstraite car toutes les classe n'ont pas les mêmes pièces d'armure  /
+	//============================================================================================================================
+	public abstract void giveArmors(Player player, ItemStack [] items);
+	
 	//=================================================================================
 	//	Fonction de passage d'une matière supérieur de l'arme principle de la classe  /
 	//=================================================================================
 	public static void weaponUp(Player player, Classe classe)
 	{
-		if(player.getLevel() > Classe.WeaponLvl *2)
+		if(player.getLevel() > classe.WeaponLvl *2)
 		{
-			ItemStack [] items = {classe.ListWeaponsUp[Classe.WeaponLvl]};
+			ItemStack [] items = {classe.ListWeaponsUp[classe.WeaponLvl]};
 			Classe.giveItems(player, items);
-			player.setLevel(player.getLevel() - Classe.WeaponLvl *2);
-			if(classe.ListWeaponsUp.length > Classe.WeaponLvl + 1)
+			player.setLevel(player.getLevel() - classe.WeaponLvl *2);
+			if(classe.ListWeaponsUp.length > classe.WeaponLvl + 1)
 			{
-				Classe.WeaponLvl = Classe.WeaponLvl+1;
+				classe.WeaponLvl = classe.WeaponLvl+1;
 			}
 		}
 		else
 		{
-			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre arme, vous devez être lvl "+ ChatColor.AQUA +Classe.WeaponLvl*2);
+			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre arme, vous devez être lvl "+ ChatColor.AQUA +classe.WeaponLvl*2);
 		}
 	}
 	
@@ -59,24 +70,62 @@ public abstract class Classe {
 	//====================================================================================
 	public static void armorUp(Player player, Classe classe)
 	{
-		if(player.getLevel() > Classe.ArmorLvl *5)
+		if(player.getLevel() > classe.ArmorLvl *5)
 		{
-			ItemStack [] items = classe.ListArmorsUp[Classe.ArmorLvl];
-			Classe.giveItems(player, items);
-			player.setLevel(player.getLevel() - Classe.ArmorLvl *5);
-			if(classe.ListArmorsUp.length > Classe.ArmorLvl + 1)
+			ItemStack [] items = classe.ListArmorsUp[classe.ArmorLvl];
+			classe.giveArmors(player, items);
+			int SoustraitLvl = classe.ArmorLvl *5;
+			player.setLevel(player.getLevel() - SoustraitLvl);
+			if(classe.ListArmorsUp.length > classe.ArmorLvl + 1)
 			{
-				Classe.ArmorLvl = Classe.ArmorLvl+1;
+				classe.ArmorLvl = classe.ArmorLvl+1;
 			}
 		}
 		else
 		{
-			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre armure, vous devez être lvl "+ ChatColor.AQUA +Classe.ArmorLvl*5);
+			player.sendMessage("Vous n'avez pas encore le lvl nécessaire pour améliorer votre armure, vous devez être lvl "+ ChatColor.AQUA +classe.ArmorLvl*5);
 		}
 	}
 	
+	//====================================================================================
+	//	Fonction appelé par la commande /addhearts									     /
+	//====================================================================================
+	public static void addHearts(Player player, Classe classe)
+	{
+		//=======================
+		//	PALADIN				/
+		//=======================
+		if(classe.NomClasse.equals("Paladin") && classe.NombreCoeurs != 40)
+		{
+			if(player.getLevel() > 4)
+			{
+				classe.NombreCoeurs = classe.NombreCoeurs + 4;
+		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+		        attribute.setBaseValue(classe.NombreCoeurs);
+		        player.setHealth(classe.NombreCoeurs);
+		        player.setLevel(player.getLevel() - 5);
+			}
+		}
+		
+		//=======================
+		//	BERSERKER			/
+		//=======================
+		if(classe.NomClasse.equals("Berserker") && classe.NombreCoeurs != 30)
+		{
+			if(player.getLevel() > 4)
+			{
+				classe.NombreCoeurs = classe.NombreCoeurs + 2;
+		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+		        attribute.setBaseValue(classe.NombreCoeurs);
+		        player.setHealth(classe.NombreCoeurs);
+		        player.setLevel(player.getLevel() - 5);
+			}
+		}
+		
+	}
+	
 	//=======================================================================================================
-	//	Fonction giveItem pour allez plus vite dans le développement, mettez vos items à give sous forme	/
+	//	Fonction giveItems pour allez plus vite dans le développement, mettez vos items à give sous forme	/
 	//	de tableau ItemStack pour give tout au joueur concerné												/
 	//========================================================================================================
 	public static void giveItems(Player player, ItemStack [] items)
@@ -84,6 +133,7 @@ public abstract class Classe {
 		for(ItemStack item : items)
 		{
 			player.getInventory().addItem(item);
+			player.getInventory().getHolder();
 		}
 	}
 }

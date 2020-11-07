@@ -1,9 +1,15 @@
 name: PluginRpgMinecraft
-version: 1.0
+version: 2.0
 author: Sasuno
 main: fr.sasuno.pluginrpgminecraft.PluginRpgMinecraft
 commands:
   class:
+    description: Choix classe
+  class Berserker:
+    description: Choix classe
+  class Paladin:
+    description: Choix classe
+  class Archer:
     description: Choix classe
   menuclass:
     description: Menu de classe

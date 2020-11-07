@@ -46,19 +46,19 @@ public class CommandChoiceClass implements CommandExecutor {
 					parametre.append(part);
 				}
 				// Si il choisi de bons arguments
-				if(parametre.toString().equals("Paladin"))
+				if(parametre.toString().equalsIgnoreCase("Paladin"))
 				{
 					player.setCustomName("PALADIN");
 					Classe.classe.put(player.getName(), new Paladin());
 					Classe.classe.get(player.getName()).createClass(player);
 				}
-				else if(parametre.toString().equals("Archer"))
+				else if(parametre.toString().equalsIgnoreCase("Archer"))
 				{
 					player.setCustomName("ARCHER");
 					Classe.classe.put(player.getName(), new Archer());
 					Classe.classe.get(player.getName()).createClass(player);
 				}
-				else if(parametre.toString().equals("Berserker"))
+				else if(parametre.toString().equalsIgnoreCase("Berserker"))
 				{
 					player.setCustomName("BERSRKER");
 					Classe.classe.put(player.getName(), new Berserker());
