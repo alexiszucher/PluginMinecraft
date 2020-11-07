@@ -45,7 +45,7 @@ public class Archer extends Classe{
 	//========================================================================================================
 	@Override
 	public void menuClass(Player player) {
-
+		
 		player.sendMessage("Bienvenue dans le menu de votre classe, vous pouvez y retrouver toutes les infos utiles : \n"
 				+ ChatColor.AQUA +"VOS SPECIALITES : \n"
 				+ ChatColor.YELLOW + "/addspeed "+ ChatColor.WHITE +" 5 XP courrez ! \n"

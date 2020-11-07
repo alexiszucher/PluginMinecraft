@@ -133,7 +133,6 @@ public abstract class Classe {
 		for(ItemStack item : items)
 		{
 			player.getInventory().addItem(item);
-			player.getInventory().getHolder();
 		}
 	}
 }
