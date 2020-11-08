@@ -1,11 +1,14 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 
 public class Berserker extends Classe {
@@ -46,6 +49,9 @@ public class Berserker extends Classe {
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
         attribute.setBaseValue(NombreCoeurs);
         player.setHealth(NombreCoeurs);
+        
+        AttributeInstance attribute2 = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+        attribute2.setBaseValue(Dommage);
 	}
 
 	//=======================================================================================================
@@ -62,15 +68,39 @@ public class Berserker extends Classe {
 				+ ChatColor.YELLOW +"/armorup "+ ChatColor.WHITE +" 25 XP : donne des flêches \n"
 				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" augmente d'un niveau votre arme principale");
 		
+		
+		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
+		
+		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme"));
+		inv.setItem(27, book);
+		
+		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure"));
+		inv.setItem(35, book2);
+		
+		ItemStack book3 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SPLASH_POTION), "Augmenter Le Nombre De Coeurs"));
+		inv.setItem(0, book3);
+		
+		ItemStack book4 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.BLAZE_ROD), "Augmenter Votre Attaque"));
+		inv.setItem(8, book4);
+		
+		player.openInventory(inv);
+		
 	}
 
 	@Override
 	public void giveArmors(Player player, ItemStack[] items) {
-
+		ItemMeta meta = items[0].getItemMeta();
+		meta.setUnbreakable(true);
+		items[0].setItemMeta(meta);
+		meta = items[0].getItemMeta();
+		meta.setUnbreakable(true);
+		items[1].setItemMeta(meta);
+		meta = items[0].getItemMeta();
+		meta.setUnbreakable(true);
+		items[2].setItemMeta(meta);
 		player.getInventory().setHelmet(items[0]);
 		player.getInventory().setChestplate(items[1]);
 		player.getInventory().setBoots(items[2]);
-		
 	}
 
 

@@ -1,10 +1,12 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Paladin extends Classe {
@@ -61,6 +63,22 @@ public class Paladin extends Classe {
 				+ ChatColor.AQUA +"AMELIORATION : \n"
 				+ ChatColor.YELLOW +"/armorup "+ ChatColor.WHITE +" augmente d'un niveau votre armure \n"
 				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" augmente d'un niveau votre arme principale");
+		
+		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
+		
+		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme"));
+		inv.setItem(27, book);
+		
+		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure"));
+		inv.setItem(35, book2);
+		
+		ItemStack book3 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SPLASH_POTION), "Augmenter Le Nombre De Coeurs"));
+		inv.setItem(0, book3);
+		
+		ItemStack book4 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SHIELD), "Augmenter Votre Resistance"));
+		inv.setItem(8, book4);
+		
+		player.openInventory(inv);
 		
 	}
 

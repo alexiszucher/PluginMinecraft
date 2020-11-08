@@ -27,3 +27,5 @@ commands:
     description: augmenter l'armure de la classe
   addattacks:
     description: augmenter attaques
+  menurpg:
+    description: Tout le menu du rpg

@@ -8,6 +8,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class Classe {
 	
@@ -16,6 +17,8 @@ public abstract class Classe {
 	protected String NomClasse;
 	
 	protected int NombreCoeurs = 20;
+	
+	protected int Dommage = 1;
 	
 	//==============================================================================================
 	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
@@ -132,19 +135,36 @@ public abstract class Classe {
 		//=======================
 		//	Berserker			/
 		//=======================
-//		if(classe.NomClasse.equals("Berserker"))
-//		{
-//			if(player.getLevel() > 4)
-//			{
-//				classe.NombreCoeurs = classe.NombreCoeurs + 4;
-//		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-//		        attribute.setBaseValue(classe.NombreCoeurs);
-//		        player.setHealth(classe.NombreCoeurs);
-//		        player.setLevel(player.getLevel() - 5);
-//			}
-//		}	
-		AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-		attribute.setBaseValue(300);
+		if(classe.NomClasse.equals("Berserker"))
+		{
+			if(player.getLevel() > 4)
+			{
+				classe.Dommage = classe.Dommage + 2;
+		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+		        attribute.setBaseValue(classe.Dommage);
+		        player.setLevel(player.getLevel() - 5);
+			}
+		}
+	}
+	
+	//====================================================================================
+	//	Fonction pour ajouter de la resistance								     		/
+	//====================================================================================
+	public static void addResistances(Player player, Classe classe)
+	{
+		//=======================
+		//	Paladin			/
+		//=======================
+		if(classe.NomClasse.equals("Paladin"))
+		{
+			if(player.getLevel() > 4)
+			{
+				classe.Dommage = classe.Dommage + 2;
+		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+		        attribute.setBaseValue(classe.Dommage);
+		        player.setLevel(player.getLevel() - 5);
+			}
+		}
 	}
 	
 	//=======================================================================================================
@@ -155,7 +175,18 @@ public abstract class Classe {
 	{
 		for(ItemStack item : items)
 		{
+			ItemMeta meta = item.getItemMeta();
+			meta.setUnbreakable(true);
+			item.setItemMeta(meta);
 			player.getInventory().addItem(item);
 		}
+	}
+	
+	public static ItemStack createItemForMenu(ItemStack item, String name)
+	{
+		ItemMeta itemM = item.getItemMeta();
+		itemM.setDisplayName(name);
+		item.setItemMeta(itemM);
+		return item;
 	}
 }
