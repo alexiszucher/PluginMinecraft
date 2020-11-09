@@ -58,6 +58,7 @@ public abstract class Classe {
 	{
 		if(player.getLevel() > classe.WeaponLvl *2)
 		{
+			player.getInventory().removeItem(classe.ListWeaponsUp[classe.WeaponLvl-1]);
 			ItemStack [] items = {classe.ListWeaponsUp[classe.WeaponLvl]};
 			Classe.giveItemsJustForClass(player, items);
 			player.setLevel(player.getLevel() - classe.WeaponLvl *2);
@@ -156,6 +157,10 @@ public abstract class Classe {
 		        attribute.setBaseValue(classe.Dommage);
 		        player.setLevel(player.getLevel() - 5);
 			}
+			else
+			{
+				player.sendMessage("Vous n'avez pas encore le lvl nécessaire, vous devez être "+ ChatColor.AQUA + "lvl 5");
+			}
 		}
 	}
 	
@@ -165,16 +170,20 @@ public abstract class Classe {
 	public static void addResistances(Player player, Classe classe)
 	{
 		//=======================
-		//	Paladin			/
+		//	Paladin				/
 		//=======================
 		if(classe.NomClasse.equals("Paladin"))
 		{
-//			if(player.getLevel() > 4)
-//			{
+			if(player.getLevel() > 4)
+			{
 				player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,100000000,classe.Resistance));
 		        classe.Resistance = classe.Resistance + 1;
-			//}
+			}
+			else
+			{
+				player.sendMessage("Vous n'avez pas encore le lvl nécessaire, vous devez être "+ ChatColor.AQUA + "lvl 5");
+			}
 		}
 	}
 	

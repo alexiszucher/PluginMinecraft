@@ -75,7 +75,7 @@ public class ListenerClass implements Listener {
 				{
 					Inventory inv = Bukkit.createInventory(null,36,"Choix de votre classe");
 					
-					ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+					ItemStack sword = new ItemStack(Material.SHIELD);
 					ItemMeta swordM = sword.getItemMeta();
 					swordM.setDisplayName("Paladin");
 					sword.setItemMeta(swordM);
@@ -118,7 +118,7 @@ public class ListenerClass implements Listener {
 			//Si il a déjà choisi sa classe
 			if(player.getCustomName() != null)
 			{
-				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe, fais /menu pour voir ce qu'il est possible de faire avec ta classe"+player.getCustomName());
+				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe, fais /menu pour voir ce qu'il est possible de faire avec ta classe "+player.getCustomName());
 				player.closeInventory();
 			}
 			//Sinon
@@ -129,7 +129,7 @@ public class ListenerClass implements Listener {
 				Classe.classe.put(player.getName(), new Berserker());
 				Classe.classe.get(player.getName()).createClass(player);
 			}
-			else if(current.getType() == Material.DIAMOND_SWORD)
+			else if(current.getType() == Material.SHIELD)
 			{
 				player.closeInventory();
 				player.setCustomName("PALADIN");

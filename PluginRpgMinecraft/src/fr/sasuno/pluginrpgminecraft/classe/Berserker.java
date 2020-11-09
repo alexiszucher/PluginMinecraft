@@ -18,7 +18,7 @@ public class Berserker extends Classe {
 	//========================================================================================================
 	public Berserker()
 	{
-		ItemStack [] ListWeapons = {new ItemStack(Material.WOODEN_AXE), new ItemStack(Material.STONE_AXE), new ItemStack(Material.IRON_AXE), new ItemStack(Material.DIAMOND_AXE)};
+		ItemStack [] ListWeapons = {new ItemStack(Material.WOODEN_AXE), new ItemStack(Material.STONE_AXE), new ItemStack(Material.IRON_AXE), new ItemStack(Material.DIAMOND_AXE), new ItemStack(Material.NETHERITE_AXE)};
 		this.ListWeaponsUp = ListWeapons;
 		
 		ItemStack [][] ListArmors = {
@@ -62,10 +62,10 @@ public class Berserker extends Classe {
 			
 		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
 		
-		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme", "LVL REQUIS : "+ArmorLvl *5));
+		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme", "LVL REQUIS : "+WeaponLvl *2));
 		inv.setItem(27, book);
 		
-		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure", "LVL REQUIS : 5"));
+		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure", "LVL REQUIS : "+ArmorLvl *5));
 		inv.setItem(35, book2);
 		
 		ItemStack book3 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SPLASH_POTION), "Augmenter Le Nombre De Coeurs", "LVL REQUIS : 5"));
