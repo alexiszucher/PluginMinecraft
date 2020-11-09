@@ -62,16 +62,16 @@ public class Berserker extends Classe {
 			
 		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
 		
-		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme"));
+		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme", "LVL REQUIS : "+ArmorLvl *5));
 		inv.setItem(27, book);
 		
-		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure"));
+		ItemStack book2 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_CHESTPLATE), "Augmenter Votre Armure", "LVL REQUIS : 5"));
 		inv.setItem(35, book2);
 		
-		ItemStack book3 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SPLASH_POTION), "Augmenter Le Nombre De Coeurs"));
+		ItemStack book3 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SPLASH_POTION), "Augmenter Le Nombre De Coeurs", "LVL REQUIS : 5"));
 		inv.setItem(0, book3);
 		
-		ItemStack book4 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.BLAZE_ROD), "Augmenter Votre Attaque"));
+		ItemStack book4 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.BLAZE_ROD), "Augmenter Votre Attaque", "LVL REQUIS : 5"));
 		inv.setItem(8, book4);
 		
 		player.openInventory(inv);
@@ -80,15 +80,19 @@ public class Berserker extends Classe {
 
 	@Override
 	public void giveArmors(Player player, ItemStack[] items) {
+		
 		ItemMeta meta = items[0].getItemMeta();
 		meta.setUnbreakable(true);
 		items[0].setItemMeta(meta);
+		
 		meta = items[1].getItemMeta();
 		meta.setUnbreakable(true);
 		items[1].setItemMeta(meta);
+		
 		meta = items[2].getItemMeta();
 		meta.setUnbreakable(true);
 		items[2].setItemMeta(meta);
+		
 		player.getInventory().setHelmet(items[0]);
 		player.getInventory().setChestplate(items[1]);
 		player.getInventory().setBoots(items[2]);

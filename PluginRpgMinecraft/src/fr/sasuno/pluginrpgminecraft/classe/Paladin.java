@@ -74,15 +74,23 @@ public class Paladin extends Classe {
 
 	@Override
 	public void giveArmors(Player player, ItemStack[] items) {
+		
 		ItemMeta meta = items[0].getItemMeta();
 		meta.setUnbreakable(true);
 		items[0].setItemMeta(meta);
+		
 		meta = items[1].getItemMeta();
 		meta.setUnbreakable(true);
 		items[1].setItemMeta(meta);
+		
 		meta = items[2].getItemMeta();
 		meta.setUnbreakable(true);
 		items[2].setItemMeta(meta);
+		
+		meta = items[3].getItemMeta();
+		meta.setUnbreakable(true);
+		items[3].setItemMeta(meta);
+		
 		player.getInventory().setHelmet(items[0]);
 		player.getInventory().setChestplate(items[1]);
 		player.getInventory().setLeggings(items[2]);

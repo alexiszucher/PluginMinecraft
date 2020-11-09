@@ -1,5 +1,6 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import java.util.Arrays;
 import java.util.TreeMap;
 
 import org.bukkit.ChatColor;
@@ -193,10 +194,11 @@ public abstract class Classe {
 		}
 	}
 	
-	public static ItemStack createItemForMenu(ItemStack item, String name)
+	public static ItemStack createItemForMenu(ItemStack item, String name, String desc)
 	{
 		ItemMeta itemM = item.getItemMeta();
 		itemM.setDisplayName(name);
+		itemM.setLore(Arrays.asList(ChatColor.YELLOW + desc));
 		item.setItemMeta(itemM);
 		return item;
 	}
