@@ -43,7 +43,7 @@ public class Berserker extends Classe {
 				+ ChatColor.WHITE +" et ouvrir le menu de votre classe avec "
 				+ ChatColor.AQUA+"/menuclass \n");
 		ItemStack [] items = {new ItemStack(Material.WOODEN_AXE)};
-		Classe.giveItems(player, items);
+		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
 		
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
@@ -59,16 +59,7 @@ public class Berserker extends Classe {
 	//========================================================================================================
 	@Override
 	public void menuClass(Player player) {
-
-		player.sendMessage("Bienvenue dans le menu de votre classe, vous pouvez y retrouver toutes les infos utiles : \n"
-				+ ChatColor.AQUA +"VOS SPECIALITES : \n"
-				+ ChatColor.YELLOW + "/addhearts "+ ChatColor.WHITE +" 5 XP ajouter des coeurs à votre barre de vie ! \n"
-				+ ChatColor.YELLOW +"/addattacks "+ ChatColor.WHITE +" 30 XP attaquez à fond ! \n \n"
-				+ ChatColor.AQUA +"AMELIORATION : \n"
-				+ ChatColor.YELLOW +"/armorup "+ ChatColor.WHITE +" 25 XP : donne des flêches \n"
-				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" augmente d'un niveau votre arme principale");
-		
-		
+			
 		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
 		
 		ItemStack book = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.DIAMOND_AXE), "Augmenter Votre Arme"));
@@ -92,10 +83,10 @@ public class Berserker extends Classe {
 		ItemMeta meta = items[0].getItemMeta();
 		meta.setUnbreakable(true);
 		items[0].setItemMeta(meta);
-		meta = items[0].getItemMeta();
+		meta = items[1].getItemMeta();
 		meta.setUnbreakable(true);
 		items[1].setItemMeta(meta);
-		meta = items[0].getItemMeta();
+		meta = items[2].getItemMeta();
 		meta.setUnbreakable(true);
 		items[2].setItemMeta(meta);
 		player.getInventory().setHelmet(items[0]);

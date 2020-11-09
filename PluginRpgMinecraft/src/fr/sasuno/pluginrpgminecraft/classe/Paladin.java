@@ -8,6 +8,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Paladin extends Classe {
 
@@ -37,12 +38,9 @@ public class Paladin extends Classe {
 	public void createClass(Player player)
 	{
 		player.sendMessage("Félicitation ! Vous êtes à présent Paladin !"
-							+ "Vous pouvez améliorer votre arme au fur et à mesure de votre aventure avec "
-							+ ChatColor.AQUA+"/weaponup \n"
-							+ ChatColor.WHITE +" et ouvrir le menu de votre classe avec "
-							+ ChatColor.AQUA+"/menuclass \n");
+							+ "Vous avez maintenant accès au menu de votre classe ! ");
 		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD)};
-		Classe.giveItems(player, items);
+		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
 		
         AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
@@ -55,14 +53,6 @@ public class Paladin extends Classe {
 	//========================================================================================================
 	@Override
 	public void menuClass(Player player) {
-
-		player.sendMessage("Bienvenue dans le menu de votre classe, vous pouvez y retrouver toutes les infos utiles : \n"
-				+ ChatColor.AQUA +"VOS SPECIALITES : \n"
-				+ ChatColor.YELLOW + "/addhearts "+ ChatColor.WHITE +" 5 XP ajouter des coeurs à votre barre de vie ! \n"
-				+ ChatColor.YELLOW +"/addresistance "+ ChatColor.WHITE +" 30 XP résistez à tout ! \n \n"
-				+ ChatColor.AQUA +"AMELIORATION : \n"
-				+ ChatColor.YELLOW +"/armorup "+ ChatColor.WHITE +" augmente d'un niveau votre armure \n"
-				+ ChatColor.YELLOW + "/weaponup "+ ChatColor.WHITE +" augmente d'un niveau votre arme principale");
 		
 		Inventory inv = Bukkit.createInventory(null,36,"Menu de votre classe");
 		
@@ -84,7 +74,15 @@ public class Paladin extends Classe {
 
 	@Override
 	public void giveArmors(Player player, ItemStack[] items) {
-
+		ItemMeta meta = items[0].getItemMeta();
+		meta.setUnbreakable(true);
+		items[0].setItemMeta(meta);
+		meta = items[1].getItemMeta();
+		meta.setUnbreakable(true);
+		items[1].setItemMeta(meta);
+		meta = items[2].getItemMeta();
+		meta.setUnbreakable(true);
+		items[2].setItemMeta(meta);
 		player.getInventory().setHelmet(items[0]);
 		player.getInventory().setChestplate(items[1]);
 		player.getInventory().setLeggings(items[2]);

@@ -36,7 +36,7 @@ public class Archer extends Classe{
 				+ ChatColor.AQUA+"/menuclass \n");
 		ItemStack [] items = {new ItemStack(Material.BOW),
 							new ItemStack(Material.ARROW,30)};
-		Classe.giveItems(player, items);
+		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
 	}
 

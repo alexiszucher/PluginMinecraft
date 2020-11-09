@@ -166,7 +166,7 @@ public class ListenerClass implements Listener {
 			else if(current.getType() == Material.SHIELD)
 			{
 				player.closeInventory();
-				Classe.addAttacks(player, Classe.classe.get(player.getName()));
+				Classe.addResistances(player, Classe.classe.get(player.getName()));
 			}
 		}
 	}

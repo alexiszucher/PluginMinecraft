@@ -9,6 +9,8 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public abstract class Classe {
 	
@@ -20,6 +22,7 @@ public abstract class Classe {
 	
 	protected int Dommage = 1;
 	
+	protected int Resistance = 0;
 	//==============================================================================================
 	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
 	//==============================================================================================
@@ -55,7 +58,7 @@ public abstract class Classe {
 		if(player.getLevel() > classe.WeaponLvl *2)
 		{
 			ItemStack [] items = {classe.ListWeaponsUp[classe.WeaponLvl]};
-			Classe.giveItems(player, items);
+			Classe.giveItemsJustForClass(player, items);
 			player.setLevel(player.getLevel() - classe.WeaponLvl *2);
 			if(classe.ListWeaponsUp.length > classe.WeaponLvl + 1)
 			{
@@ -108,6 +111,10 @@ public abstract class Classe {
 		        player.setHealth(classe.NombreCoeurs);
 		        player.setLevel(player.getLevel() - 5);
 			}
+			else
+			{
+				player.sendMessage("Vous n'avez pas encore le lvl nécessaire, vous devez être "+ ChatColor.AQUA + "lvl 5");
+			}
 		}
 		
 		//=======================
@@ -122,6 +129,10 @@ public abstract class Classe {
 		        attribute.setBaseValue(classe.NombreCoeurs);
 		        player.setHealth(classe.NombreCoeurs);
 		        player.setLevel(player.getLevel() - 5);
+			}
+			else
+			{
+				player.sendMessage("Vous n'avez pas encore le lvl nécessaire, vous devez être "+ ChatColor.AQUA + "lvl 5");
 			}
 		}
 		
@@ -157,13 +168,12 @@ public abstract class Classe {
 		//=======================
 		if(classe.NomClasse.equals("Paladin"))
 		{
-			if(player.getLevel() > 4)
-			{
-				classe.Dommage = classe.Dommage + 2;
-		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-		        attribute.setBaseValue(classe.Dommage);
-		        player.setLevel(player.getLevel() - 5);
-			}
+//			if(player.getLevel() > 4)
+//			{
+				player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,100000000,classe.Resistance));
+		        classe.Resistance = classe.Resistance + 1;
+			//}
 		}
 	}
 	
@@ -171,12 +181,13 @@ public abstract class Classe {
 	//	Fonction giveItems pour allez plus vite dans le développement, mettez vos items à give sous forme	/
 	//	de tableau ItemStack pour give tout au joueur concerné												/
 	//========================================================================================================
-	public static void giveItems(Player player, ItemStack [] items)
+	public static void giveItemsJustForClass(Player player, ItemStack [] items)
 	{
 		for(ItemStack item : items)
 		{
 			ItemMeta meta = item.getItemMeta();
 			meta.setUnbreakable(true);
+			meta.setLocalizedName(player.getName());
 			item.setItemMeta(meta);
 			player.getInventory().addItem(item);
 		}
