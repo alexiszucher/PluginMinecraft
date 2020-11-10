@@ -56,7 +56,7 @@ public abstract class Classe {
 	//=================================================================================
 	public static void weaponUp(Player player, Classe classe)
 	{
-		if(player.getLevel() > classe.WeaponLvl *2)
+		if(player.getLevel() >= classe.WeaponLvl *2)
 		{
 			player.getInventory().removeItem(classe.ListWeaponsUp[classe.WeaponLvl-1]);
 			ItemStack [] items = {classe.ListWeaponsUp[classe.WeaponLvl]};
@@ -78,7 +78,7 @@ public abstract class Classe {
 	//====================================================================================
 	public static void armorUp(Player player, Classe classe)
 	{
-		if(player.getLevel() > classe.ArmorLvl *5)
+		if(player.getLevel() >= classe.ArmorLvl *5)
 		{
 			ItemStack [] items = classe.ListArmorsUp[classe.ArmorLvl];
 			classe.giveArmors(player, items);
@@ -112,6 +112,7 @@ public abstract class Classe {
 		        attribute.setBaseValue(classe.NombreCoeurs);
 		        player.setHealth(classe.NombreCoeurs);
 		        player.setLevel(player.getLevel() - 5);
+		        player.sendMessage(ChatColor.YELLOW + "Vos coeurs ont été augmentés de 2 !");
 			}
 			else
 			{
@@ -131,6 +132,7 @@ public abstract class Classe {
 		        attribute.setBaseValue(classe.NombreCoeurs);
 		        player.setHealth(classe.NombreCoeurs);
 		        player.setLevel(player.getLevel() - 5);
+		        player.sendMessage(ChatColor.YELLOW + "Vos coeurs ont été augmentés de 1 !");
 			}
 			else
 			{
@@ -156,6 +158,7 @@ public abstract class Classe {
 		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
 		        attribute.setBaseValue(classe.Dommage);
 		        player.setLevel(player.getLevel() - 5);
+		        player.sendMessage(ChatColor.YELLOW + "Votre attaque a été aumenté de 2 !");
 			}
 			else
 			{
@@ -179,6 +182,7 @@ public abstract class Classe {
 				player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,100000000,classe.Resistance));
 		        classe.Resistance = classe.Resistance + 1;
+		        player.sendMessage(ChatColor.YELLOW + "Votre résistance a été aumenté !");
 			}
 			else
 			{
