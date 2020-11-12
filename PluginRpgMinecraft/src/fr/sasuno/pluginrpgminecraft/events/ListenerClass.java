@@ -31,9 +31,7 @@ public class ListenerClass implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		
 		Player player = event.getPlayer();
-		player.getInventory().clear();
 		player.getInventory().addItem(new ItemStack(Material.COMPASS));
-		player.setCustomName(null);
 		player.sendMessage("Salut "+player.getName()+" ! Commence ton aventure en choisissant ta classe ;) \n Je te laisse faire : \n "+ChatColor.GREEN + "/class Guerrier|Archer");
 	}
 	

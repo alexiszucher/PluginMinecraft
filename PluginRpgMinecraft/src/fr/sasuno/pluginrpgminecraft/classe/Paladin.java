@@ -39,7 +39,7 @@ public class Paladin extends Classe {
 	{
 		player.sendMessage("Félicitation ! Vous êtes à présent Paladin !"
 							+ "Vous avez maintenant accès au menu de votre classe ! ");
-		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD)};
+		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD), new ItemStack(Material.SHIELD)};
 		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
 		
