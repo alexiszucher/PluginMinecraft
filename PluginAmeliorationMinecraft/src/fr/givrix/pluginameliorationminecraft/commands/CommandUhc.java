@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.givrix.pluginameliorationminecraft.functions.MyFunctions;
+
 public class CommandUhc implements CommandExecutor {
 
 	@Override
@@ -20,23 +22,31 @@ public class CommandUhc implements CommandExecutor {
 			if (args.length == 0) {
 				World world = player.getWorld();
 				
-				if (world.getDifficulty() != Difficulty.HARD || world.getGameRuleValue(GameRule.NATURAL_REGENERATION) || !Bukkit.getServer().isHardcore()) {
-
+				if (world.getDifficulty() != Difficulty.HARD || world.getGameRuleValue(GameRule.NATURAL_REGENERATION) || !world.isHardcore()) {
+					
+					// Si la difficulté n'est pas en hard, on la met en hard
 					if (world.getDifficulty() != Difficulty.HARD) {
 						world.setDifficulty(Difficulty.HARD);
 					}
 					
+					// Si la régénération naturelle est activée, on la désactive
 					if (world.getGameRuleValue(GameRule.NATURAL_REGENERATION)) {
 						world.setGameRule(GameRule.NATURAL_REGENERATION, false);
 					}
 					
-					if (!Bukkit.getServer().isHardcore()) {
-						Bukkit.getServer().getWorld(player.getWorld().getName()).setHardcore(true);
+					// Si le monde n'est pas en hardcore, on le met en hardcore
+					if (!world.isHardcore()) {
+						world.setHardcore(true);
+						
+						// On réécrit la ligne hardcore de server.properties
+						MyFunctions.ReplaceText("J://Serveur Minecraft/Serveur pour dev/server.properties", "hardcore", "hardcore=true");
 						Bukkit.broadcastMessage("§4Le serveur doit redémarrer pour changer votre mode de jeu");
+						
+						// On attend 5 secondes et on redémarre le serveur
 						try {
 							Thread.sleep(5000);
 						} catch (InterruptedException e) {
-							
+							e.printStackTrace();
 						}
 						Bukkit.getServer().spigot().restart();
 					}
@@ -49,6 +59,7 @@ public class CommandUhc implements CommandExecutor {
 				}
 				
 			} else {
+				// Erreur de syntaxe
 				player.sendMessage("Syntaxe : /uhc");
 			}
 		
