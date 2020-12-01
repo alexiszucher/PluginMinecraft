@@ -183,6 +183,7 @@ public abstract class Classe {
 				player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,100000000,classe.Resistance));
 		        classe.Resistance = classe.Resistance + 1;
 		        player.sendMessage(ChatColor.YELLOW + "Votre résistance a été aumenté !");
+		        player.setLevel(player.getLevel() - 5);
 			}
 			else
 			{
