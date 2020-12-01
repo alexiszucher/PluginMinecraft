@@ -25,6 +25,7 @@ public class CommandFollow implements CommandExecutor {
 			if (args.length == 1) {
 				Player target = Bukkit.getPlayerExact(args[0]);
 				
+				// On vérifie que la cible existe
 				if (target == null) {
 					player.sendMessage("Le joueur " + args[0] + " n'existe pas ou n'est pas connecté");
 					return true;
@@ -37,13 +38,15 @@ public class CommandFollow implements CommandExecutor {
 				case NORMAL:
 					player.setCompassTarget(targetLocation);
 					
+					// On crée un compas pour suivre une cible
 					ItemStack playerTracker = new ItemStack(Material.COMPASS);
 					ItemMeta playerTrackerMeta = playerTracker.getItemMeta();
 					playerTrackerMeta.setDisplayName("Player Tracker");
 					playerTrackerMeta.setLore(Arrays.asList("Permet de suivre un joueur précis", "§c" + (target.getName()) + " §5est la cible actuelle"));	
 					playerTrackerMeta.setLocalizedName(args[0]);
 					playerTracker.setItemMeta(playerTrackerMeta);
-
+					
+					// Si l'inventaire du joueur est plein, on lui drop l'item au sol
 					if (player.getInventory().firstEmpty() == -1) {
 						player.getWorld().dropItemNaturally(player.getLocation(), playerTracker);
 						
@@ -62,12 +65,10 @@ public class CommandFollow implements CommandExecutor {
 				case THE_END:
 					player.sendMessage("Le Player Tracker ne marche pas dans l'Ender");
 					break;
-					
-				default:
-					break;
-				} 
+				}
 				
 			} else {
+				// Erreur de syntaxe
 				player.sendMessage("Syntaxe : /follow <joueur>");
 			}
 			

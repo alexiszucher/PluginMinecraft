@@ -15,25 +15,28 @@ public class PluginAmeliorationMinecraft extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		System.out.println("on !");
+		System.out.println("Ouverture du serveur de Givrix");
 		
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
 		
+		// On affiche la vie des joueurs dans le tab
 		if (scoreboard.getObjective("vieDesJoueurs") == null) {
 			scoreboard.registerNewObjective("vieDesJoueurs", "health", "Vie", RenderType.HEARTS);
 			scoreboard.getObjective("vieDesJoueurs").setDisplaySlot(DisplaySlot.PLAYER_LIST);
 		}
 		
+		// On implémente nos commandes
 		getCommand("pos").setExecutor(new CommandPos());
 		getCommand("follow").setExecutor(new CommandFollow());
 		getCommand("uhc").setExecutor(new CommandUhc());
 		
+		// On implémente nos events
 		Bukkit.getPluginManager().registerEvents(new ListenerFollow(), this);
 	}
 	
 	@Override
 	public void onDisable() {
-		System.out.println("off !");
+		System.out.println("Fermeture du serveur de Givrix");
 	}
 
 }

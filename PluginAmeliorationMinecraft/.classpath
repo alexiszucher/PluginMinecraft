@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="J:/Serveur Minecraft/Serveur pour dev le plugin/spigot.jar">
+	<classpathentry kind="lib" path="J:/Serveur Minecraft/Serveur pour dev/spigot.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
