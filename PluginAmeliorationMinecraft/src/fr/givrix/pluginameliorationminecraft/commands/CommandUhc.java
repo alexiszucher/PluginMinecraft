@@ -39,7 +39,7 @@ public class CommandUhc implements CommandExecutor {
 						world.setHardcore(true);
 						
 						// On réécrit la ligne hardcore de server.properties
-						MyFunctions.ReplaceText("J://Serveur Minecraft/Serveur pour dev/server.properties", "hardcore", "hardcore=true");
+						MyFunctions.ReplaceText("server.properties", "hardcore", "hardcore=true");
 						Bukkit.broadcastMessage("§4Le serveur doit redémarrer pour changer votre mode de jeu");
 						
 						// On attend 5 secondes et on redémarre le serveur
