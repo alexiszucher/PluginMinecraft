@@ -65,11 +65,14 @@ public class ListenerClass implements Listener {
 		
 		if(it == null) return;
 		
+		//=================================================================================
+		//	INTERACTION AVEC LA BOUSSOLE												  /
+		//=================================================================================
 		if(it.getType() == Material.COMPASS)
 		{
 			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK)
 			{
-				if(player.getCustomName() == null)
+				if(!Classe.classe.containsKey(player.getName()))
 				{
 					Inventory inv = Bukkit.createInventory(null,36,"Choix de votre classe");
 					
@@ -114,23 +117,21 @@ public class ListenerClass implements Listener {
 		if(event.getView().getTitle().equalsIgnoreCase("Choix de votre classe"))
 		{
 			//Si il a déjà choisi sa classe
-			if(player.getCustomName() != null)
+			if(Classe.classe.containsKey(player.getName()))
 			{
-				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe, fais /menu pour voir ce qu'il est possible de faire avec ta classe "+player.getCustomName());
+				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe");
 				player.closeInventory();
 			}
 			//Sinon
 			else if(current.getType() == Material.DIAMOND_AXE)
 			{
 				player.closeInventory();
-				player.setCustomName("BERSRKER");
 				Classe.classe.put(player.getName(), new Berserker());
 				Classe.classe.get(player.getName()).createClass(player);
 			}
 			else if(current.getType() == Material.SHIELD)
 			{
 				player.closeInventory();
-				player.setCustomName("PALADIN");
 				Classe.classe.put(player.getName(), new Paladin());
 				Classe.classe.get(player.getName()).createClass(player);
 			}
@@ -141,30 +142,29 @@ public class ListenerClass implements Listener {
 		//=================================================================================
 		if(event.getView().getTitle().equalsIgnoreCase("Menu de votre classe"))
 		{
-			if(current.getType() == Material.DIAMOND_AXE)
-			{
+			if(current.getType() == Material.DIAMOND_AXE){
 				player.closeInventory();
 				Classe.weaponUp(player, Classe.classe.get(player.getName()));
 			}
-			else if(current.getType() == Material.DIAMOND_CHESTPLATE)
-			{
+			else if(current.getType() == Material.DIAMOND_CHESTPLATE){
 				player.closeInventory();
 				Classe.armorUp(player, Classe.classe.get(player.getName()));
 			}
-			else if(current.getType() == Material.SPLASH_POTION)
-			{
+			else if(current.getType() == Material.SPLASH_POTION){
 				player.closeInventory();
 				Classe.addHearts(player, Classe.classe.get(player.getName()));
 			}
-			else if(current.getType() == Material.BLAZE_ROD)
-			{
+			else if(current.getType() == Material.BLAZE_ROD){
 				player.closeInventory();
 				Classe.addAttacks(player, Classe.classe.get(player.getName()));
 			}
-			else if(current.getType() == Material.SHIELD)
-			{
+			else if(current.getType() == Material.SHIELD){
 				player.closeInventory();
 				Classe.addResistances(player, Classe.classe.get(player.getName()));
+			}
+			else if(current.getType() == Material.SNOWBALL) {
+				player.closeInventory();
+				Classe.savePlayer(player);
 			}
 		}
 	}

@@ -1,8 +1,17 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -10,6 +19,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,22 +29,36 @@ public abstract class Classe {
 	
 	protected String NomClasse;
 	
-	protected int NombreCoeurs = 20;
-	
-	protected int Dommage = 1;
-	
 	protected int Resistance = 0;
 	//==============================================================================================
 	//	Variables pour la liste des armes de la classe en question afin de faire des weaponup      /
 	//==============================================================================================
 	protected ItemStack [] ListWeaponsUp;
 	protected ItemStack [][] ListArmorsUp;
+	public ItemStack[] getListWeaponsUp() {
+		return ListWeaponsUp;
+	}
+	public ItemStack[][] getListArmorsUp() {
+		return ListArmorsUp;
+	}
 	
 	//==========================================================================================================================================
 	//	Variables pour savoir à quel niveau de l'arme / armure de la classe du joueur on se trouve, on commence au lvl 1 avec une arme en bois /
 	//==========================================================================================================================================
 	protected int WeaponLvl = 1;
 	protected int ArmorLvl = 1;
+	public void setWeaponLvl(int weaponLvl) {
+		WeaponLvl = weaponLvl;
+	}
+	public int getWeaponLvl() {
+		return WeaponLvl;
+	}
+	public void setArmorLvl(int armorLvl) {
+		ArmorLvl = armorLvl;
+	}
+	public int getArmorLvl() {
+		return ArmorLvl;
+	}
 	
 	//===================================================================================================================
 	//	Fonction de création de classe, fonction abstraite car création de classe se fait en fonction de la classe choisie  /
@@ -100,17 +124,16 @@ public abstract class Classe {
 	//====================================================================================
 	public static void addHearts(Player player, Classe classe)
 	{
+		AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
 		//=======================
 		//	PALADIN				/
 		//=======================
-		if(classe.NomClasse.equals("Paladin") && classe.NombreCoeurs != 40)
+		if(classe.NomClasse.equals("Paladin") && attribute.getValue() != 40.0)
 		{
 			if(player.getLevel() > 4)
 			{
-				classe.NombreCoeurs = classe.NombreCoeurs + 4;
-		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-		        attribute.setBaseValue(classe.NombreCoeurs);
-		        player.setHealth(classe.NombreCoeurs);
+		        attribute.setBaseValue(attribute.getValue() + 4);
+		        player.setHealth(attribute.getValue());
 		        player.setLevel(player.getLevel() - 5);
 		        player.sendMessage(ChatColor.YELLOW + "Vos coeurs ont été augmentés de 2 !");
 			}
@@ -123,14 +146,12 @@ public abstract class Classe {
 		//=======================
 		//	BERSERKER			/
 		//=======================
-		if(classe.NomClasse.equals("Berserker") && classe.NombreCoeurs != 30)
+		if(classe.NomClasse.equals("Berserker") && attribute.getValue() != 30.0)
 		{
 			if(player.getLevel() > 4)
 			{
-				classe.NombreCoeurs = classe.NombreCoeurs + 2;
-		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-		        attribute.setBaseValue(classe.NombreCoeurs);
-		        player.setHealth(classe.NombreCoeurs);
+		        attribute.setBaseValue(attribute.getValue() + 2);
+		        player.setHealth(attribute.getValue());
 		        player.setLevel(player.getLevel() - 5);
 		        player.sendMessage(ChatColor.YELLOW + "Vos coeurs ont été augmentés de 1 !");
 			}
@@ -147,6 +168,7 @@ public abstract class Classe {
 	//====================================================================================
 	public static void addAttacks(Player player, Classe classe)
 	{
+		AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
 		//=======================
 		//	Berserker			/
 		//=======================
@@ -154,9 +176,7 @@ public abstract class Classe {
 		{
 			if(player.getLevel() > 4)
 			{
-				classe.Dommage = classe.Dommage + 2;
-		        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-		        attribute.setBaseValue(classe.Dommage);
+		        attribute.setBaseValue(attribute.getValue() + 2);
 		        player.setLevel(player.getLevel() - 5);
 		        player.sendMessage(ChatColor.YELLOW + "Votre attaque a été aumenté de 2 !");
 			}
@@ -216,4 +236,35 @@ public abstract class Classe {
 		item.setItemMeta(itemM);
 		return item;
 	}
+	
+	
+	//====================================================================================
+	//	SAUVEGARDE DE LA PARTIE POUR LE JOUEUR EN QUESTION !						     /
+	//====================================================================================
+	public static void savePlayer(Player player) {
+		try {
+			String pwd = System.getProperty("user.dir");
+			Path fichierSave = Paths.get(pwd+"/plugins/saveRPG.txt");
+	        Set<String> keys = classe.keySet();
+			//ECRITURE DU FICHIER HTML
+		    try (BufferedWriter writer = Files.newBufferedWriter(fichierSave, StandardOpenOption.WRITE)) {
+		        for(String key: keys) {
+		        	Player playerInSave = Bukkit.getServer().getPlayer(key);
+		        	AttributeInstance attributeHeart = playerInSave.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+		        	AttributeInstance attributeDamage = playerInSave.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+			        writer.append(playerInSave.getName()+";"+ Classe.classe.get(key).NomClasse +";"+ attributeHeart.getValue() +";"+ attributeDamage.getValue() +";"+ Classe.classe.get(key).WeaponLvl +";"+ Classe.classe.get(key).ArmorLvl +"\n");
+			        player.sendMessage(ChatColor.GREEN + "Sauvegarde effectuée !");
+		        }
+		    } catch (IOException e) {
+		    	player.sendMessage("Exception lors de l'écriture du fichier html :"+e);
+			}
+		} catch(Exception e) {
+			String pwd = System.getProperty("user.dir");
+	        player.sendMessage("Le répertoire courant est : " + pwd +"/plugins/saveRPG.txt");
+			player.sendMessage("Erreur"+e);
+		}
+		
+	}
+	
+	
 }

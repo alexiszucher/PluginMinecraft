@@ -1,5 +1,13 @@
 package fr.sasuno.pluginrpgminecraft.classe;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -45,13 +53,6 @@ public class Berserker extends Classe {
 		ItemStack [] items = {new ItemStack(Material.WOODEN_AXE)};
 		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
-		
-        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        attribute.setBaseValue(NombreCoeurs);
-        player.setHealth(NombreCoeurs);
-        
-        AttributeInstance attribute2 = player.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-        attribute2.setBaseValue(Dommage);
 	}
 
 	//=======================================================================================================
@@ -73,6 +74,10 @@ public class Berserker extends Classe {
 		
 		ItemStack book4 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.BLAZE_ROD), "Augmenter Votre Attaque", "LVL REQUIS : 5"));
 		inv.setItem(8, book4);
+		
+		//Save de la classe
+		ItemStack book5 = new ItemStack(Classe.createItemForMenu(new ItemStack(Material.SNOWBALL), "Sauvegarder", "Sauvegarder votre classe"));
+		inv.setItem(5, book5);
 		
 		player.openInventory(inv);
 		
@@ -97,6 +102,5 @@ public class Berserker extends Classe {
 		player.getInventory().setChestplate(items[1]);
 		player.getInventory().setBoots(items[2]);
 	}
-
 
 }

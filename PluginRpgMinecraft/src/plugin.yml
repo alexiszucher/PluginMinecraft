@@ -3,29 +3,5 @@ version: 2.0
 author: Sasuno
 main: fr.sasuno.pluginrpgminecraft.PluginRpgMinecraft
 commands:
-  class:
-    description: Choix classe
-  class Berserker:
-    description: Choix classe
-  class Paladin:
-    description: Choix classe
-  class Archer:
-    description: Choix classe
-  menuclass:
-    description: Menu de classe
-  addHearts:
-    description: Ajouter des coeurs
-  resistance:
-    description: Ajouter resistance
-  getStuffIron:
-    description: Donne un stuff fer
-  getStuffDiamond:
-    description: Donne un stuff diamant
-  weaponup:
-    description: augmenter l'arme de la classe
-  armorup:
-    description: augmenter l'armure de la classe
-  addattacks:
-    description: augmenter attaques
-  menurpg:
-    description: Tout le menu du rpg
+  loadRPG:
+    description: chargement des classes rpg

@@ -42,10 +42,6 @@ public class Paladin extends Classe {
 		ItemStack [] items = {new ItemStack(Material.WOODEN_SWORD), new ItemStack(Material.SHIELD)};
 		Classe.giveItemsJustForClass(player, items);
 		giveArmors(player, ListArmorsUp[0]);
-		
-        AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        attribute.setBaseValue(NombreCoeurs);
-        player.setHealth(NombreCoeurs);
 	}
 
 	//=======================================================================================================
