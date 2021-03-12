@@ -48,7 +48,8 @@ public class CommandUhc implements CommandExecutor {
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						Bukkit.getServer().spigot().restart();
+						
+						Bukkit.spigot().restart();
 					}
 					
 					Bukkit.broadcastMessage("§6Votre mode de jeu a été mis à jour");

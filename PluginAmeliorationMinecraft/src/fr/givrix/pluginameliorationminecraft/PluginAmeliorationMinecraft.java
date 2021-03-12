@@ -7,15 +7,22 @@ import org.bukkit.scoreboard.RenderType;
 import org.bukkit.scoreboard.Scoreboard;
 
 import fr.givrix.pluginameliorationminecraft.commands.CommandFollow;
+import fr.givrix.pluginameliorationminecraft.commands.CommandHome;
+import fr.givrix.pluginameliorationminecraft.commands.CommandInventory;
 import fr.givrix.pluginameliorationminecraft.commands.CommandPos;
 import fr.givrix.pluginameliorationminecraft.commands.CommandUhc;
 import fr.givrix.pluginameliorationminecraft.events.ListenerFollow;
+import fr.givrix.pluginameliorationminecraft.events.ListenerStart;
 
 public class PluginAmeliorationMinecraft extends JavaPlugin {
+	
+	private static PluginAmeliorationMinecraft plugin;
 	
 	@Override
 	public void onEnable() {
 		System.out.println("Ouverture du serveur de Givrix");
+		
+		plugin = this;
 		
 		Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
 		
@@ -29,14 +36,21 @@ public class PluginAmeliorationMinecraft extends JavaPlugin {
 		getCommand("pos").setExecutor(new CommandPos());
 		getCommand("follow").setExecutor(new CommandFollow());
 		getCommand("uhc").setExecutor(new CommandUhc());
+		getCommand("inventory").setExecutor(new CommandInventory());
+		getCommand("home").setExecutor(new CommandHome());
 		
 		// On implémente nos events
 		Bukkit.getPluginManager().registerEvents(new ListenerFollow(), this);
+		Bukkit.getPluginManager().registerEvents(new ListenerStart(), this);
 	}
 	
 	@Override
 	public void onDisable() {
 		System.out.println("Fermeture du serveur de Givrix");
+	}
+	
+	public static PluginAmeliorationMinecraft getPlugin() {
+		return plugin;
 	}
 
 }

@@ -39,7 +39,6 @@ public class CommandPos implements CommandExecutor {
 			default:
 				// Erreur de syntaxe
 				player.sendMessage("Syntaxe : /pos ou /pos <joueur>");
-				break;
 			}
 			
 			return true;
