@@ -162,7 +162,7 @@ public abstract class Classe {
 	public static void updateStuff(Player player) {
 		
 		Classe classeObject = getClasseObject(player).updateStuff();
-		
+		setClasseObject(player, classeObject);
 	}
 	
 }
