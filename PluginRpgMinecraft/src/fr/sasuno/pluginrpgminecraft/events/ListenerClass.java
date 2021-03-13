@@ -3,8 +3,6 @@ package fr.sasuno.pluginrpgminecraft.events;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.sasuno.pluginrpgminecraft.classe.Berserker;
-import fr.sasuno.pluginrpgminecraft.classe.Classe;
+import fr.sasuno.pluginrpgminecraft.classe.Classe_Alexis;
 import fr.sasuno.pluginrpgminecraft.classe.Paladin;
 
 public class ListenerClass implements Listener {
@@ -72,7 +70,7 @@ public class ListenerClass implements Listener {
 		{
 			if(action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK)
 			{
-				if(!Classe.classe.containsKey(player.getName()))
+				if(!Classe_Alexis.classe.containsKey(player.getName()))
 				{
 					Inventory inv = Bukkit.createInventory(null,36,"Choix de votre classe");
 					
@@ -92,7 +90,7 @@ public class ListenerClass implements Listener {
 				}
 				else
 				{
-					Classe.classe.get(player.getName()).menuClass(player);
+					Classe_Alexis.classe.get(player.getName()).menuClass(player);
 				}
 				
 			}
@@ -117,7 +115,7 @@ public class ListenerClass implements Listener {
 		if(event.getView().getTitle().equalsIgnoreCase("Choix de votre classe"))
 		{
 			//Si il a déjà choisi sa classe
-			if(Classe.classe.containsKey(player.getName()))
+			if(Classe_Alexis.classe.containsKey(player.getName()))
 			{
 				player.sendMessage("Hop hop hop, je te rappelle que tu as déjà une classe");
 				player.closeInventory();
@@ -126,14 +124,14 @@ public class ListenerClass implements Listener {
 			else if(current.getType() == Material.DIAMOND_AXE)
 			{
 				player.closeInventory();
-				Classe.classe.put(player.getName(), new Berserker());
-				Classe.classe.get(player.getName()).createClass(player);
+				Classe_Alexis.classe.put(player.getName(), new Berserker());
+				Classe_Alexis.classe.get(player.getName()).createClass(player);
 			}
 			else if(current.getType() == Material.SHIELD)
 			{
 				player.closeInventory();
-				Classe.classe.put(player.getName(), new Paladin());
-				Classe.classe.get(player.getName()).createClass(player);
+				Classe_Alexis.classe.put(player.getName(), new Paladin());
+				Classe_Alexis.classe.get(player.getName()).createClass(player);
 			}
 		}
 		
@@ -144,27 +142,27 @@ public class ListenerClass implements Listener {
 		{
 			if(current.getType() == Material.DIAMOND_AXE){
 				player.closeInventory();
-				Classe.weaponUp(player, Classe.classe.get(player.getName()));
+				Classe_Alexis.weaponUp(player, Classe_Alexis.classe.get(player.getName()));
 			}
 			else if(current.getType() == Material.DIAMOND_CHESTPLATE){
 				player.closeInventory();
-				Classe.armorUp(player, Classe.classe.get(player.getName()));
+				Classe_Alexis.armorUp(player, Classe_Alexis.classe.get(player.getName()));
 			}
 			else if(current.getType() == Material.SPLASH_POTION){
 				player.closeInventory();
-				Classe.addHearts(player, Classe.classe.get(player.getName()));
+				Classe_Alexis.addHearts(player, Classe_Alexis.classe.get(player.getName()));
 			}
 			else if(current.getType() == Material.BLAZE_ROD){
 				player.closeInventory();
-				Classe.addAttacks(player, Classe.classe.get(player.getName()));
+				Classe_Alexis.addAttacks(player, Classe_Alexis.classe.get(player.getName()));
 			}
 			else if(current.getType() == Material.SHIELD){
 				player.closeInventory();
-				Classe.addResistances(player, Classe.classe.get(player.getName()));
+				Classe_Alexis.addResistances(player, Classe_Alexis.classe.get(player.getName()));
 			}
 			else if(current.getType() == Material.SNOWBALL) {
 				player.closeInventory();
-				Classe.savePlayer(player);
+				Classe_Alexis.savePlayer(player);
 			}
 		}
 	}

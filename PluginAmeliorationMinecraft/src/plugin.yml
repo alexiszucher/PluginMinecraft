@@ -1,6 +1,8 @@
 name: PluginAmeliorationMinecraft
 version: 2.0
 author: Givrix
+api-version: 1.16
+loadbefore: [PluginRpgMinecraft]
 main: fr.givrix.pluginameliorationminecraft.PluginAmeliorationMinecraft
 commands:
   pos:

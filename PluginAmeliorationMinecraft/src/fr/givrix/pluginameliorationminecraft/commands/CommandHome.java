@@ -25,7 +25,7 @@ public class CommandHome implements CommandExecutor {
 			NamespacedKey key = new NamespacedKey(PluginAmeliorationMinecraft.getPlugin(), "home");
 			
 			switch (args.length) {
-			case 0:				
+			case 0:
 				// Si un home existe, on téléport le joueur
 				if (data.has(key, dataType)) {
 					World world = player.getWorld();

@@ -1,10 +1,11 @@
-package fr.givrix.pluginameliorationminecraft.events;
+package fr.sasuno.pluginrpgminecraft.events;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import fr.sasuno.pluginrpgminecraft.classes.Classe;
 
 public class ListenerStart implements Listener {
 	
@@ -12,10 +13,13 @@ public class ListenerStart implements Listener {
 	public void onInteract(PlayerJoinEvent event) {
 		
 		Player player = event.getPlayer();
+
+		// Si le joueur n'a pas de classe, lui en attribue une
+		if (!Classe.hasClasse(player)) {
+			Classe.setRandomClasse(player);
+		}
 		
-		// Affiche un message de bienvenue
-		player.sendMessage("§eBienvenue " + player.getName() + " !");
-		player.sendMessage("§7Le nombre de joueurs connectés est : §a" + Bukkit.getOnlinePlayers().size());
+		player.sendMessage("Votre classe est §b" + Classe.getClasseName(player));
 	}
 
 }
