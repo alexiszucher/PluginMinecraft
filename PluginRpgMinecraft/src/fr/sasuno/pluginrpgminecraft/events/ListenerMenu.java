@@ -73,6 +73,15 @@ public class ListenerMenu implements Listener {
 				
 				break;
 				
+			case "actifUp":
+				if (Classe.hasLvlToUpdateActif(player)) {
+					Classe.changeActifLvl(player, 1);
+				} else {
+					player.sendMessage("Vous n'avez pas le niveau nécessaire pour cela");
+				}
+				
+				break;
+				
 			case "arrowUp":
 				ItemStack arrows = new ItemStack(Material.ARROW);
 				arrows.setAmount(64);

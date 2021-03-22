@@ -341,7 +341,7 @@ public class Berserker extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 1"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 1"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -350,7 +350,7 @@ public class Berserker extends Classe {
 		PotionData potionData = new PotionData(PotionType.STRENGTH);
 		effectUpMeta2.setBasePotionData(potionData);
 		effectUpMeta2.setDisplayName("§dAmélioration des effets");
-		effectUpMeta2.setLore(Arrays.asList("", "§aCoût : §730", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 2"));
+		effectUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 2"));
 		effectUpMeta2.setLocalizedName("effectUp");
 		effectUp2.setItemMeta(effectUpMeta2);
 		
@@ -361,6 +361,32 @@ public class Berserker extends Classe {
 
 		case 2:
 			inventory.setItem(8, effectUp2);
+			break;
+			
+		default:
+		}
+		
+		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
+		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
+		actifUpMeta1.setDisplayName("§6Amélioration du pouvoir");
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta1.setLocalizedName("actifUp");
+		actifUp1.setItemMeta(actifUpMeta1);
+		
+		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
+		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
+		actifUpMeta2.setDisplayName("§6Amélioration du pouvoir");
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta2.setLocalizedName("actifUp");
+		actifUp2.setItemMeta(actifUpMeta2);
+		
+		switch (getActifLvl()) {
+		case 1:
+			inventory.setItem(26, actifUp1);
+			break;
+
+		case 2:
+			inventory.setItem(26, actifUp2);
 			break;
 			
 		default:

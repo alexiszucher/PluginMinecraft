@@ -24,6 +24,7 @@ public abstract class Classe {
 	protected int _weaponLvl;
 	protected int _armorLvl;
 	protected int _effectLvl;
+	protected int _actifLvl;
 	
 	// Puisque c'est une classe abstraite (classe mère), les constructeurs sont dans les classes héritées (classes filles)
 	public Classe() {}
@@ -189,13 +190,27 @@ public abstract class Classe {
 	public static void setEffectLvl(Player player, int effectLvl) {
 
 		if (effectLvl < 1) effectLvl = 1;
-		if (effectLvl > 3) effectLvl = 3;
+		if (effectLvl > 2) effectLvl = 2;
 		Classe classeObject = getClasseObject(player);
 		classeObject._effectLvl = effectLvl;
 		setClasseObject(player, classeObject);
 	}
 	
 	public static void changeEffectLvl(Player player, int lvl) { setEffectLvl(player, getEffectLvl(player) + lvl); }
+	
+	// Toutes fonctions relativent aux actifs
+	public int getActifLvl() { return _actifLvl; }
+	public static int getActifLvl(Player player) { return getClasseObject(player).getActifLvl(); }
+	public static void setActifLvl(Player player, int actifLvl) {
+
+		if (actifLvl < 1) actifLvl = 1;
+		if (actifLvl > 2) actifLvl = 2;
+		Classe classeObject = getClasseObject(player);
+		classeObject._actifLvl = actifLvl;
+		setClasseObject(player, classeObject);
+	}
+	
+	public static void changeActifLvl(Player player, int lvl) { setActifLvl(player, getActifLvl(player) + lvl); }
 	
 	// Toutes fonctions relativent au stuff
 	public abstract void updateStuff(Player player);
@@ -293,14 +308,34 @@ public abstract class Classe {
 	public static boolean hasLvlToUpdateEffect(Player player) {
 		switch (getEffectLvl(player)) {
 		case 1:
-			if (player.getLevel() >= 20) {
-				player.giveExpLevels(-20);
+			if (player.getLevel() >= 15) {
+				player.giveExpLevels(-15);
 				return true;
 			}
 			
 		case 2:
-			if (player.getLevel() >= 30) {
-				player.giveExpLevels(-30);
+			if (player.getLevel() >= 20) {
+				player.giveExpLevels(-20);
+				return true;
+			}
+
+		default:
+		}
+		
+		return false;
+	}
+
+	public static boolean hasLvlToUpdateActif(Player player) {
+		switch (getActifLvl(player)) {
+		case 1:
+			if (player.getLevel() >= 15) {
+				player.giveExpLevels(-15);
+				return true;
+			}
+			
+		case 2:
+			if (player.getLevel() >= 20) {
+				player.giveExpLevels(-20);
 				return true;
 			}
 
