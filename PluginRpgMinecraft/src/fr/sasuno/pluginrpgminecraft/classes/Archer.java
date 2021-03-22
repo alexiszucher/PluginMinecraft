@@ -39,9 +39,6 @@ public class Archer extends Classe {
 	public void updateStuff(Player player) {
 		
 		PlayerInventory inventory = player.getInventory();
-
-		PotionEffect visionNocturne = new PotionEffect(PotionEffectType.NIGHT_VISION, 100000, 0, false, false);
-		visionNocturne.apply(player);
 		
 		// On met à jour l'arme
 		
