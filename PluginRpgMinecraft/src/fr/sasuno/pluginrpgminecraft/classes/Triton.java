@@ -263,19 +263,19 @@ public class Triton extends Classe {
 		
 		switch (getWeaponLvl()) {
 		case 1:
-			inventory.setItem(10, weaponUp1);
+			inventory.setItem(0, weaponUp1);
 			break;
 
 		case 2:
-			inventory.setItem(10, weaponUp2);
+			inventory.setItem(0, weaponUp2);
 			break;
 
 		case 3:
-			inventory.setItem(10, weaponUp3);
+			inventory.setItem(0, weaponUp3);
 			break;
 
 		case 4:
-			inventory.setItem(10, weaponUp4);
+			inventory.setItem(0, weaponUp4);
 			break;
 			
 		default:
@@ -295,24 +295,13 @@ public class Triton extends Classe {
 		armorUpMeta2.setLocalizedName("armorUp");
 		armorUp2.setItemMeta(armorUpMeta2);
 		
-		ItemStack armorUp3 = new ItemStack(Material.DIAMOND_CHESTPLATE);
-		ItemMeta armorUpMeta3 = armorUp3.getItemMeta();
-		armorUpMeta3.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
-		armorUpMeta3.setLocalizedName("armorUp");
-		armorUp3.setItemMeta(armorUpMeta3);
-		
 		switch (getArmorLvl()) {
 		case 1:
-			inventory.setItem(12, armorUp1);
+			inventory.setItem(18, armorUp1);
 			break;
 
 		case 2:
-			inventory.setItem(12, armorUp2);
-			break;
-
-		case 3:
-			inventory.setItem(12, armorUp3);
+			inventory.setItem(18, armorUp2);
 			break;
 			
 		default:
@@ -321,7 +310,7 @@ public class Triton extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cLuck 1"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cLuck"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -336,11 +325,11 @@ public class Triton extends Classe {
 		
 		switch (getEffectLvl()) {
 		case 1:
-			inventory.setItem(14, effectUp1);
+			inventory.setItem(8, effectUp1);
 			break;
 
 		case 2:
-			inventory.setItem(14, effectUp2);
+			inventory.setItem(8, effectUp2);
 			break;
 			
 		default:

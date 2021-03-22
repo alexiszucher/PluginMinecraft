@@ -259,19 +259,19 @@ public class Archer extends Classe {
 		
 		switch (getWeaponLvl()) {
 		case 1:
-			inventory.setItem(10, weaponUp1);
+			inventory.setItem(0, weaponUp1);
 			break;
 
 		case 2:
-			inventory.setItem(10, weaponUp2);
+			inventory.setItem(0, weaponUp2);
 			break;
 
 		case 3:
-			inventory.setItem(10, weaponUp3);
+			inventory.setItem(0, weaponUp3);
 			break;
 
 		case 4:
-			inventory.setItem(10, weaponUp4);
+			inventory.setItem(0, weaponUp4);
 			break;
 			
 		default:
@@ -284,9 +284,20 @@ public class Archer extends Classe {
 		armorUpMeta1.setLocalizedName("armorUp");
 		armorUp1.setItemMeta(armorUpMeta1);
 		
+		ItemStack armorUp2 = new ItemStack(Material.IRON_CHESTPLATE);
+		ItemMeta armorUpMeta2 = armorUp2.getItemMeta();
+		armorUpMeta2.setDisplayName("§6Amélioration de l'armure");
+		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta2.setLocalizedName("armorUp");
+		armorUp2.setItemMeta(armorUpMeta2);
+		
 		switch (getArmorLvl()) {
 		case 1:
-			inventory.setItem(12, armorUp1);
+			inventory.setItem(18, armorUp1);
+			break;
+
+		case 2:
+			inventory.setItem(18, armorUp2);
 			break;
 			
 		default:
@@ -310,11 +321,11 @@ public class Archer extends Classe {
 		
 		switch (getEffectLvl()) {
 		case 1:
-			inventory.setItem(14, effectUp1);
+			inventory.setItem(8, effectUp1);
 			break;
 
 		case 2:
-			inventory.setItem(14, effectUp2);
+			inventory.setItem(8, effectUp2);
 			break;
 			
 		default:

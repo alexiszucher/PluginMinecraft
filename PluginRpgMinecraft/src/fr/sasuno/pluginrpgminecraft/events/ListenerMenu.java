@@ -72,6 +72,11 @@ public class ListenerMenu implements Listener {
 				}
 				
 				break;
+				
+			case "arrowUp":
+				ItemStack arrows = new ItemStack(Material.ARROW);
+				arrows.setAmount(64);
+				player.getInventory().addItem(arrows);
 
 			default:
 			}

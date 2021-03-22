@@ -339,11 +339,11 @@ public class Paladin extends Classe {
 		
 		switch (getWeaponLvl()) {
 		case 1:
-			inventory.setItem(10, weaponUp1);
+			inventory.setItem(18, weaponUp1);
 			break;
 
 		case 2:
-			inventory.setItem(10, weaponUp2);
+			inventory.setItem(18, weaponUp2);
 			break;
 			
 		default:
@@ -379,19 +379,19 @@ public class Paladin extends Classe {
 		
 		switch (getArmorLvl()) {
 		case 1:
-			inventory.setItem(12, armorUp1);
+			inventory.setItem(0, armorUp1);
 			break;
 
 		case 2:
-			inventory.setItem(12, armorUp2);
+			inventory.setItem(0, armorUp2);
 			break;
 
 		case 3:
-			inventory.setItem(12, armorUp3);
+			inventory.setItem(0, armorUp3);
 			break;
 
 		case 4:
-			inventory.setItem(12, armorUp4);
+			inventory.setItem(0, armorUp4);
 			break;
 			
 		default:
@@ -415,11 +415,11 @@ public class Paladin extends Classe {
 		
 		switch (getEffectLvl()) {
 		case 1:
-			inventory.setItem(14, effectUp1);
+			inventory.setItem(8, effectUp1);
 			break;
 
 		case 2:
-			inventory.setItem(14, effectUp2);
+			inventory.setItem(8, effectUp2);
 			break;
 			
 		default:

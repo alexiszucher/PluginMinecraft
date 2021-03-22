@@ -77,7 +77,7 @@ public abstract class Classe {
 	public static void setRandomClasse(Player player) {
 		
 		Random random = new Random();
-		int x = random.nextInt(4);
+		int x = random.nextInt(6);
 		
 		//x = 2;
 		
@@ -101,7 +101,7 @@ public abstract class Classe {
 			break;
 			
 		case 4:
-			classe = new Arbaletrier();
+			classe = new Sentinelle();
 			break;
 			
 		case 5:
