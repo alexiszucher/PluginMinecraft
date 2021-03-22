@@ -5,9 +5,9 @@ public class Assassin extends Classe {
 	public Assassin() {
 		_classeName = "Assassin";
 		_maxHealth = 20;
-		_weaponLvl = 0;
-		_armorLvl = 0;
-		_effectLvl = 0;		
+		_weaponLvl = 1;
+		_armorLvl = 1;
+		_effectLvl = 1;		
 	}
 	
 	public Assassin(int maxHealth, int weaponLvl, int armorLvl, int effectLvl) {

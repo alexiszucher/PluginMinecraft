@@ -5,12 +5,14 @@ import java.nio.ByteBuffer;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
 
+import fr.sasuno.pluginrpgminecraft.classes.Arbaletrier;
 import fr.sasuno.pluginrpgminecraft.classes.Archer;
 import fr.sasuno.pluginrpgminecraft.classes.Assassin;
 import fr.sasuno.pluginrpgminecraft.classes.Berserker;
 import fr.sasuno.pluginrpgminecraft.classes.Classe;
 import fr.sasuno.pluginrpgminecraft.classes.Mage;
 import fr.sasuno.pluginrpgminecraft.classes.Paladin;
+import fr.sasuno.pluginrpgminecraft.classes.Triton;
 
 public class PersistentDataTypeClasse implements PersistentDataType<byte[], Classe> {
 
@@ -30,6 +32,8 @@ public class PersistentDataTypeClasse implements PersistentDataType<byte[], Clas
 		else if (classeName.equalsIgnoreCase("Berserker")) return new Berserker(maxHealth, weaponLvl, armorLvl, effectLvl);
 		else if (classeName.equalsIgnoreCase("Assassin")) return new Assassin(maxHealth, weaponLvl, armorLvl, effectLvl);
 		else if (classeName.equalsIgnoreCase("Archer")) return new Archer(maxHealth, weaponLvl, armorLvl, effectLvl);
+		else if (classeName.equalsIgnoreCase("Triton")) return new Triton(maxHealth, weaponLvl, armorLvl, effectLvl);
+		else if (classeName.equalsIgnoreCase("Arbalétrier")) return new Arbaletrier(maxHealth, weaponLvl, armorLvl, effectLvl);
 		else return new Mage(maxHealth, weaponLvl, armorLvl, effectLvl);
 	}
 

@@ -13,6 +13,7 @@ import fr.givrix.pluginameliorationminecraft.commands.CommandPos;
 import fr.givrix.pluginameliorationminecraft.commands.CommandUhc;
 import fr.givrix.pluginameliorationminecraft.events.ListenerFollow;
 import fr.givrix.pluginameliorationminecraft.events.ListenerStart;
+import fr.givrix.pluginameliorationminecraft.events.ListenerUhc;
 
 public class PluginAmeliorationMinecraft extends JavaPlugin {
 	
@@ -42,6 +43,7 @@ public class PluginAmeliorationMinecraft extends JavaPlugin {
 		// On implémente nos events
 		Bukkit.getPluginManager().registerEvents(new ListenerFollow(), this);
 		Bukkit.getPluginManager().registerEvents(new ListenerStart(), this);
+		Bukkit.getPluginManager().registerEvents(new ListenerUhc(), this);
 	}
 	
 	@Override

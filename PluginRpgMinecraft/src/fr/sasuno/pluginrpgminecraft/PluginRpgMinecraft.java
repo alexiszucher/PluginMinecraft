@@ -1,8 +1,12 @@
 package fr.sasuno.pluginrpgminecraft;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Difficulty;
+import org.bukkit.GameRule;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.sasuno.pluginrpgminecraft.events.ListenerMenu;
 import fr.sasuno.pluginrpgminecraft.events.ListenerStart;
 
 public class PluginRpgMinecraft extends JavaPlugin {
@@ -15,8 +19,16 @@ public class PluginRpgMinecraft extends JavaPlugin {
 		
 		plugin = this;
 		
+		// On passe le monde en uhc
+		World world = Bukkit.getWorld("world");
+		
+		world.setDifficulty(Difficulty.HARD);
+		world.setGameRule(GameRule.NATURAL_REGENERATION, false);
+		world.setHardcore(true);
+		
 		// On implémente nos events
 		Bukkit.getPluginManager().registerEvents(new ListenerStart(), this);
+		Bukkit.getPluginManager().registerEvents(new ListenerMenu(), this);
 	}
 	
 	@Override

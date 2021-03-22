@@ -1,5 +1,7 @@
 package fr.sasuno.pluginrpgminecraft.classes;
 
+import org.bukkit.entity.Player;
+
 public class Mage extends Classe {
 	
 	public Mage() {
@@ -19,7 +21,8 @@ public class Mage extends Classe {
 	}
 
 	@Override
-	public void giveDefaultStuff() {
+	public Classe updateStuff(Player player) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,20 +17,20 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
-public class Berserker extends Classe {
+public class Arbaletrier extends Classe {
 	
-	public Berserker() {
+	public Arbaletrier() {
 		
-		_classeName = "Berserker";
-		_maxHealth = 24;
+		_classeName = "Arbalétrier";
+		_maxHealth = 20;
 		_weaponLvl = 1;
 		_armorLvl = 1;
 		_effectLvl = 1;		
 	}
 	
-	public Berserker(int maxHealth, int weaponLvl, int armorLvl, int effectLvl) {
+	public Arbaletrier(int maxHealth, int weaponLvl, int armorLvl, int effectLvl) {
 		
-		_classeName = "Berserker";
+		_classeName = "Arbalétrier";
 		_maxHealth = maxHealth;
 		_weaponLvl = weaponLvl;
 		_armorLvl = armorLvl;
@@ -47,7 +47,7 @@ public class Berserker extends Classe {
 		// On prépare la liste de toutes les armes
 		ItemStack weapon1= new ItemStack(Material.WOODEN_AXE);
 		ItemMeta weaponMeta1 = weapon1.getItemMeta();
-		weaponMeta1.setDisplayName("§6Hache de bûcheron");
+		weaponMeta1.setDisplayName("§6Hache du bougon");
 		weaponMeta1.setLore(Arrays.asList("L'arme basique par excellence", "§3Pratique pour couper du bois"));
 		weaponMeta1.setLocalizedName("weaponBerserker");
 		weaponMeta1.setUnbreakable(true);
@@ -58,7 +58,7 @@ public class Berserker extends Classe {
 		
 		ItemStack weapon2= new ItemStack(Material.STONE_AXE);
 		ItemMeta weaponMeta2 = weapon2.getItemMeta();
-		weaponMeta2.setDisplayName("§6Hache du bougon");
+		weaponMeta2.setDisplayName("§6Hache du nonchalant");
 		weaponMeta2.setLore(Arrays.asList("Une arme un peu émoussée, mais qui fait le taff", "§3Vos adversaires n'ont qu'à bien se tenir"));
 		weaponMeta2.setLocalizedName("weaponBerserker");
 		weaponMeta2.setUnbreakable(true);
@@ -134,7 +134,7 @@ public class Berserker extends Classe {
 		// On prépare la liste de toutes les armures
 		ItemStack chestplate1 = new ItemStack(Material.LEATHER_CHESTPLATE);
 		ItemMeta chestplateMeta1 = chestplate1.getItemMeta();
-		chestplateMeta1.setDisplayName("§6Plastron de bûcheron");
+		chestplateMeta1.setDisplayName("§6Plastron du bougon");
 		chestplateMeta1.setLore(Arrays.asList("L'armure basique par excellence", "§3Tient plutôt chaud"));
 		chestplateMeta1.setLocalizedName("chestplateBerserker");
 		chestplateMeta1.setUnbreakable(true);
@@ -143,7 +143,7 @@ public class Berserker extends Classe {
 		
 		ItemStack chestplate2 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta chestplateMeta2 = chestplate2.getItemMeta();
-		chestplateMeta2.setDisplayName("§6Plastron du bougon");
+		chestplateMeta2.setDisplayName("§6Plastron du nonchalant");
 		chestplateMeta2.setLore(Arrays.asList("Une armure un peu émoussée, mais qui fait le taff", "§3Vous ressemblez à un chevalier avec ça"));
 		chestplateMeta2.setLocalizedName("chestplateBerserker");
 		chestplateMeta2.setUnbreakable(true);
@@ -159,18 +159,9 @@ public class Berserker extends Classe {
 		chestplate3.setItemMeta(chestplateMeta3);
 		chestplate3.addEnchantment(Enchantment.BINDING_CURSE, 1);
 		
-		ItemStack chestplate4 = new ItemStack(Material.DIAMOND_CHESTPLATE);
-		ItemMeta chestplateMeta4 = chestplate4.getItemMeta();
-		chestplateMeta4.setDisplayName("§6Plastron de la colère ultime");
-		chestplateMeta4.setLore(Arrays.asList("Une armure à toute épreuve", "§3Vous n'avez plus peur de rien avec ça"));
-		chestplateMeta4.setLocalizedName("chestplateBerserker");
-		chestplateMeta4.setUnbreakable(true);
-		chestplate4.setItemMeta(chestplateMeta4);
-		chestplate4.addEnchantment(Enchantment.BINDING_CURSE, 1);
-		
 		ItemStack helmet1 = new ItemStack(Material.LEATHER_HELMET);
 		ItemMeta helmetMeta1 = helmet1.getItemMeta();
-		helmetMeta1.setDisplayName("§6Casque de bûcheron");
+		helmetMeta1.setDisplayName("§6Casque du bougon");
 		helmetMeta1.setLore(Arrays.asList("L'armure basique par excellence", "§3Tient plutôt chaud"));
 		helmetMeta1.setLocalizedName("helmetBerserker");
 		helmetMeta1.setUnbreakable(true);
@@ -179,7 +170,7 @@ public class Berserker extends Classe {
 		
 		ItemStack helmet2 = new ItemStack(Material.CHAINMAIL_HELMET);
 		ItemMeta helmetMeta2 = helmet2.getItemMeta();
-		helmetMeta2.setDisplayName("§6Casque du bougon");
+		helmetMeta2.setDisplayName("§6Casque du nonchalant");
 		helmetMeta2.setLore(Arrays.asList("Une armure un peu émoussée, mais qui fait le taff", "§3Vous ressemblez à un chevalier avec ça"));
 		helmetMeta2.setLocalizedName("helmetBerserker");
 		helmetMeta2.setUnbreakable(true);
@@ -194,15 +185,6 @@ public class Berserker extends Classe {
 		helmetMeta3.setUnbreakable(true);
 		helmet3.setItemMeta(helmetMeta3);
 		helmet3.addEnchantment(Enchantment.BINDING_CURSE, 1);
-		
-		ItemStack helmet4 = new ItemStack(Material.DIAMOND_HELMET);
-		ItemMeta helmetMeta4 = helmet4.getItemMeta();
-		helmetMeta4.setDisplayName("§6Casque de la colère ultime");
-		helmetMeta4.setLore(Arrays.asList("Une armure à toute épreuve", "§3Vous n'avez plus peur de rien avec ça"));
-		helmetMeta4.setLocalizedName("helmetBerserker");
-		helmetMeta4.setUnbreakable(true);
-		helmet4.setItemMeta(helmetMeta4);
-		helmet4.addEnchantment(Enchantment.BINDING_CURSE, 1);
 		
 		// Suppression de l'ancienne armure et ajout de la nouvelle
 		switch (getArmorLvl()) {
@@ -221,18 +203,13 @@ public class Berserker extends Classe {
 			if (inventory.getHelmet().equals(helmet2)) inventory.setHelmet(helmet3);
 			break;
 			
-		case 4:
-			if (inventory.getChestplate().equals(chestplate3)) inventory.setChestplate(chestplate4);
-			if (inventory.getHelmet().equals(helmet3)) inventory.setHelmet(helmet4);
-			break;
-			
 		default:
 		}
 		
 		// On met à jour les effets
 		
-		PotionEffect effect1 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false);
-		PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 1, false, false);
+		PotionEffect effect1 = new PotionEffect(PotionEffectType.NIGHT_VISION, 100000, 0, false, false);
+		PotionEffect effect2 = new PotionEffect(PotionEffectType.JUMP, 100000, 1, false, false);
 		
 		switch (getEffectLvl()) {
 		case 2:

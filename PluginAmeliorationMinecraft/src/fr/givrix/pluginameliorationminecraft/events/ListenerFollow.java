@@ -30,7 +30,7 @@ public class ListenerFollow implements Listener {
 		if (item == null || !item.hasItemMeta()) return;
 		
 		// On vérifie si l'item est le PlayerTracker
-		if (item.getType() == Material.COMPASS && (action == Action.RIGHT_CLICK_AIR || action ==  Action.RIGHT_CLICK_BLOCK) && item.getItemMeta().getLocalizedName().equals("playerTracker")) {
+		if (item.getType() == Material.COMPASS && (action == Action.RIGHT_CLICK_AIR || action ==  Action.RIGHT_CLICK_BLOCK) && item.getItemMeta().getLocalizedName().equalsIgnoreCase("playerTracker")) {
 			
 			CompassMeta playerTrackerMeta = (CompassMeta) item.getItemMeta();
 			PersistentDataContainer data = playerTrackerMeta.getPersistentDataContainer();
