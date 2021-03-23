@@ -6,6 +6,7 @@ import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import fr.sasuno.pluginrpgminecraft.events.ListenerActif;
 import fr.sasuno.pluginrpgminecraft.events.ListenerMenu;
 import fr.sasuno.pluginrpgminecraft.events.ListenerStart;
 
@@ -29,6 +30,7 @@ public class PluginRpgMinecraft extends JavaPlugin {
 		// On implémente nos events
 		Bukkit.getPluginManager().registerEvents(new ListenerStart(), this);
 		Bukkit.getPluginManager().registerEvents(new ListenerMenu(), this);
+		Bukkit.getPluginManager().registerEvents(new ListenerActif(), this);
 	}
 	
 	@Override

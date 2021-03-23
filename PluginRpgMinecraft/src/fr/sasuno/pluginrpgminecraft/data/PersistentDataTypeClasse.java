@@ -19,7 +19,7 @@ public class PersistentDataTypeClasse implements PersistentDataType<byte[], Clas
 	@Override
 	public Classe fromPrimitive(byte[] primitive, PersistentDataAdapterContext context) {
 		ByteBuffer byteBuffer = ByteBuffer.wrap(primitive);
-		int lengthClasse = (byteBuffer.limit() - 16) / 2;
+		int lengthClasse = (byteBuffer.limit() - 28) / 2;
 		String classeName = "";
 		for (int i = 0; i < lengthClasse; i++) {
 			classeName += byteBuffer.getChar();
@@ -28,13 +28,16 @@ public class PersistentDataTypeClasse implements PersistentDataType<byte[], Clas
 		int weaponLvl = byteBuffer.getInt();
 		int armorLvl = byteBuffer.getInt();
 		int effectLvl = byteBuffer.getInt();
-		if (classeName.equalsIgnoreCase("Paladin")) return new Paladin(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else if (classeName.equalsIgnoreCase("Berserker")) return new Berserker(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else if (classeName.equalsIgnoreCase("Assassin")) return new Assassin(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else if (classeName.equalsIgnoreCase("Archer")) return new Archer(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else if (classeName.equalsIgnoreCase("Triton")) return new Triton(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else if (classeName.equalsIgnoreCase("Sentinelle")) return new Sentinelle(maxHealth, weaponLvl, armorLvl, effectLvl);
-		else return new Mage(maxHealth, weaponLvl, armorLvl, effectLvl);
+		int actifLvl = byteBuffer.getInt();
+		boolean onCast = byteBuffer.getInt() == 0 ? false : true;
+		boolean onCooldown = byteBuffer.getInt() == 0 ? false : true;
+		if (classeName.equalsIgnoreCase("Paladin")) return new Paladin(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else if (classeName.equalsIgnoreCase("Berserker")) return new Berserker(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else if (classeName.equalsIgnoreCase("Assassin")) return new Assassin(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else if (classeName.equalsIgnoreCase("Archer")) return new Archer(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else if (classeName.equalsIgnoreCase("Triton")) return new Triton(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else if (classeName.equalsIgnoreCase("Sentinelle")) return new Sentinelle(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
+		else return new Mage(maxHealth, weaponLvl, armorLvl, effectLvl, actifLvl, onCast, onCooldown);
 	}
 
 	@Override
@@ -51,7 +54,7 @@ public class PersistentDataTypeClasse implements PersistentDataType<byte[], Clas
 	public byte[] toPrimitive(Classe complex, PersistentDataAdapterContext context) {
 		String classeName = complex.getClasseName();
 		int lengthClasse = classeName.length();
-		ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[2*lengthClasse + 16]);
+		ByteBuffer byteBuffer = ByteBuffer.wrap(new byte[2*lengthClasse + 28]);
 		for (int i = 0; i < lengthClasse; i++) {
 			byteBuffer.putChar(classeName.charAt(i));
 		}
@@ -59,6 +62,9 @@ public class PersistentDataTypeClasse implements PersistentDataType<byte[], Clas
 		byteBuffer.putInt(complex.getWeaponLvl());
 		byteBuffer.putInt(complex.getArmorLvl());
 		byteBuffer.putInt(complex.getEffectLvl());
+		byteBuffer.putInt(complex.getActifLvl());
+		byteBuffer.putInt(complex.isOnCast() == false ? 0 : 1);
+		byteBuffer.putInt(complex.isOnCooldown() == false ? 0 : 1);
 		return byteBuffer.array();
 	}
 

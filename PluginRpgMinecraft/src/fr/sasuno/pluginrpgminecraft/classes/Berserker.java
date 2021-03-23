@@ -25,16 +25,22 @@ public class Berserker extends Classe {
 		_maxHealth = 24;
 		_weaponLvl = 1;
 		_armorLvl = 1;
-		_effectLvl = 1;		
+		_effectLvl = 1;
+		_actifLvl = 1;
+		_onCast = false;
+		_onCooldown = false;
 	}
 	
-	public Berserker(int maxHealth, int weaponLvl, int armorLvl, int effectLvl) {
+	public Berserker(int maxHealth, int weaponLvl, int armorLvl, int effectLvl, int actifLvl, boolean onCast, boolean onCooldown) {
 		
 		_classeName = "Berserker";
 		_maxHealth = maxHealth;
 		_weaponLvl = weaponLvl;
 		_armorLvl = armorLvl;
-		_effectLvl = effectLvl;			
+		_effectLvl = effectLvl;
+		_actifLvl = actifLvl;
+		_onCast = onCast;
+		_onCooldown = onCooldown;
 	}
 
 	@Override
@@ -231,19 +237,55 @@ public class Berserker extends Classe {
 		
 		// On met à jour les effets
 		
-		PotionEffect effect1 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false);
-		PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 1, false, false);
-		
-		switch (getEffectLvl()) {
-		case 2:
-			effect1.apply(player);
-			break;
+		if (!isOnCast()) {
+			
+			if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+			
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false);
+			PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 1, false, false);
+			
+			switch (getEffectLvl()) {
+			case 2:
+				player.addPotionEffect(effect1);
+				break;
 
+			case 3:
+				player.addPotionEffect(effect2);
+				break;
+
+			default:
+			}
+			
+		}
+		
+		// On met à jour l'actif
+		
+		ItemStack actif1 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta1 = actif1.getItemMeta();
+		actifMeta1.setDisplayName("§bFolie sanguinaire");
+		actifMeta1.setLore(Arrays.asList("Cet activable vous donne §c+1 niveau de", "§cforce §r§opour une durée de §c30 secondes", "", "§9Pas de quartier !", "§cNe perdez pas cet item"));
+		actifMeta1.setLocalizedName("actifClasse");
+		actif1.setItemMeta(actifMeta1);
+		
+		ItemStack actif2 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta2 = actif2.getItemMeta();
+		actifMeta2.setDisplayName("§bFolie sanguinaire");
+		actifMeta2.setLore(Arrays.asList("Cet activable vous donne §c+2 niveau de", "§cforce §r§opour une durée de §c30 secondes", "", "§9Pas de quartier !", "§cNe perdez pas cet item"));
+		actifMeta2.setLocalizedName("actifClasse");
+		actif2.setItemMeta(actifMeta2);
+		
+		switch (getActifLvl()) {
+		case 2:
+			if (!inventory.contains(actif1) && !inventory.getItemInOffHand().equals(actif1)) inventory.addItem(actif1);
+			break;
+			
 		case 3:
-			effect2.apply(player);
+			if (inventory.contains(actif1)) inventory.setItem(inventory.first(actif1), actif2);
+			if (inventory.getItemInOffHand().equals(actif1)) inventory.setItemInOffHand(actif2);
 			break;
 
 		default:
+			break;
 		}
 		
 	}
@@ -251,7 +293,7 @@ public class Berserker extends Classe {
 	@Override
 	public void openMenu(Player player) {
 		
-		Inventory inventory = Bukkit.createInventory(player, InventoryType.CHEST, "Menu d'amélioration de classe pour " + getClasseName());
+		Inventory inventory = Bukkit.createInventory(player, InventoryType.CHEST, "Menu d'amélioration de classe");
 		
 		ItemStack weaponUp1 = new ItemStack(Material.STONE_AXE);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
@@ -368,15 +410,15 @@ public class Berserker extends Classe {
 		
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
-		actifUpMeta1.setDisplayName("§6Amélioration du pouvoir");
-		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +1 pour 30 secondes"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
-		actifUpMeta2.setDisplayName("§6Amélioration du pouvoir");
-		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +2 pour 30 secondes"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
 		
@@ -393,6 +435,34 @@ public class Berserker extends Classe {
 		}
 		
 		player.openInventory(inventory);
+		
+	}
+
+	@Override
+	public void runActivable (Player player) {
+		
+		if (!isOnCast() && !isOnCooldown()) {
+			
+			if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
+				
+				PotionEffect currentEffect = player.getPotionEffect(PotionEffectType.INCREASE_DAMAGE);
+				PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, currentEffect.getAmplifier() + getActifLvl() - 1, false, false);
+				effect.apply(player);
+				player.sendMessage("§bVous avez maintenant l'effet §eforce " + (currentEffect.getAmplifier() + getActifLvl()) + "§b pendant §e30 secondes");
+				
+			} else {
+				
+				PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, getActifLvl() - 2, false, false);
+				effect.apply(player);
+				player.sendMessage("§bVous avez maintenant l'effet §eforce " + (getActifLvl() - 1) + "§b pendant §e30 secondes");
+			}
+			
+			cast(player);
+			
+		} else {
+			
+			player.sendMessage("§cVeuillez attendre le rechargement de votre pouvoir");
+		}
 		
 	}
 	

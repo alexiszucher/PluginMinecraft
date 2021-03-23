@@ -44,7 +44,7 @@ public class CommandUhc implements CommandExecutor {
 						
 						// On attend 5 secondes et on redémarre le serveur
 						try {
-							Thread.sleep(5000);
+							Thread.sleep(5*1000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

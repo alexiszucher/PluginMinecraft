@@ -24,15 +24,21 @@ public class Archer extends Classe {
 		_maxHealth = 20;
 		_weaponLvl = 1;
 		_armorLvl = 1;
-		_effectLvl = 1;		
+		_effectLvl = 1;
+		_actifLvl = 1;
+		_onCast = false;
+		_onCooldown = false;
 	}
 	
-	public Archer(int maxHealth, int weaponLvl, int armorLvl, int effectLvl) {
+	public Archer(int maxHealth, int weaponLvl, int armorLvl, int effectLvl, int actifLvl, boolean onCast, boolean onCooldown) {
 		_classeName = "Archer";
 		_maxHealth = maxHealth;
 		_weaponLvl = weaponLvl;
 		_armorLvl = armorLvl;
-		_effectLvl = effectLvl;			
+		_effectLvl = effectLvl;
+		_actifLvl = actifLvl;
+		_onCast = onCast;
+		_onCooldown = onCooldown;
 	}
 
 	@Override
@@ -227,7 +233,7 @@ public class Archer extends Classe {
 	@Override
 	public void openMenu(Player player) {
 		
-		Inventory inventory = Bukkit.createInventory(player, InventoryType.CHEST, "Menu d'amélioration de classe pour " + getClasseName());
+		Inventory inventory = Bukkit.createInventory(player, InventoryType.CHEST, "Menu d'amélioration de classe");
 		
 		ItemStack weaponUp1 = new ItemStack(Material.BOW);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
@@ -333,14 +339,14 @@ public class Archer extends Classe {
 		
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
-		actifUpMeta1.setDisplayName("§6Amélioration du pouvoir");
+		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
 		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
-		actifUpMeta2.setDisplayName("§6Amélioration du pouvoir");
+		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
 		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
@@ -358,6 +364,12 @@ public class Archer extends Classe {
 		}
 		
 		player.openInventory(inventory);
+		
+	}
+
+	@Override
+	public void runActivable(Player player) {
+		// TODO Auto-generated method stub
 		
 	}
 	

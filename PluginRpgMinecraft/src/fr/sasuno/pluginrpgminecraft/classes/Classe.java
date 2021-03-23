@@ -25,6 +25,9 @@ public abstract class Classe {
 	protected int _armorLvl;
 	protected int _effectLvl;
 	protected int _actifLvl;
+	protected boolean _onCast;
+	protected boolean _onCooldown;
+	
 	
 	// Puisque c'est une classe abstraite (classe mère), les constructeurs sont dans les classes héritées (classes filles)
 	public Classe() {}
@@ -80,7 +83,7 @@ public abstract class Classe {
 		Random random = new Random();
 		int x = random.nextInt(6);
 		
-		//x = 2;
+		x = 0;
 		
 		Classe classe;
 		
@@ -190,7 +193,7 @@ public abstract class Classe {
 	public static void setEffectLvl(Player player, int effectLvl) {
 
 		if (effectLvl < 1) effectLvl = 1;
-		if (effectLvl > 2) effectLvl = 2;
+		if (effectLvl > 3) effectLvl = 3;
 		Classe classeObject = getClasseObject(player);
 		classeObject._effectLvl = effectLvl;
 		setClasseObject(player, classeObject);
@@ -204,13 +207,94 @@ public abstract class Classe {
 	public static void setActifLvl(Player player, int actifLvl) {
 
 		if (actifLvl < 1) actifLvl = 1;
-		if (actifLvl > 2) actifLvl = 2;
+		if (actifLvl > 3) actifLvl = 3;
 		Classe classeObject = getClasseObject(player);
 		classeObject._actifLvl = actifLvl;
 		setClasseObject(player, classeObject);
 	}
 	
 	public static void changeActifLvl(Player player, int lvl) { setActifLvl(player, getActifLvl(player) + lvl); }
+	public abstract void runActivable(Player player);
+	
+	public boolean isOnCast() {	return _onCast;	}
+	public static boolean isOnCast(Player player) {
+		
+		return getClasseObject(player).isOnCast();
+	}
+	
+	public static void changeOnCast(Player player) {
+		
+		Classe classeObject = getClasseObject(player);
+		classeObject._onCast = !classeObject.isOnCast();
+		PersistentDataTypeClasse dataType = new PersistentDataTypeClasse();
+		PersistentDataContainer data = player.getPersistentDataContainer();
+		NamespacedKey key = new NamespacedKey(PluginRpgMinecraft.getPlugin(), "classe");
+		data.set(key, dataType, classeObject);
+	}
+	
+	protected static void cast(Player player) {
+		
+		Thread cast = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+
+				changeOnCast(player);
+				
+				try {
+					Thread.sleep(30*1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				changeOnCast(player);
+				cooldown(player);
+				
+			}
+		
+		});
+		cast.start();
+	}
+
+	public boolean isOnCooldown() {	return _onCooldown;	}
+	public static boolean isOnCooldown(Player player) {
+		
+		return getClasseObject(player).isOnCast();
+	}
+	
+	public static void changeOnCooldown(Player player) {
+		
+		Classe classeObject = getClasseObject(player);
+		classeObject._onCooldown = !classeObject.isOnCooldown();
+		PersistentDataTypeClasse dataType = new PersistentDataTypeClasse();
+		PersistentDataContainer data = player.getPersistentDataContainer();
+		NamespacedKey key = new NamespacedKey(PluginRpgMinecraft.getPlugin(), "classe");
+		data.set(key, dataType, classeObject);
+	}
+	
+	protected static void cooldown(Player player) {
+		
+		Thread cooldown = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				
+				changeOnCooldown(player);
+				
+				try {
+					Thread.sleep(10*1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				changeOnCooldown(player);
+				player.sendMessage("§aVotre pouvoir est rechargé");
+				
+			}
+			
+		});
+		cooldown.start();
+	}
 	
 	// Toutes fonctions relativent au stuff
 	public abstract void updateStuff(Player player);
@@ -242,6 +326,7 @@ public abstract class Classe {
 	public abstract void openMenu(Player player);
 
 	public static boolean hasLvlToUpdateWeapon(Player player) {
+		
 		switch (getWeaponLvl(player)) {
 		case 1:
 			if (player.getLevel() >= 10) {
@@ -274,6 +359,7 @@ public abstract class Classe {
 	}
 
 	public static boolean hasLvlToUpdateArmor(Player player) {
+		
 		switch (getArmorLvl(player)) {
 		case 1:
 			if (player.getLevel() >= 10) {
@@ -306,6 +392,7 @@ public abstract class Classe {
 	}
 
 	public static boolean hasLvlToUpdateEffect(Player player) {
+		
 		switch (getEffectLvl(player)) {
 		case 1:
 			if (player.getLevel() >= 15) {
@@ -326,6 +413,7 @@ public abstract class Classe {
 	}
 
 	public static boolean hasLvlToUpdateActif(Player player) {
+		
 		switch (getActifLvl(player)) {
 		case 1:
 			if (player.getLevel() >= 15) {

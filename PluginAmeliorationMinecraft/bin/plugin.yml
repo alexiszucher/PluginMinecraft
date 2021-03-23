@@ -1,6 +1,8 @@
 name: PluginAmeliorationMinecraft
-version: 1.0
+version: 2.0
 author: Givrix
+api-version: 1.16
+loadbefore: [PluginRpgMinecraft]
 main: fr.givrix.pluginameliorationminecraft.PluginAmeliorationMinecraft
 commands:
   pos:
@@ -9,3 +11,7 @@ commands:
     description: Donne une boussole qui pointe un joueur
   uhc:
     description: Passe le jeu en ultra hardcore
+  inventory:
+    description: Ouvre un inventaire commun accessible a tous les joueurs
+  home:
+    description: Defini un home ou s'y teleport
