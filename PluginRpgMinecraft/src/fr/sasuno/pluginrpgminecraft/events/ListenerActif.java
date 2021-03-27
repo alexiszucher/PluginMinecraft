@@ -24,8 +24,19 @@ public class ListenerActif implements Listener {
 		
 		// On vérifie si l'item est le MenuClasse
 		if (item.getType() == Material.FEATHER && (action == Action.RIGHT_CLICK_AIR || action ==  Action.RIGHT_CLICK_BLOCK) && item.getItemMeta().getLocalizedName().equalsIgnoreCase("actifClasse")) {
+			
 			Classe.getClasseObject(player).updateStuff(player);
-			Classe.getClasseObject(player).runActivable(player);
+			
+			if (!Classe.getClasseObject(player).isOnCast() && !Classe.getClasseObject(player).isOnCooldown()) {
+				
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				Classe.getClasseObject(player).runActivable(player);
+				
+			} else {
+				
+				player.sendMessage("§cVeuillez attendre le rechargement de votre pouvoir");
+			}
+			
 		}
 		
 	}

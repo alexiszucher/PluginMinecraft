@@ -68,10 +68,13 @@ public abstract class Classe {
 		else if (classeName.equalsIgnoreCase("Berserker")) classe = new Berserker();
 		else if (classeName.equalsIgnoreCase("Assassin")) classe = new Assassin();
 		else if (classeName.equalsIgnoreCase("Archer")) classe = new Archer();
+		else if (classeName.equalsIgnoreCase("Triton")) classe = new Triton();
+		else if (classeName.equalsIgnoreCase("Sentinelle")) classe = new Sentinelle();
 		else classe = new Mage();
 		
 		// On met à jour les infos du joueur
 		setClasseObject(player, classe);
+		updateMaxHealth(player);
 		fullHeal(player);
 		
 		// On donne au joueur l'item pour ouvrir le menu de classe
@@ -82,8 +85,6 @@ public abstract class Classe {
 		
 		Random random = new Random();
 		int x = random.nextInt(6);
-		
-		x = 0;
 		
 		Classe classe;
 		
@@ -97,7 +98,7 @@ public abstract class Classe {
 			break;
 			
 		case 2:
-			classe = new Archer();
+			classe = new Assassin();
 			break;
 			
 		case 3:
@@ -109,7 +110,7 @@ public abstract class Classe {
 			break;
 			
 		case 5:
-			classe = new Assassin();
+			classe = new Archer();
 			break;
 			
 		default:
@@ -155,8 +156,7 @@ public abstract class Classe {
 	
 	public static void fullHeal(Player player) {
 
-		PotionEffect heal = new PotionEffect(PotionEffectType.HEAL, 1, 1);
-		heal.apply(player);
+		player.setHealth(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
 	}
 	
 	// Toutes fonctions relativent aux armes
@@ -231,30 +231,6 @@ public abstract class Classe {
 		NamespacedKey key = new NamespacedKey(PluginRpgMinecraft.getPlugin(), "classe");
 		data.set(key, dataType, classeObject);
 	}
-	
-	protected static void cast(Player player) {
-		
-		Thread cast = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-
-				changeOnCast(player);
-				
-				try {
-					Thread.sleep(30*1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				
-				changeOnCast(player);
-				cooldown(player);
-				
-			}
-		
-		});
-		cast.start();
-	}
 
 	public boolean isOnCooldown() {	return _onCooldown;	}
 	public static boolean isOnCooldown(Player player) {
@@ -275,9 +251,20 @@ public abstract class Classe {
 	protected static void cooldown(Player player) {
 		
 		Thread cooldown = new Thread(new Runnable() {
-
+			
 			@Override
 			public void run() {
+
+				changeOnCast(player);
+				
+				try {
+					Thread.sleep(30*1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				changeOnCast(player);
+				player.sendMessage("§cVotre effet prend fin");
 				
 				changeOnCooldown(player);
 				
@@ -288,10 +275,9 @@ public abstract class Classe {
 				}
 				
 				changeOnCooldown(player);
-				player.sendMessage("§aVotre pouvoir est rechargé");
-				
+				player.sendMessage("§aVotre pouvoir est rechargé");				
 			}
-			
+		
 		});
 		cooldown.start();
 	}
@@ -329,26 +315,26 @@ public abstract class Classe {
 		
 		switch (getWeaponLvl(player)) {
 		case 1:
+			if (player.getLevel() >= 5) {
+				player.giveExpLevels(-5);
+				return true;
+			}
+			
+		case 2:
 			if (player.getLevel() >= 10) {
 				player.giveExpLevels(-10);
 				return true;
 			}
 			
-		case 2:
+		case 3:
 			if (player.getLevel() >= 15) {
 				player.giveExpLevels(-15);
 				return true;
 			}
 			
-		case 3:
+		case 4:
 			if (player.getLevel() >= 20) {
 				player.giveExpLevels(-20);
-				return true;
-			}
-			
-		case 4:
-			if (player.getLevel() >= 30) {
-				player.giveExpLevels(-30);
 				return true;
 			}
 
@@ -362,26 +348,26 @@ public abstract class Classe {
 		
 		switch (getArmorLvl(player)) {
 		case 1:
+			if (player.getLevel() >= 5) {
+				player.giveExpLevels(-5);
+				return true;
+			}
+			
+		case 2:
 			if (player.getLevel() >= 10) {
 				player.giveExpLevels(-10);
 				return true;
 			}
 			
-		case 2:
+		case 3:
 			if (player.getLevel() >= 15) {
 				player.giveExpLevels(-15);
 				return true;
 			}
 			
-		case 3:
+		case 4:
 			if (player.getLevel() >= 20) {
 				player.giveExpLevels(-20);
-				return true;
-			}
-			
-		case 4:
-			if (player.getLevel() >= 30) {
-				player.giveExpLevels(-30);
 				return true;
 			}
 
@@ -395,8 +381,8 @@ public abstract class Classe {
 		
 		switch (getEffectLvl(player)) {
 		case 1:
-			if (player.getLevel() >= 15) {
-				player.giveExpLevels(-15);
+			if (player.getLevel() >= 10) {
+				player.giveExpLevels(-10);
 				return true;
 			}
 			
@@ -416,8 +402,8 @@ public abstract class Classe {
 		
 		switch (getActifLvl(player)) {
 		case 1:
-			if (player.getLevel() >= 15) {
-				player.giveExpLevels(-15);
+			if (player.getLevel() >= 10) {
+				player.giveExpLevels(-10);
 				return true;
 			}
 			

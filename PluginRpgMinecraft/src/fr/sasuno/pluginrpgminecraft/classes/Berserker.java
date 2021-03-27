@@ -241,16 +241,16 @@ public class Berserker extends Classe {
 			
 			if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 			
-			PotionEffect effect1 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false);
-			PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 1, false, false);
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false, false);
+			PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 1, false, false, false);
 			
 			switch (getEffectLvl()) {
 			case 2:
-				player.addPotionEffect(effect1);
+				effect1.apply(player);
 				break;
 
 			case 3:
-				player.addPotionEffect(effect2);
+				effect2.apply(player);
 				break;
 
 			default:
@@ -285,7 +285,6 @@ public class Berserker extends Classe {
 			break;
 
 		default:
-			break;
 		}
 		
 	}
@@ -298,28 +297,28 @@ public class Berserker extends Classe {
 		ItemStack weaponUp1 = new ItemStack(Material.STONE_AXE);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
 		weaponUpMeta1.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta1.setLocalizedName("weaponUp");
 		weaponUp1.setItemMeta(weaponUpMeta1);
 		
 		ItemStack weaponUp2 = new ItemStack(Material.IRON_AXE);
 		ItemMeta weaponUpMeta2 = weaponUp2.getItemMeta();
 		weaponUpMeta2.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta2.setLocalizedName("weaponUp");
 		weaponUp2.setItemMeta(weaponUpMeta2);
 		
 		ItemStack weaponUp3 = new ItemStack(Material.DIAMOND_AXE);
 		ItemMeta weaponUpMeta3 = weaponUp3.getItemMeta();
 		weaponUpMeta3.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta3.setLocalizedName("weaponUp");
 		weaponUp3.setItemMeta(weaponUpMeta3);
 		
 		ItemStack weaponUp4 = new ItemStack(Material.NETHERITE_AXE);
 		ItemMeta weaponUpMeta4 = weaponUp4.getItemMeta();
 		weaponUpMeta4.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §730", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta4.setLocalizedName("weaponUp");
 		weaponUp4.setItemMeta(weaponUpMeta4);
 		
@@ -346,21 +345,21 @@ public class Berserker extends Classe {
 		ItemStack armorUp1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta armorUpMeta1 = armorUp1.getItemMeta();
 		armorUpMeta1.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta1.setLocalizedName("armorUp");
 		armorUp1.setItemMeta(armorUpMeta1);
 		
 		ItemStack armorUp2 = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemMeta armorUpMeta2 = armorUp2.getItemMeta();
 		armorUpMeta2.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta2.setLocalizedName("armorUp");
 		armorUp2.setItemMeta(armorUpMeta2);
 		
 		ItemStack armorUp3 = new ItemStack(Material.DIAMOND_CHESTPLATE);
 		ItemMeta armorUpMeta3 = armorUp3.getItemMeta();
 		armorUpMeta3.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta3.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta3.setLocalizedName("armorUp");
 		armorUp3.setItemMeta(armorUpMeta3);
 		
@@ -383,7 +382,7 @@ public class Berserker extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 1"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cForce 1"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -411,14 +410,14 @@ public class Berserker extends Classe {
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
 		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +1 pour 30 secondes"));
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +1"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
 		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +2 pour 30 secondes"));
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +2"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
 		
@@ -441,29 +440,21 @@ public class Berserker extends Classe {
 	@Override
 	public void runActivable (Player player) {
 		
-		if (!isOnCast() && !isOnCooldown()) {
+		if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
 			
-			if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) {
-				
-				PotionEffect currentEffect = player.getPotionEffect(PotionEffectType.INCREASE_DAMAGE);
-				PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, currentEffect.getAmplifier() + getActifLvl() - 1, false, false);
-				effect.apply(player);
-				player.sendMessage("§bVous avez maintenant l'effet §eforce " + (currentEffect.getAmplifier() + getActifLvl()) + "§b pendant §e30 secondes");
-				
-			} else {
-				
-				PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, getActifLvl() - 2, false, false);
-				effect.apply(player);
-				player.sendMessage("§bVous avez maintenant l'effet §eforce " + (getActifLvl() - 1) + "§b pendant §e30 secondes");
-			}
-			
-			cast(player);
+			PotionEffect currentEffect = player.getPotionEffect(PotionEffectType.INCREASE_DAMAGE);
+			PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, currentEffect.getAmplifier() + getActifLvl() - 1, false, false, true);
+			effect.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §eforce " + (currentEffect.getAmplifier() + getActifLvl()) + "§b pendant §e30 secondes");
 			
 		} else {
 			
-			player.sendMessage("§cVeuillez attendre le rechargement de votre pouvoir");
+			PotionEffect effect = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, getActifLvl() - 2, false, false, true);
+			effect.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §eforce " + (getActifLvl() - 1) + "§b pendant §e30 secondes");
 		}
 		
+		cooldown(player);		
 	}
 	
 }

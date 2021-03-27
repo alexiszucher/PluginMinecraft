@@ -17,6 +17,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 
+import fr.sasuno.pluginrpgminecraft.PluginRpgMinecraft;
+
 public class Assassin extends Classe {
 	
 	public Assassin() {
@@ -215,16 +217,53 @@ public class Assassin extends Classe {
 		
 		// On met à jour les effets
 		
-		PotionEffect effect1 = new PotionEffect(PotionEffectType.SPEED, 100000, 0, false, false);
-		PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false);
-		
-		switch (getEffectLvl()) {
-		case 2:
-			effect1.apply(player);
-			break;
+		if (!isOnCast()) {
+			
+			if (player.hasPotionEffect(PotionEffectType.SPEED)) player.removePotionEffect(PotionEffectType.SPEED);
+			if (player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE)) player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+			
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.SPEED, 100000, 0, false, false, false);
+			PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000, 0, false, false, false);
+			
+			switch (getEffectLvl()) {
+			case 2:
+				effect1.apply(player);
+				break;
 
+			case 3:
+				effect1.apply(player);
+				effect2.apply(player);
+				break;
+
+			default:
+			}
+			
+		}
+		
+		// On met à jour l'actif
+		
+		ItemStack actif1 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta1 = actif1.getItemMeta();
+		actifMeta1.setDisplayName("§bDisparition furtive");
+		actifMeta1.setLore(Arrays.asList("Cet activable vous donne §c+1 niveau de", "§cspeed §r§opour une durée de §c30 secondes", "", "§9Faufilez vous partout", "§cNe perdez pas cet item"));
+		actifMeta1.setLocalizedName("actifClasse");
+		actif1.setItemMeta(actifMeta1);
+		
+		ItemStack actif2 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta2 = actif2.getItemMeta();
+		actifMeta2.setDisplayName("§bDisparition furtive");
+		actifMeta2.setLore(Arrays.asList("Cet activable vous donne §c+1 niveau de", "§cspeed et de force §r§opour une durée de §c30 secondes", "", "§9Faufilez vous partout", "§cNe perdez pas cet item"));
+		actifMeta2.setLocalizedName("actifClasse");
+		actif2.setItemMeta(actifMeta2);
+		
+		switch (getActifLvl()) {
+		case 2:
+			if (!inventory.contains(actif1) && !inventory.getItemInOffHand().equals(actif1)) inventory.addItem(actif1);
+			break;
+			
 		case 3:
-			effect2.apply(player);
+			if (inventory.contains(actif1)) inventory.setItem(inventory.first(actif1), actif2);
+			if (inventory.getItemInOffHand().equals(actif1)) inventory.setItemInOffHand(actif2);
 			break;
 
 		default:
@@ -240,28 +279,28 @@ public class Assassin extends Classe {
 		ItemStack weaponUp1 = new ItemStack(Material.STONE_SWORD);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
 		weaponUpMeta1.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta1.setLocalizedName("weaponUp");
 		weaponUp1.setItemMeta(weaponUpMeta1);
 		
 		ItemStack weaponUp2 = new ItemStack(Material.IRON_SWORD);
 		ItemMeta weaponUpMeta2 = weaponUp2.getItemMeta();
 		weaponUpMeta2.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta2.setLocalizedName("weaponUp");
 		weaponUp2.setItemMeta(weaponUpMeta2);
 		
 		ItemStack weaponUp3 = new ItemStack(Material.DIAMOND_SWORD);
 		ItemMeta weaponUpMeta3 = weaponUp3.getItemMeta();
 		weaponUpMeta3.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta3.setLocalizedName("weaponUp");
 		weaponUp3.setItemMeta(weaponUpMeta3);
 		
 		ItemStack weaponUp4 = new ItemStack(Material.NETHERITE_SWORD);
 		ItemMeta weaponUpMeta4 = weaponUp4.getItemMeta();
 		weaponUpMeta4.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §730", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta4.setLocalizedName("weaponUp");
 		weaponUp4.setItemMeta(weaponUpMeta4);
 		
@@ -288,14 +327,14 @@ public class Assassin extends Classe {
 		ItemStack armorUp1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta armorUpMeta1 = armorUp1.getItemMeta();
 		armorUpMeta1.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta1.setLocalizedName("armorUp");
 		armorUp1.setItemMeta(armorUpMeta1);
 		
 		ItemStack armorUp2 = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemMeta armorUpMeta2 = armorUp2.getItemMeta();
 		armorUpMeta2.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta2.setLocalizedName("armorUp");
 		armorUp2.setItemMeta(armorUpMeta2);
 		
@@ -314,7 +353,7 @@ public class Assassin extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cSpeed 1"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cSpeed 1"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -342,14 +381,14 @@ public class Assassin extends Classe {
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
 		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cSpeed +1"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
 		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce +1"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
 		
@@ -371,8 +410,40 @@ public class Assassin extends Classe {
 
 	@Override
 	public void runActivable(Player player) {
-		// TODO Auto-generated method stub
 		
+		int currentSpeed = player.hasPotionEffect(PotionEffectType.SPEED) ? 1 : 0;
+		int currentForce = player.hasPotionEffect(PotionEffectType.INCREASE_DAMAGE) ? 1 : 0;
+		
+		if (getActifLvl() == 2) {
+
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.SPEED, 30*20, currentSpeed, false, false, true);
+			effect1.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §espeed " + (currentSpeed + 1) + " §bpendant §e30 secondes");
+			
+		} else {
+			
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.SPEED, 30*20, currentSpeed, false, false, true);
+			PotionEffect effect2 = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30*20, currentForce, false, false, true);
+			effect1.apply(player);
+			effect2.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §espeed " + (currentSpeed + 1) + " §bet §eforce "+ (currentForce + 1) + " §bpendant §e30 secondes");
+		}
+
+		PotionEffect invisible = new PotionEffect(PotionEffectType.INVISIBILITY, 30*20, 0, false, false, true);
+		invisible.apply(player);
+		
+		for (Player players : Bukkit.getOnlinePlayers()) {
+			players.hidePlayer(PluginRpgMinecraft.getPlugin(), player);
+		}
+		
+		player.sendMessage("§bDe plus, vous êtes §einvisible §bauprès des monstres et des joueurs");
+		cooldown(player);
+		
+		Bukkit.getScheduler().runTaskLater(PluginRpgMinecraft.getPlugin(), () -> {
+			
+		for (Player players : Bukkit.getOnlinePlayers()) {
+			players.showPlayer(PluginRpgMinecraft.getPlugin(), player);
+		}}, 30*20);
 	}
 	
 }

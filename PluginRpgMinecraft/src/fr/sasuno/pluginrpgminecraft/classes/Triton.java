@@ -216,9 +216,12 @@ public class Triton extends Classe {
 		}
 		
 		// On met à jour les effets
+
+		if (player.hasPotionEffect(PotionEffectType.LUCK)) player.removePotionEffect(PotionEffectType.LUCK);
+		if (player.hasPotionEffect(PotionEffectType.DAMAGE_RESISTANCE)) player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 		
-		PotionEffect effect1 = new PotionEffect(PotionEffectType.LUCK, 100000, 0, false, false);
-		PotionEffect effect2 = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100000, 0, false, false);
+		PotionEffect effect1 = new PotionEffect(PotionEffectType.LUCK, 100000, 0, false, false, false);
+		PotionEffect effect2 = new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 100000, 0, false, false, false);
 		
 		switch (getEffectLvl()) {
 		case 2:
@@ -226,10 +229,41 @@ public class Triton extends Classe {
 			break;
 
 		case 3:
+			effect1.apply(player);
 			effect2.apply(player);
 			break;
 
 		default:
+		}
+		
+		// On met à jour l'actif
+		
+		ItemStack actif1 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta1 = actif1.getItemMeta();
+		actifMeta1.setDisplayName("§bMarée montante");
+		actifMeta1.setLore(Arrays.asList("Cet activable vous donne §cforce de", "§cconduit §r§opour une durée de §c30 secondes", "", "§9Allez au fond des abysses", "§cNe perdez pas cet item"));
+		actifMeta1.setLocalizedName("actifClasse");
+		actif1.setItemMeta(actifMeta1);
+		
+		ItemStack actif2 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta2 = actif2.getItemMeta();
+		actifMeta2.setDisplayName("§bMarée montante");
+		actifMeta2.setLore(Arrays.asList("Cet activable vous donne §cgrâce du", "§cdauphin §r§opour une durée de §c30 secondes", "", "§9Allez au fond des abysses", "§cNe perdez pas cet item"));
+		actifMeta2.setLocalizedName("actifClasse");
+		actif2.setItemMeta(actifMeta2);
+		
+		switch (getActifLvl()) {
+		case 2:
+			if (!inventory.contains(actif1) && !inventory.getItemInOffHand().equals(actif1)) inventory.addItem(actif1);
+			break;
+			
+		case 3:
+			if (inventory.contains(actif1)) inventory.setItem(inventory.first(actif1), actif2);
+			if (inventory.getItemInOffHand().equals(actif1)) inventory.setItemInOffHand(actif2);
+			break;
+
+		default:
+			break;
 		}
 		
 	}
@@ -242,28 +276,28 @@ public class Triton extends Classe {
 		ItemStack weaponUp1 = new ItemStack(Material.TRIDENT);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
 		weaponUpMeta1.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta1.setLocalizedName("weaponUp");
 		weaponUp1.setItemMeta(weaponUpMeta1);
 		
 		ItemStack weaponUp2 = new ItemStack(Material.TRIDENT);
 		ItemMeta weaponUpMeta2 = weaponUp2.getItemMeta();
 		weaponUpMeta2.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta2.setLocalizedName("weaponUp");
 		weaponUp2.setItemMeta(weaponUpMeta2);
 		
 		ItemStack weaponUp3 = new ItemStack(Material.TRIDENT);
 		ItemMeta weaponUpMeta3 = weaponUp3.getItemMeta();
 		weaponUpMeta3.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta3.setLocalizedName("weaponUp");
 		weaponUp3.setItemMeta(weaponUpMeta3);
 		
 		ItemStack weaponUp4 = new ItemStack(Material.TRIDENT);
 		ItemMeta weaponUpMeta4 = weaponUp4.getItemMeta();
 		weaponUpMeta4.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §730", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta4.setLocalizedName("weaponUp");
 		weaponUp4.setItemMeta(weaponUpMeta4);
 		
@@ -290,14 +324,14 @@ public class Triton extends Classe {
 		ItemStack armorUp1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta armorUpMeta1 = armorUp1.getItemMeta();
 		armorUpMeta1.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta1.setLocalizedName("armorUp");
 		armorUp1.setItemMeta(armorUpMeta1);
 		
 		ItemStack armorUp2 = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemMeta armorUpMeta2 = armorUp2.getItemMeta();
 		armorUpMeta2.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta2.setLocalizedName("armorUp");
 		armorUp2.setItemMeta(armorUpMeta2);
 		
@@ -316,7 +350,7 @@ public class Triton extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cLuck"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cLuck"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -344,14 +378,14 @@ public class Triton extends Classe {
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
 		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cForce de conduit"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
 		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cGrâce du dauphin"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
 		
@@ -373,8 +407,23 @@ public class Triton extends Classe {
 
 	@Override
 	public void runActivable(Player player) {
-		// TODO Auto-generated method stub
 		
+		if (getActifLvl() == 2) {
+			
+			PotionEffect effect = new PotionEffect(PotionEffectType.CONDUIT_POWER, 30*20, 0, false, false, true);
+			effect.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §eforce de conduit §bpendant §e30 secondes");
+			
+		} else {
+
+			PotionEffect effect1 = new PotionEffect(PotionEffectType.CONDUIT_POWER, 30*20, 0, false, false, true);
+			PotionEffect effect2 = new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 30*20, 0, false, false, true);
+			effect1.apply(player);
+			effect2.apply(player);
+			player.sendMessage("§bVous avez maintenant l'effet §eforce de conduit §bet §egrâce du dauphin §bpendant §e30 secondes");
+		}
+		
+		cooldown(player);		
 	}
 	
 }

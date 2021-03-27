@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
@@ -52,10 +53,9 @@ public class Sentinelle extends Classe {
 		
 		// On prépare la liste de toutes les armes
 		ItemStack arrow = new ItemStack(Material.ARROW);
-		arrow.setAmount(64);
 		
 		ItemStack weapon1= new ItemStack(Material.CROSSBOW);
-		ItemMeta weaponMeta1 = weapon1.getItemMeta();
+		CrossbowMeta weaponMeta1 = (CrossbowMeta) weapon1.getItemMeta();
 		weaponMeta1.setDisplayName("§6Arbalète de chasse");
 		weaponMeta1.setLore(Arrays.asList("L'arme basique par excellence", "§3Peut tirer sur de très longues distances"));
 		weaponMeta1.setLocalizedName("weaponSentinelle");
@@ -63,7 +63,7 @@ public class Sentinelle extends Classe {
 		weapon1.setItemMeta(weaponMeta1);
 		
 		ItemStack weapon2= new ItemStack(Material.CROSSBOW);
-		ItemMeta weaponMeta2 = weapon2.getItemMeta();
+		CrossbowMeta weaponMeta2 = (CrossbowMeta) weapon2.getItemMeta();
 		weaponMeta2.setDisplayName("§6Arbalète du vif");
 		weaponMeta2.setLore(Arrays.asList("Une arme un peu émoussée, mais qui fait le taff", "§3Cette arme transperce les ennemis"));
 		weaponMeta2.setLocalizedName("weaponSentinelle");
@@ -72,7 +72,7 @@ public class Sentinelle extends Classe {
 		weapon2.addEnchantment(Enchantment.PIERCING, 1);
 		
 		ItemStack weapon3= new ItemStack(Material.CROSSBOW);
-		ItemMeta weaponMeta3 = weapon3.getItemMeta();
+		CrossbowMeta weaponMeta3 = (CrossbowMeta) weapon3.getItemMeta();
 		weaponMeta3.setDisplayName("§6Arbalète de célérité");
 		weaponMeta3.setLore(Arrays.asList("Enfin une arme correcte !", "§3Celle-ci tire plus vite"));
 		weaponMeta3.setLocalizedName("weaponSentinelle");
@@ -82,7 +82,7 @@ public class Sentinelle extends Classe {
 		weapon3.addEnchantment(Enchantment.QUICK_CHARGE, 1);
 		
 		ItemStack weapon4= new ItemStack(Material.CROSSBOW);
-		ItemMeta weaponMeta4 = weapon4.getItemMeta();
+		CrossbowMeta weaponMeta4 = (CrossbowMeta) weapon4.getItemMeta();
 		weaponMeta4.setDisplayName("§6Arbalète de vélocité extrème");
 		weaponMeta4.setLore(Arrays.asList("Une arme conçue par les meilleurs ingénieurs", "§3Vos adversaires ne sauront plus où donner de la tête"));
 		weaponMeta4.setLocalizedName("weaponSentinelle");
@@ -92,7 +92,7 @@ public class Sentinelle extends Classe {
 		weapon4.addEnchantment(Enchantment.QUICK_CHARGE, 2);
 		
 		ItemStack weapon5= new ItemStack(Material.CROSSBOW);
-		ItemMeta weaponMeta5 = weapon5.getItemMeta();
+		CrossbowMeta weaponMeta5 = (CrossbowMeta) weapon5.getItemMeta();
 		weaponMeta5.setDisplayName("§6Arbalète de la vitesse lumière");
 		weaponMeta5.setLore(Arrays.asList("Embrochez vos ennemis plus vite que votre ombre", "§3Faites pleuvoir des centaines de flêches"));
 		weaponMeta5.setLocalizedName("weaponSentinelle");
@@ -102,31 +102,96 @@ public class Sentinelle extends Classe {
 		weapon5.addEnchantment(Enchantment.QUICK_CHARGE, 3);
 		weapon5.addEnchantment(Enchantment.MULTISHOT, 1);
 		
+		ItemStack weapon11= new ItemStack(Material.CROSSBOW);
+		CrossbowMeta weaponMeta11 = (CrossbowMeta) weapon11.getItemMeta();
+		weaponMeta11.setDisplayName("§6Arbalète de chasse");
+		weaponMeta11.setLore(Arrays.asList("L'arme basique par excellence", "§3Peut tirer sur de très longues distances"));
+		weaponMeta11.setLocalizedName("weaponSentinelle");
+		weaponMeta11.addChargedProjectile(arrow);
+		weaponMeta11.setUnbreakable(true);
+		weapon11.setItemMeta(weaponMeta11);
+		
+		ItemStack weapon21= new ItemStack(Material.CROSSBOW);
+		CrossbowMeta weaponMeta21 = (CrossbowMeta) weapon21.getItemMeta();
+		weaponMeta21.setDisplayName("§6Arbalète du vif");
+		weaponMeta21.setLore(Arrays.asList("Une arme un peu émoussée, mais qui fait le taff", "§3Cette arme transperce les ennemis"));
+		weaponMeta21.setLocalizedName("weaponSentinelle");
+		weaponMeta21.addChargedProjectile(arrow);
+		weaponMeta21.setUnbreakable(true);
+		weapon21.setItemMeta(weaponMeta21);
+		weapon21.addEnchantment(Enchantment.PIERCING, 1);
+		
+		ItemStack weapon31= new ItemStack(Material.CROSSBOW);
+		CrossbowMeta weaponMeta31 = (CrossbowMeta) weapon31.getItemMeta();
+		weaponMeta31.setDisplayName("§6Arbalète de célérité");
+		weaponMeta31.setLore(Arrays.asList("Enfin une arme correcte !", "§3Celle-ci tire plus vite"));
+		weaponMeta31.setLocalizedName("weaponSentinelle");
+		weaponMeta31.addChargedProjectile(arrow);
+		weaponMeta31.setUnbreakable(true);
+		weapon31.setItemMeta(weaponMeta31);
+		weapon31.addEnchantment(Enchantment.PIERCING, 2);
+		weapon31.addEnchantment(Enchantment.QUICK_CHARGE, 1);
+		
+		ItemStack weapon41= new ItemStack(Material.CROSSBOW);
+		CrossbowMeta weaponMeta41 = (CrossbowMeta) weapon41.getItemMeta();
+		weaponMeta41.setDisplayName("§6Arbalète de vélocité extrème");
+		weaponMeta41.setLore(Arrays.asList("Une arme conçue par les meilleurs ingénieurs", "§3Vos adversaires ne sauront plus où donner de la tête"));
+		weaponMeta41.setLocalizedName("weaponSentinelle");
+		weaponMeta41.addChargedProjectile(arrow);
+		weaponMeta41.setUnbreakable(true);
+		weapon41.setItemMeta(weaponMeta41);
+		weapon41.addEnchantment(Enchantment.PIERCING, 3);
+		weapon41.addEnchantment(Enchantment.QUICK_CHARGE, 2);
+		
+		ItemStack weapon51= new ItemStack(Material.CROSSBOW);
+		CrossbowMeta weaponMeta51 = (CrossbowMeta) weapon51.getItemMeta();
+		weaponMeta51.setDisplayName("§6Arbalète de la vitesse lumière");
+		weaponMeta51.setLore(Arrays.asList("Embrochez vos ennemis plus vite que votre ombre", "§3Faites pleuvoir des centaines de flêches"));
+		weaponMeta51.setLocalizedName("weaponSentinelle");
+		weaponMeta51.addChargedProjectile(arrow);
+		weaponMeta51.setUnbreakable(true);
+		weapon51.setItemMeta(weaponMeta51);
+		weapon51.addEnchantment(Enchantment.PIERCING, 4);
+		weapon51.addEnchantment(Enchantment.QUICK_CHARGE, 3);
+		weapon51.addEnchantment(Enchantment.MULTISHOT, 1);
+		
 		// Suppression de l'ancienne arme et ajout de la nouvelle
 		switch (getWeaponLvl()) {
 		case 1:
-			if (!inventory.contains(weapon1) && !inventory.getItemInOffHand().equals(weapon1)) inventory.addItem(weapon1);
-			if(!inventory.contains(arrow) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
+			if (!inventory.contains(weapon1) && !inventory.getItemInOffHand().equals(weapon1) && !inventory.contains(weapon11) && !inventory.getItemInOffHand().equals(weapon11)) inventory.addItem(weapon1);
+			if(!inventory.contains(Material.ARROW) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
 			break;
 			
 		case 2:
 			if (inventory.contains(weapon1)) inventory.setItem(inventory.first(weapon1), weapon2);
 			if (inventory.getItemInOffHand().equals(weapon1)) inventory.setItemInOffHand(weapon2);
+			if (inventory.contains(weapon11)) inventory.setItem(inventory.first(weapon11), weapon21);
+			if (inventory.getItemInOffHand().equals(weapon11)) inventory.setItemInOffHand(weapon21);
+			if(!inventory.contains(Material.ARROW) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
 			break;
 			
 		case 3:
 			if (inventory.contains(weapon2)) inventory.setItem(inventory.first(weapon2), weapon3);
 			if (inventory.getItemInOffHand().equals(weapon2)) inventory.setItemInOffHand(weapon3);
+			if (inventory.contains(weapon21)) inventory.setItem(inventory.first(weapon21), weapon31);
+			if (inventory.getItemInOffHand().equals(weapon21)) inventory.setItemInOffHand(weapon31);
+			if(!inventory.contains(Material.ARROW) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
 			break;
 			
 		case 4:
 			if (inventory.contains(weapon3)) inventory.setItem(inventory.first(weapon3), weapon4);
 			if (inventory.getItemInOffHand().equals(weapon3)) inventory.setItemInOffHand(weapon4);
+			if (inventory.contains(weapon31)) inventory.setItem(inventory.first(weapon31), weapon41);
+			if (inventory.getItemInOffHand().equals(weapon31)) inventory.setItemInOffHand(weapon41);
+			if(!inventory.contains(Material.ARROW) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
 			break;
 			
 		case 5:
 			if (inventory.contains(weapon4)) inventory.setItem(inventory.first(weapon4), weapon5);
 			if (inventory.getItemInOffHand().equals(weapon4)) inventory.setItemInOffHand(weapon5);
+			if (inventory.contains(weapon41)) inventory.setItem(inventory.first(weapon41), weapon51);
+			if (inventory.getItemInOffHand().equals(weapon41)) inventory.setItemInOffHand(weapon51);
+			if(!inventory.contains(Material.ARROW) && !inventory.getItemInOffHand().equals(arrow)) inventory.addItem(arrow);
 			break;
 			
 		default:
@@ -210,9 +275,12 @@ public class Sentinelle extends Classe {
 		}
 		
 		// On met à jour les effets
+
+		if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+		if (player.hasPotionEffect(PotionEffectType.JUMP)) player.removePotionEffect(PotionEffectType.JUMP);
 		
-		PotionEffect effect1 = new PotionEffect(PotionEffectType.NIGHT_VISION, 100000, 0, false, false);
-		PotionEffect effect2 = new PotionEffect(PotionEffectType.JUMP, 100000, 1, false, false);
+		PotionEffect effect1 = new PotionEffect(PotionEffectType.NIGHT_VISION, 100000, 0, false, false, false);
+		PotionEffect effect2 = new PotionEffect(PotionEffectType.JUMP, 100000, 1, false, false, false);
 		
 		switch (getEffectLvl()) {
 		case 2:
@@ -226,6 +294,35 @@ public class Sentinelle extends Classe {
 		default:
 		}
 		
+		// On met à jour l'actif
+		
+		ItemStack actif1 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta1 = actif1.getItemMeta();
+		actifMeta1.setDisplayName("§bRapidité ultime");
+		actifMeta1.setLore(Arrays.asList("Cet activable vous donne §c+2 niveau de", "§cspeed §r§opour une durée de §c30 secondes", "", "§9Surpassez vos limites", "§cNe perdez pas cet item"));
+		actifMeta1.setLocalizedName("actifClasse");
+		actif1.setItemMeta(actifMeta1);
+		
+		ItemStack actif2 = new ItemStack(Material.FEATHER);
+		ItemMeta actifMeta2 = actif2.getItemMeta();
+		actifMeta2.setDisplayName("§bRapidité ultime");
+		actifMeta2.setLore(Arrays.asList("Cet activable enlève le §ctemps de", "§crechargement §r§opour une durée de §c30 secondes", "", "§9Surpassez vos limites", "§cNe perdez pas cet item"));
+		actifMeta2.setLocalizedName("actifClasse");
+		actif2.setItemMeta(actifMeta2);
+		
+		switch (getActifLvl()) {
+		case 2:
+			if (!inventory.contains(actif1) && !inventory.getItemInOffHand().equals(actif1)) inventory.addItem(actif1);
+			break;
+			
+		case 3:
+			if (inventory.contains(actif1)) inventory.setItem(inventory.first(actif1), actif2);
+			if (inventory.getItemInOffHand().equals(actif1)) inventory.setItemInOffHand(actif2);
+			break;
+
+		default:
+		}
+		
 	}
 
 	@Override
@@ -233,42 +330,33 @@ public class Sentinelle extends Classe {
 		
 		Inventory inventory = Bukkit.createInventory(player, InventoryType.CHEST, "Menu d'amélioration de classe");
 		
-		ItemStack arrowUp = new ItemStack(Material.ARROW);
-		ItemMeta arrowUpMeta = arrowUp.getItemMeta();
-		arrowUpMeta.setDisplayName("§6Ajout de flêches");
-		arrowUpMeta.setLore(Arrays.asList("", "§aCoût : §70", "§fPermet de faire le plein de flêches"));
-		arrowUpMeta.setLocalizedName("arrowUp");
-		arrowUp.setItemMeta(arrowUpMeta);
-		
 		ItemStack weaponUp1 = new ItemStack(Material.CROSSBOW);
 		ItemMeta weaponUpMeta1 = weaponUp1.getItemMeta();
 		weaponUpMeta1.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta1.setLocalizedName("weaponUp");
 		weaponUp1.setItemMeta(weaponUpMeta1);
 		
 		ItemStack weaponUp2 = new ItemStack(Material.CROSSBOW);
 		ItemMeta weaponUpMeta2 = weaponUp2.getItemMeta();
 		weaponUpMeta2.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta2.setLocalizedName("weaponUp");
 		weaponUp2.setItemMeta(weaponUpMeta2);
 		
 		ItemStack weaponUp3 = new ItemStack(Material.CROSSBOW);
 		ItemMeta weaponUpMeta3 = weaponUp3.getItemMeta();
 		weaponUpMeta3.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta3.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta3.setLocalizedName("weaponUp");
 		weaponUp3.setItemMeta(weaponUpMeta3);
 		
 		ItemStack weaponUp4 = new ItemStack(Material.CROSSBOW);
 		ItemMeta weaponUpMeta4 = weaponUp4.getItemMeta();
 		weaponUpMeta4.setDisplayName("§6Amélioration de l'arme");
-		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §730", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
+		weaponUpMeta4.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre arme"));
 		weaponUpMeta4.setLocalizedName("weaponUp");
 		weaponUp4.setItemMeta(weaponUpMeta4);
-		
-		inventory.setItem(13, arrowUp);
 		
 		switch (getWeaponLvl()) {
 		case 1:
@@ -293,14 +381,14 @@ public class Sentinelle extends Classe {
 		ItemStack armorUp1 = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemMeta armorUpMeta1 = armorUp1.getItemMeta();
 		armorUpMeta1.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta1.setLore(Arrays.asList("", "§aCoût : §75", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta1.setLocalizedName("armorUp");
 		armorUp1.setItemMeta(armorUpMeta1);
 		
 		ItemStack armorUp2 = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemMeta armorUpMeta2 = armorUp2.getItemMeta();
 		armorUpMeta2.setDisplayName("§6Amélioration de l'armure");
-		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
+		armorUpMeta2.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre armure"));
 		armorUpMeta2.setLocalizedName("armorUp");
 		armorUp2.setItemMeta(armorUpMeta2);
 		
@@ -319,7 +407,7 @@ public class Sentinelle extends Classe {
 		ItemStack effectUp1 = new ItemStack(Material.POTION);
 		PotionMeta effectUpMeta1 = (PotionMeta) effectUp1.getItemMeta();
 		effectUpMeta1.setDisplayName("§dAmélioration des effets");
-		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cVision nocturne"));
+		effectUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer vos effets", "§5Prochain effet : §cVision nocturne"));
 		effectUpMeta1.setLocalizedName("effectUp");
 		effectUp1.setItemMeta(effectUpMeta1);
 		
@@ -347,14 +435,14 @@ public class Sentinelle extends Classe {
 		ItemStack actifUp1 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta1 = actifUp1.getItemMeta();
 		actifUpMeta1.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §715", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta1.setLore(Arrays.asList("", "§aCoût : §710", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cSpeed +2"));
 		actifUpMeta1.setLocalizedName("actifUp");
 		actifUp1.setItemMeta(actifUpMeta1);
 		
 		ItemStack actifUp2 = new ItemStack(Material.FEATHER);
 		ItemMeta actifUpMeta2 = actifUp2.getItemMeta();
 		actifUpMeta2.setDisplayName("§bAmélioration du pouvoir");
-		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir"));
+		actifUpMeta2.setLore(Arrays.asList("", "§aCoût : §720", "§fPayez avec vos niveaux pour", "§faméliorer votre pouvoir", "§5Prochain effet : §cPas de temps de rechargement"));
 		actifUpMeta2.setLocalizedName("actifUp");
 		actifUp2.setItemMeta(actifUpMeta2);
 		
@@ -376,8 +464,15 @@ public class Sentinelle extends Classe {
 
 	@Override
 	public void runActivable(Player player) {
-		// TODO Auto-generated method stub
+
+		PotionEffect effect = new PotionEffect(PotionEffectType.SPEED, 30*20, 1, false, false, true);
+		effect.apply(player);
 		
+		player.sendMessage("§bVous avez maintenant l'effet §espeed 2 §bpendant §e30 secondes");
+		
+		if (getActifLvl() == 3) player.sendMessage("§bDe plus, votre §etemps de rechargement §best immédiat");
+		
+		cooldown(player);		
 	}
 	
 }
