@@ -71,7 +71,7 @@ public class PluginAmeliorationMinecraft extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		
-		for(int i = 1; i < sharedInventory.getContents().length; i++){
+		for(int i = 0; i < sharedInventory.getContents().length; i++){
 			if (sharedInventory.getContents()[i] != null) {
 				configuration.set(Integer.toString(i), sharedInventory.getContents()[i]);
 			} else {
