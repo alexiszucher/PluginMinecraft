@@ -1,6 +1,7 @@
 package fr.givrix.pluginameliorationminecraft.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.GameRule;
 import org.bukkit.World;
@@ -24,12 +25,12 @@ public class CommandUhc implements CommandExecutor {
 				
 				if (world.getDifficulty() != Difficulty.HARD || world.getGameRuleValue(GameRule.NATURAL_REGENERATION) || !world.isHardcore()) {
 					
-					// Si la difficulté n'est pas en hard, on la met en hard
+					// Si la difficultÃ© n'est pas en hard, on la met en hard
 					if (world.getDifficulty() != Difficulty.HARD) {
 						world.setDifficulty(Difficulty.HARD);
 					}
 					
-					// Si la régénération naturelle est activée, on la désactive
+					// Si la rÃ©gÃ©nÃ©ration naturelle est activÃ©e, on la dÃ©sactive
 					if (world.getGameRuleValue(GameRule.NATURAL_REGENERATION)) {
 						world.setGameRule(GameRule.NATURAL_REGENERATION, false);
 					}
@@ -38,11 +39,11 @@ public class CommandUhc implements CommandExecutor {
 					if (!world.isHardcore()) {
 						world.setHardcore(true);
 						
-						// On réécrit la ligne hardcore de server.properties
+						// On rÃ©Ã©crit la ligne hardcore de server.properties
 						MyFunctions.ReplaceText("server.properties", "hardcore", "hardcore=true");
-						Bukkit.broadcastMessage("§4Le serveur doit redémarrer pour changer votre mode de jeu");
+						Bukkit.broadcastMessage(ChatColor.DARK_RED + "Le serveur doit redÃ©marrer pour changer votre mode de jeu");
 						
-						// On attend 5 secondes et on redémarre le serveur
+						// On attend 5 secondes et on redÃ©marre le serveur
 						try {
 							Thread.sleep(5*1000);
 						} catch (InterruptedException e) {
@@ -52,16 +53,15 @@ public class CommandUhc implements CommandExecutor {
 						Bukkit.spigot().restart();
 					}
 					
-					Bukkit.broadcastMessage("§6Votre mode de jeu a été mis à jour");
-					Bukkit.broadcastMessage("§eLe scénario UHC est maintenant activé. Ne perdez plus de vie !");
+					Bukkit.broadcastMessage(ChatColor.GOLD + "Votre mode de jeu a Ã©tÃ© mis Ã  jour");
+					Bukkit.broadcastMessage(ChatColor.YELLOW + "Le scÃ©nario UHC est maintenant activÃ©. Ne perdez plus de vie !");
 					
 				} else {
-					player.sendMessage("Vous êtes déjà en UHC");
+					player.sendMessage("Vous Ãªtes dÃ©jÃ  en UHC");
 				}
 				
 			} else {
-				// Erreur de syntaxe
-				player.sendMessage("Syntaxe : /uhc");
+				return false;
 			}
 		
 			return true;

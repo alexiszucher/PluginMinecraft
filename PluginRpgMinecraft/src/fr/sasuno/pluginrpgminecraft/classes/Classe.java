@@ -29,10 +29,10 @@ public abstract class Classe {
 	protected boolean _onCooldown;
 	
 	
-	// Puisque c'est une classe abstraite (classe mère), les constructeurs sont dans les classes héritées (classes filles)
+	// Puisque c'est une classe abstraite (classe mï¿½re), les constructeurs sont dans les classes hï¿½ritï¿½es (classes filles)
 	public Classe() {}
 	
-	// Toutes fonctions relativent à l'objet de type Classe
+	// Toutes fonctions relativent ï¿½ l'objet de type Classe
 	public static Classe getClasseObject(Player player) {
 		
 		PersistentDataTypeClasse dataType = new PersistentDataTypeClasse();
@@ -72,7 +72,7 @@ public abstract class Classe {
 		else if (classeName.equalsIgnoreCase("Sentinelle")) classe = new Sentinelle();
 		else classe = new Mage();
 		
-		// On met à jour les infos du joueur
+		// On met ï¿½ jour les infos du joueur
 		setClasseObject(player, classe);
 		updateMaxHealth(player);
 		fullHeal(player);
@@ -117,7 +117,7 @@ public abstract class Classe {
 			classe = new Mage();
 		}
 		
-		// On met à jour les infos du joueur
+		// On met ï¿½ jour les infos du joueur
 		setClasseObject(player, classe);
 		updateMaxHealth(player);
 		fullHeal(player);
@@ -130,7 +130,7 @@ public abstract class Classe {
 	public String getClasseName() { return _classeName;	}
 	public static String getClasseName(Player player) { return getClasseObject(player).getClasseName(); }
 	
-	// Toutes fonctions relativent à la vie
+	// Toutes fonctions relativent ï¿½ la vie
 	public int getMaxHealth() { return _maxHealth; }
 	public static int getMaxHealth(Player player) { return getClasseObject(player).getMaxHealth(); }
 	public static void updateMaxHealth(Player player) {
@@ -264,18 +264,18 @@ public abstract class Classe {
 				}
 				
 				changeOnCast(player);
-				player.sendMessage("§cVotre effet prend fin");
+				player.sendMessage("ï¿½cVotre effet prend fin");
 				
 				changeOnCooldown(player);
 				
 				try {
-					Thread.sleep(10*1000);
+					Thread.sleep(60*1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				
 				changeOnCooldown(player);
-				player.sendMessage("§aVotre pouvoir est rechargé");				
+				player.sendMessage("ï¿½aVotre pouvoir est rechargï¿½");				
 			}
 		
 		});
@@ -289,8 +289,8 @@ public abstract class Classe {
 
 		ItemStack menuClasse = new ItemStack(Material.EMERALD);
 		ItemMeta menuClasseMeta = menuClasse.getItemMeta();
-		menuClasseMeta.setDisplayName("§bPierre mystique d'amélioration");
-		menuClasseMeta.setLore(Arrays.asList("Cette pierre magique permet", "d'améliorer vos compétences", "", "§9Tout aventurier en a une sur lui", "§cNe perdez pas cet item"));
+		menuClasseMeta.setDisplayName("ï¿½bPierre mystique d'amï¿½lioration");
+		menuClasseMeta.setLore(Arrays.asList("Cette pierre magique permet", "d'amï¿½liorer vos compï¿½tences", "", "ï¿½9Tout aventurier en a une sur lui", "ï¿½cNe perdez pas cet item"));
 		menuClasseMeta.setLocalizedName("menuClasse");
 		menuClasse.setItemMeta(menuClasseMeta);
 		if (player.getInventory().contains(menuClasse)) return true;
@@ -302,8 +302,8 @@ public abstract class Classe {
 
 		ItemStack menuClasse = new ItemStack(Material.EMERALD);
 		ItemMeta menuClasseMeta = menuClasse.getItemMeta();
-		menuClasseMeta.setDisplayName("§bPierre mystique d'amélioration");
-		menuClasseMeta.setLore(Arrays.asList("Cette pierre magique permet", "d'améliorer vos compétences", "", "§9Tout aventurier en a une sur lui", "§cNe perdez pas cet item"));
+		menuClasseMeta.setDisplayName("ï¿½bPierre mystique d'amï¿½lioration");
+		menuClasseMeta.setLore(Arrays.asList("Cette pierre magique permet", "d'amï¿½liorer vos compï¿½tences", "", "ï¿½9Tout aventurier en a une sur lui", "ï¿½cNe perdez pas cet item"));
 		menuClasseMeta.setLocalizedName("menuClasse");
 		menuClasse.setItemMeta(menuClasseMeta);
 		player.getInventory().addItem(menuClasse);

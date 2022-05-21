@@ -1,0 +1,5 @@
+name: PluginBungeeCord
+version: 1.0
+author: Givrix
+api-version: 1.18
+main: fr.givrix.pluginbungeecord.PluginBungeeCord

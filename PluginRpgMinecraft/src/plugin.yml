@@ -1,5 +1,6 @@
 name: PluginRpgMinecraft
 version: 2.0
 authors: [Sasuno, Givrix]
-api-version: 1.16
+api-version: 1.17
+loadbefore: [BuyApple]
 main: fr.sasuno.pluginrpgminecraft.PluginRpgMinecraft

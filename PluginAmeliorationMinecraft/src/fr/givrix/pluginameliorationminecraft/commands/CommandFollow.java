@@ -3,6 +3,7 @@ package fr.givrix.pluginameliorationminecraft.commands;
 import java.util.Arrays;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,16 +31,16 @@ public class CommandFollow implements CommandExecutor {
 			if (args.length == 1) {
 				Player target = Bukkit.getPlayerExact(args[0]);
 				
-				// On vérifie que la cible existe
+				// On vÃ©rifie que la cible existe
 				if (target == null) {
-					player.sendMessage("Le joueur " + args[0] + " n'existe pas ou n'est pas connecté");
+					player.sendMessage("Le joueur " + args[0] + " n'existe pas ou n'est pas connectÃ©");
 					return true;
 				}
 				
 				Location targetLocation = target.getLocation();
 				World.Environment targetEnvironment = target.getWorld().getEnvironment();
 								
-				// On crée un compas pour suivre une cible
+				// On crÃ©e un compas pour suivre une cible
 				ItemStack playerTracker = new ItemStack(Material.COMPASS);
 				CompassMeta playerTrackerMeta = (CompassMeta) playerTracker.getItemMeta();
 				PersistentDataContainer data = playerTrackerMeta.getPersistentDataContainer();
@@ -47,14 +48,14 @@ public class CommandFollow implements CommandExecutor {
 				
 				// On customise les metadata de notre item
 				playerTrackerMeta.setDisplayName("Player Tracker");
-				playerTrackerMeta.setLore(Arrays.asList("Permet de suivre un joueur précis", "§c" + (target.getName()) + " §5est la cible actuelle"));
+				playerTrackerMeta.setLore(Arrays.asList("Permet de suivre un joueur prÃ©cis", ChatColor.RED + (target.getName()) + ChatColor.DARK_PURPLE + " est la cible actuelle"));
 				playerTrackerMeta.setLocalizedName("playerTracker");
 				data.set(key, PersistentDataType.STRING, target.getName());
 				playerTrackerMeta.setLodestone(targetLocation);
 				playerTrackerMeta.setLodestoneTracked(false);
 				playerTracker.setItemMeta(playerTrackerMeta);
 				
-				// On prépare le message d'où est la cible
+				// On prÃ©pare le message d'oÃ¹ est la cible
 				String environment = null;
 				switch (targetEnvironment) {
 				case NORMAL:
@@ -68,10 +69,12 @@ public class CommandFollow implements CommandExecutor {
 				case THE_END:
 					environment = "l'Ender";
 					break;
+					
+				default:
 				}
 				
 				if (player.getWorld().getEnvironment() != targetEnvironment) {
-					player.sendMessage("§cVotre cible se trouve dans " + environment);
+					player.sendMessage(ChatColor.RED + "Votre cible se trouve dans " + environment);
 				}
 					
 				// Si l'inventaire du joueur est plein, on lui drop l'item au sol
@@ -84,8 +87,7 @@ public class CommandFollow implements CommandExecutor {
 				}								
 				
 			} else {
-				// Erreur de syntaxe
-				player.sendMessage("Syntaxe : /follow <joueur>");
+				return false;
 			}
 			
 			return true;			

@@ -15,7 +15,7 @@ public class MyFunctions {
 	
 	public static void ReplaceText(String location, String word, String replacement) {
 		
-		// On initialise le chemin d'accès et l'encodage
+		// On initialise le chemin d'accÃ¨s et l'encodage
 		Path path = Paths.get(location);
 		Charset charset = Charset.forName("UTF-8");
 		
@@ -24,11 +24,11 @@ public class MyFunctions {
 			List<String> replacedLines = new ArrayList<>();
 			String line;
 			
-			// On récupère les lignes une par une dans le document
+			// On rÃ©cupÃ¨re les lignes une par une dans le document
 			while (scanner.hasNextLine()) {
 				line = scanner.nextLine();
 				
-				// Si le mot est présent, on le remplace par le nouveau souhaité
+				// Si le mot est prÃ©sent, on le remplace par le nouveau souhaitÃ©
 				if (line.matches(".*" + word + ".*")) {
 					line = line.replaceAll(line, replacement);
 				}
@@ -38,17 +38,17 @@ public class MyFunctions {
 			
 			BufferedWriter writer = Files.newBufferedWriter(path, charset);
 			
-			// On réécrit les lignes une par une dans le document
+			// On rÃ©Ã©crit les lignes une par une dans le document
 			for (String replacedLine : replacedLines) {
 				writer.write(replacedLine);
 				writer.newLine();
 			}
 			
-			// Libération de la mémoire
+			// LibÃ©ration de la mÃ©moire
 			writer.close();
 			scanner.close();
 			
-		// Récupération des erreurs
+		// RÃ©cupÃ©ration des erreurs
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			

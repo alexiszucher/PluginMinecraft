@@ -27,8 +27,19 @@ public class Mage extends Classe {
 	}
 
 	@Override
-	public Classe updateStuff(Player player) {
-		return null;
+	public void updateStuff(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void openMenu(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void runActivable(Player player) {
 		// TODO Auto-generated method stub
 		
 	}

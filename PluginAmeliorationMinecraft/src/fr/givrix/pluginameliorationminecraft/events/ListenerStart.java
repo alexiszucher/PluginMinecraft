@@ -1,6 +1,7 @@
 package fr.givrix.pluginameliorationminecraft.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,8 +15,8 @@ public class ListenerStart implements Listener {
 		Player player = event.getPlayer();
 		
 		// Affiche un message de bienvenue
-		player.sendMessage("§eBienvenue " + player.getName() + " !");
-		player.sendMessage("§7Le nombre de joueurs connectés est : §a" + Bukkit.getOnlinePlayers().size());
+		player.sendMessage(ChatColor.YELLOW + "Bienvenue " + player.getName() + " !");
+		player.sendMessage(ChatColor.GRAY + "Le nombre de joueurs connectÃ©s est : " + ChatColor.GREEN + Bukkit.getOnlinePlayers().size());
 	}
 
 }

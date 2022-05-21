@@ -1,0 +1,7 @@
+name: Bingo
+version: 1.0
+author: Givrix
+api-version: 1.17
+main: fr.givrix.bingo.Bingo
+commands:
+  startBingo:

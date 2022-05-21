@@ -1,6 +1,7 @@
 package fr.givrix.pluginameliorationminecraft.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -26,10 +27,10 @@ public class ListenerFollow implements Listener {
 		Action action = event.getAction();
 		ItemStack item = event.getItem();
 		
-		// On vérifie que l'item existe et que ce ne soit pas un item basique
+		// On vÃ©rifie que l'item existe et que ce ne soit pas un item basique
 		if (item == null || !item.hasItemMeta()) return;
 		
-		// On vérifie si l'item est le PlayerTracker
+		// On vÃ©rifie si l'item est le PlayerTracker
 		if (item.getType() == Material.COMPASS && (action == Action.RIGHT_CLICK_AIR || action ==  Action.RIGHT_CLICK_BLOCK) && item.getItemMeta().getLocalizedName().equalsIgnoreCase("playerTracker")) {
 			
 			CompassMeta playerTrackerMeta = (CompassMeta) item.getItemMeta();
@@ -37,17 +38,17 @@ public class ListenerFollow implements Listener {
 			NamespacedKey key = new NamespacedKey(PluginAmeliorationMinecraft.getPlugin(), "target");
 			Player target = Bukkit.getPlayerExact(data.get(key, PersistentDataType.STRING));
 			
-			// On vérifie que la cible est connectée
+			// On vÃ©rifie que la cible est connectÃ©e
 			if (target == null) {
-				player.sendMessage("Le joueur " + data.get(key, PersistentDataType.STRING) + " n'est pas connecté");
+				player.sendMessage("Le joueur " + data.get(key, PersistentDataType.STRING) + " n'est pas connectÃ©");
 				return;
 			}
 			
-			// On récupère la position de la cible
+			// On rÃ©cupÃ¨re la position de la cible
 			Location targetLocation = target.getLocation();
 			World.Environment targetEnvironment = target.getWorld().getEnvironment();
 			
-			// On prépare le message d'où est la cible
+			// On prÃ©pare le message d'oÃ¹ est la cible
 			String environment = null;
 			switch (targetEnvironment) {
 			case NORMAL:
@@ -61,16 +62,18 @@ public class ListenerFollow implements Listener {
 			case THE_END:
 				environment = "l'Ender";
 				break;
+				
+			default:
 			}
 			
-			// On met à jour la position de la cible
+			// On met Ã  jour la position de la cible
 			playerTrackerMeta.setLodestone(targetLocation);
 			item.setItemMeta(playerTrackerMeta);
 			if (player.getWorld().getEnvironment() == targetEnvironment) {
-				player.sendMessage("La position de votre cible a été mise à jour");
+				player.sendMessage("La position de votre cible a Ã©tÃ© mise Ã  jour");
 				
 			} else {
-				player.sendMessage("§cVotre cible se trouve dans " + environment);
+				player.sendMessage(ChatColor.RED + "Votre cible se trouve dans " + environment);
 			}
 			
 		}

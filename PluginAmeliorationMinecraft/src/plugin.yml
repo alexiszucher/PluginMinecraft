@@ -1,17 +1,59 @@
 name: PluginAmeliorationMinecraft
-version: 2.0
+version: 3.0
 author: Givrix
-api-version: 1.16
-loadbefore: [PluginRpgMinecraft]
+api-version: 1.18
+loadbefore: [PluginGowong, PluginRpgMinecraft, BuyApple, Bingo]
 main: fr.givrix.pluginameliorationminecraft.PluginAmeliorationMinecraft
+
 commands:
-  pos:
+
+  position:
     description: Affiche les coordonees d'un joueur
+    aliases:
+    - pos
+    usage: "Syntaxe : /position ou /position <joueur>"
+    permission: use.position
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+    
   follow:
     description: Donne une boussole qui pointe un joueur
+    usage: "Syntaxe : /follow <joueur>"
+    permission: use.follow
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+    
   uhc:
     description: Passe le jeu en ultra hardcore
+    usage: "Syntaxe : /uhc"
+    permission: use.uhc
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+    
   inventory:
     description: Ouvre un inventaire commun accessible a tous les joueurs
+    aliases:
+    - inv
+    usage: "Syntaxe : /inventory"
+    permission: use.inventory
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+    
   home:
     description: Defini un home ou s'y teleport
+    usage: "Syntaxe : /home ou /home set"
+    permission: use.home
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+
+permissions:
+
+   use.position:
+     default: true
+     
+   use.follow:
+     default: true
+     
+   use.uhc:
+     default: op
+     
+   use.inventory:
+     default: true
+     
+   use.home:
+     default: true

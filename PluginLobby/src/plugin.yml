@@ -1,0 +1,5 @@
+name: PluginLobby
+version: 1.0
+author: Givrix
+api-version: 1.18
+main: fr.givrix.pluginlobby.PluginLobby

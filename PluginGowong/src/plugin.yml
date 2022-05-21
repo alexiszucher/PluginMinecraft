@@ -1,0 +1,19 @@
+name: PluginGowong
+version: 1.0
+author: Givrix
+api-version: 1.18
+main: fr.givrix.plugingowong.PluginGowong
+
+commands:
+
+  allResurrection:
+    description: Permet de ressuciter tous les joueurs pour 30 secondes
+    aliases:
+    - rez
+    usage: "Syntaxe : /allResurrection"
+    permission: use.allResurrection
+    permission-message: Tu n'as pas la permission d'utiliser cette commande
+
+permissions:
+   use.allResurrection:
+     default: op

@@ -19,6 +19,7 @@ public class ListenerStart implements Listener {
 			Classe.setRandomClasse(player);
 		}
 		
+		//Classe.setClasse(player, "Sentinelle");
 		player.sendMessage("Votre classe est §b" + Classe.getClasseName(player));
 	}
 
