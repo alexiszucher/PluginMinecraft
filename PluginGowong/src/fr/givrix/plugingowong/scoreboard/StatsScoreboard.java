@@ -22,17 +22,82 @@ import org.bukkit.scoreboard.Scoreboard;
 import fr.givrix.pluginameliorationminecraft.PluginAmeliorationMinecraft;
 import fr.givrix.plugingowong.PluginGowong;
 import fr.givrix.plugingowong.comparators.ComparatorAnimalsBreeded;
+import fr.givrix.plugingowong.comparators.ComparatorDeaths;
+import fr.givrix.plugingowong.comparators.ComparatorJumps;
 import fr.givrix.plugingowong.comparators.ComparatorKilledMobs;
 import fr.givrix.plugingowong.comparators.ComparatorMinedDiamonds;
+import fr.givrix.plugingowong.comparators.ComparatorPlayerKills;
+import fr.givrix.plugingowong.comparators.ComparatorRaidWon;
 import fr.givrix.plugingowong.comparators.ComparatorTimePassedOnServer;
+import fr.givrix.plugingowong.comparators.ComparatorTraveledBlocks;
+import fr.givrix.plugingowong.comparators.ComparatorTraveledBoat;
 
 public class StatsScoreboard {
+	
+	public void displayTopRaidWon() {
+		updateScoreboard("topRaidWon", "Raid gagnés", new ComparatorRaidWon(), Statistic.RAID_WIN);
+	
+		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
+			() -> displayTopAnimalsBreeded(), 5*20);
+	}
+	
+	public void displayTopJumps() {
+		updateScoreboard("topJumps", "Sauts effectués", new ComparatorJumps(), Statistic.JUMP);
+	
+		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
+			() -> displayTopTraveledBoat(), 5*20);
+	}
+	
+	public void displayTopDeaths() {
+		updateScoreboard("topDeaths", "Morts", new ComparatorDeaths(), Statistic.DEATHS);
+	
+		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
+			() -> displayTopJumps(), 5*20);
+	}
+	
+	public void displayTopPlayerKills() {
+		updateScoreboard("topPlayerKills", "Joueurs tués", new ComparatorPlayerKills(), Statistic.PLAYER_KILLS);
+	
+		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
+			() -> displayTopDeaths(), 5*20);
+	}
 	
 	public void displayTopAnimalsBreeded() {
 		updateScoreboard("topAnimalsBreeded", "Animaux reproduits", new ComparatorAnimalsBreeded(), Statistic.ANIMALS_BRED);
 	
 		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
 			() -> displayTopTimePassedOnServer(), 5*20);
+	}
+	
+	public void displayTopTraveledBoat() {
+		
+		Scoreboard mainScoreboard = PluginAmeliorationMinecraft.getPlugin().getServer().getScoreboardManager().getMainScoreboard();
+		
+		Objective objective;
+		if (mainScoreboard.getObjective("topTraveledBoat") != null) {
+			objective = mainScoreboard.getObjective("topTraveledBoat");
+			objective.unregister();
+		}
+		
+		objective = mainScoreboard.registerNewObjective("topTraveledBoat", "dummy", ChatColor.DARK_GREEN + "Kilomètres navigués", RenderType.INTEGER);
+		mainScoreboard.getObjective("topTraveledBoat").setDisplaySlot(DisplaySlot.SIDEBAR);
+		
+		List<UUID> topPlayers = getTopPlayersByStat(new ComparatorTraveledBoat());
+		
+		Score player1 = objective.getScore(ChatColor.DARK_RED + Bukkit.getOfflinePlayer(topPlayers.get(0)).getName());
+		int statPlayer1 = Bukkit.getOfflinePlayer(topPlayers.get(0)).getStatistic(Statistic.BOAT_ONE_CM);
+		player1.setScore(statPlayer1/100000);
+		
+		Score player2 = objective.getScore(ChatColor.AQUA + Bukkit.getOfflinePlayer(topPlayers.get(1)).getName());
+		int statPlayer2 = Bukkit.getOfflinePlayer(topPlayers.get(1)).getStatistic(Statistic.BOAT_ONE_CM);
+		player2.setScore(statPlayer2/100000);
+		
+		Score player3 = objective.getScore(ChatColor.LIGHT_PURPLE + Bukkit.getOfflinePlayer(topPlayers.get(2)).getName());
+		int statPlayer3 = Bukkit.getOfflinePlayer(topPlayers.get(2)).getStatistic(Statistic.BOAT_ONE_CM);
+		player3.setScore(statPlayer3/100000);
+	
+		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
+			() -> displayTopRaidWon(), 5*20);
 	}
 	
 	public void displayTopMinedDiamonds() {
@@ -66,7 +131,7 @@ public class StatsScoreboard {
 		player3.setScore(statPlayer3);
 		
 		Bukkit.getScheduler().runTaskLater(PluginGowong.getPlugin(),
-				() -> displayTopAnimalsBreeded(), 5*20);
+				() -> displayTopPlayerKills(), 5*20);
 	}
 	
 	public void displayTopKilledMobs() {
@@ -89,7 +154,7 @@ public class StatsScoreboard {
 		objective = mainScoreboard.registerNewObjective("topTraveledBlocks", "dummy", ChatColor.DARK_GREEN + "Kilomètres marchés", RenderType.INTEGER);
 		mainScoreboard.getObjective("topTraveledBlocks").setDisplaySlot(DisplaySlot.SIDEBAR);
 		
-		List<UUID> topPlayers = getTopPlayersByStat(new ComparatorTimePassedOnServer());
+		List<UUID> topPlayers = getTopPlayersByStat(new ComparatorTraveledBlocks());
 		
 		Score player1 = objective.getScore(ChatColor.DARK_RED + Bukkit.getOfflinePlayer(topPlayers.get(0)).getName());
 		int statPlayer1 = Bukkit.getOfflinePlayer(topPlayers.get(0)).getStatistic(Statistic.WALK_ONE_CM);
